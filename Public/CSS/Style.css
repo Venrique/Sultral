@@ -1,0 +1,80 @@
+*{
+	font-family: 'poppins';
+}
+body{
+	margin:0;
+	padding: 0;
+	
+}
+body header{
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	padding: 0.7rem 7rem;
+	
+	justify-content: space-between;
+	align-items: center;
+}
+body header nav ul{
+	margin: 0;
+	padding: 0;
+
+}
+body header nav ul li{
+	display: inline-block;
+	 
+	
+	
+
+}
+body header nav ul li a{
+	display: block;
+	text-decoration: none;
+	color:black;
+	padding: 0.5rem 1rem;
+}
+body header nav ul li a:hover{
+	background-color: #4a4a4a;
+	transition: all 0.4s linear;
+	color:white;
+}
+.Seccion1{
+	background-image: url('../IMG/bg1.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+	height: 91.5vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+
+
+	position: relative;
+	z-index: 1;
+}
+.Seccion1::after{
+	content:"";
+	position:absolute;
+	top:0;
+	background-size: contain;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color: black;
+	opacity: 0.6;
+	z-index:-1;
+
+}
+.Seccion1 a{
+	margin-top: 2%;
+	text-decoration: none;
+	color:white;
+	background-color: #E6BA93;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	padding-top: 0.8rem;
+	padding-bottom: 0.8rem;
+}
+}

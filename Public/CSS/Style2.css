@@ -1,0 +1,80 @@
+*{
+	font-family: 'Poppins'
+}
+body{
+	background-color: #FFFFFF;
+}
+body header{
+	padding: 0 10%;
+}
+body header ul {
+	display: grid;
+	grid-template-columns: repeat(3, 33%);
+	align-items: center;
+	justify-content: center;
+	list-style: none;
+	align-self: center;
+	justify-self: center;
+	position: center;
+
+}
+body header ul li{
+	align-self: center;
+	justify-self: center;
+}
+body header ul li input{
+	background-color: #F5F5F5;
+	border:none;
+	border-radius: 20px;
+	width: 400px;
+	height: 40px;
+	padding-left: 5%;
+}
+.fas.fa-cog{
+	color:black;
+	font-size: 1.5rem;
+}
+.MenuIzquierda{
+	margin: 0 auto 0 auto;
+	width: 20%;
+	float: left;
+	background-color: #FFFFFF;
+	padding: 0;
+	
+
+}
+
+.MenuIzquierda section nav ul{
+	list-style: none;
+}
+.MenuIzquierda section nav ul li{
+
+	margin-top: 5%;
+}
+.MenuIzquierda section nav ul li a{
+	
+
+	
+	text-decoration: none;
+	color: black;
+}
+.EspacioUtilizado{
+
+}
+.Seccion1{
+	float: right;
+	width: 80%;
+	text-align: center;
+}
+.Seccion1 nav{
+	margin-top: 5%;
+	padding: 0 5%;
+}
+.Seccion1 nav ul{
+
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	justify-content: space-between;
+
+}
