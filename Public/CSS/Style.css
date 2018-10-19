@@ -8,15 +8,20 @@
 }
 body{
 	margin: 0;
+	background-color: #E6BA93;
 }
 body header{
 	background-color: white;
 	display: flex;
 	flex-direction: row;
 	padding: 0.7rem 7rem;
-	
+	border-bottom: #000 3px solid;
 	justify-content: space-between;
 	align-items: center;
+}
+body header p a{
+	text-decoration: none;
+	color: #000;
 }
 body header nav ul{
 	margin: 0;
@@ -43,7 +48,7 @@ body header nav ul li a:hover{
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center;
-	height: 91.5vh;
+	height: 91.2vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -78,3 +83,81 @@ body header nav ul li a:hover{
 	padding-top: 0.8rem;
 	padding-bottom: 0.8rem;
 }
+
+.container-login{
+	width: 90%;
+	height: 70%;
+	margin:  10% auto;
+}
+
+.form{
+	display: flex;
+	width: 100%;
+}
+
+.formulario-login{
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	border-right: #000 solid 1px;
+	padding: 2em 0;
+}
+
+.input{
+	margin-bottom: 2em;
+	width: 80%;
+	border: 1.2px solid #000;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.titulos{
+	display: flex;
+}
+
+.titulos h2:nth-of-type(2){
+	margin-left: 9em;
+}
+
+.input:nth-of-type(2){
+	margin-bottom: 5em;
+}
+
+.btn-login{
+	background-color: transparent;
+	border: #000 1px solid;
+	cursor: pointer;
+	border-radius: 3px;
+	transition: 0.2s;
+	width: 110px;
+}
+
+.btn-login:hover{
+	color: #fff;
+	background-color: #000;
+}
+
+.crear{
+	width: 30%;
+	padding: 0 2em 2em 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.motivos{
+	padding: 0 2em;
+	margin-left: 7%; 
+	width: 30%;
+	color: #000;
+	background-color: antiquewhite;
+	opacity: 0.7;
+	border-radius: 10px;
+}
+
+.motivos h2{
+	font-size: 18px;
+	z-index: 2;
+}
+
