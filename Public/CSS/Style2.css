@@ -1,4 +1,68 @@
+:root{
+	box-sizing: border-box;
+	font-size: calc(0.05em + 1vw);
+}
+
+*, ::before, ::after{
+	box-sizing: inherit;
+	font-family: 'Poppins'
+}
 body{
+	margin: 0;
+	background-color: rgb(255, 255, 255);
+}
+
+.app-container{
+	display: grid;
+	grid-template-rows: 1fr 8fr;
+	justify-content: center;
+	width: 100%;
+	padding: 1rem;
+}
+
+.app-header{
+	display: grid;
+	grid-template-columns: 1fr 6fr 1fr;
+	width: 100%;
+	padding: 0;
+	height: 110px;
+	justify-items: center;
+	align-items: center;
+}
+
+.logo-app{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.logo-app > a >img{
+	width: 40%;
+	transition: 0.2s all;
+}
+
+.logo-app:hover > a >img{
+	width: 42%;
+}
+
+.search-form{
+	width: 100%;
+	text-align: center;
+}
+
+.search-form > input[type="text"]{
+	width: 60%;
+	padding: 0.5em;
+	font-size: 1rem;
+	border-radius: 2em;
+	border: 1px solid #afafaf;
+}
+
+.app-body{
+	display: grid;
+	grid-template-columns: 1fr 8fr;
+}
+
+/*body{
 	background-color: #FFFFFF;
 }
 body header{
@@ -75,3 +139,4 @@ body header ul li input{
 	justify-content: space-between;
 
 }
+*/
