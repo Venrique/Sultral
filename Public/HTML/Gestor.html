@@ -19,13 +19,14 @@
 		</header>
 		<main class="app-body">
 			<aside class="menu">
-				<nav>
+				<nav class="app-menu">
 					<ul>
-						<li><a href="#">Nuevo</a></li>
-						<li><a href="#">Mis archivos</a></li>
-						<li><a href="#">Compartidos conmigo</a></li>
-						<li><a href="#">Papelera</a></li>
-						<li><a href="#">Almacenamiento</a></li>
+						<li><a href="#" id="upload" class="option" onclick="select(this)">Subir</a></li>
+						<li><a href="#" id="files" class="option selected-menu" onclick="select(this)">Mis archivos</a></li>
+						<li><a href="#" id="share" class="option" onclick="select(this)">Compartidos</a></li>
+						<li><a href="#" id="fav" class="option" onclick="select(this)">Favoritos</a></li>
+						<li><a href="#" id="bin" class="option" onclick="select(this)">Papelera</a></li>
+						<li><a href="#" id="contacts" class="option" onclick="select(this)">Contactos</a></li>
 					</ul>
 				</nav>
 			</aside>
@@ -34,49 +35,25 @@
 			</section>
 		</main>
 	</div>
-	<!--
-	<header>
-		<nav>
-			<ul>
-				<li>LOGO</li>
-				<li><input type="text" name="Buscador" placeholder="Buscar archivo"></li>
-				<li><a href="#"><i class="fas fa-cog"></i> </a></li>
-			</ul>
-		</nav>
-	</header>
-	<aside class="MenuIzquierda">
-		<section>
-			<h3 style="text-align: center;">Mi espacio</h3>
-			<hr>
-			<nav>
-				<ul>
-					<li><a href="#"><i class="fas fa-plus" style="margin-right: 5%;">	</i>Nuevo archivo</a></li>
-					<li><a href="#"><i class="fas fa-file-alt" style="margin-right: 5%;">	</i> Mis archivos</a></li>
-					<li><a href="#"><i class="fas fa-users" style="margin-right: 5%;"></i> Archivos Compartido</a></li>
-				</ul>
-			</nav>
+
+	<script>
+		function hasClass(element, className) {
+			return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+		};
+
+		var elementos;
+
+		function select(elemento){
 			
-		</section>
+			elementos = document.querySelectorAll(".option");
 
-		<section class="EspacioUtilizado" style="border-top: 1px solid gray;">
-			<h3 style="text-align: center;"><i class="fas fa-cloud" style="color: gray; margin-right: 5%;"></i>Espacio utilizado</h3>	
-		</section>
+			elementos.forEach( (elem) => {
+				elem.className = elem.className.replace(/\bselected-menu\b/g, "");
+			});
 
-		
-	</aside>
-	<section class="Seccion1">
-		<h3>Mis archivos</h3>
-		<nav>
-			<ul>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem; color: gray;"></i></li>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem;color: gray;"></i></li>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem;color: gray;"></i></li>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem;color: gray;"></i></li>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem;color: gray;"></i></li>
-				<li><i class="fas fa-file-alt" style="font-size: 7rem;color: gray;"></i></li>
-			</ul>
-		</nav>
-	</section>
-	-->
-</body>
+			if(!hasClass(elemento, "selected-menu")){
+				elemento.className += " selected-menu";
+			}
+		};
+	</script>
 </html>

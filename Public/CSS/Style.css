@@ -218,6 +218,8 @@ body header nav ul li a:hover{
 
 .botones-login > p{
 	margin: 0.1em;
+	margin-top: 0.8em;
+	font-size: 0.8em;
 }
 
 .register-box{
