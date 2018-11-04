@@ -17,6 +17,7 @@ body{
 	grid-template-rows: 1fr 13fr;
 	justify-content: center;
 	width: 100%;
+	height: 1vh;
 }
 
 .app-header{
@@ -83,7 +84,7 @@ body{
 
 .app-body{
 	display: grid;
-	grid-template-columns: 2fr 11fr;
+	grid-template-columns: 2fr 12fr;
 	background-color: #ffffff;
 	height: 92vh;
 }
@@ -91,7 +92,7 @@ body{
 .app-menu > ul > li > a{
 	text-decoration: none;
 	color: #555555;
-	font-size: 1.2em;
+	font-size: 1em;
 	background-color: #efefef;
 	border-radius: 0 0.3em 0.3em 0;
 	width: 90%;
@@ -118,10 +119,6 @@ body{
 	text-align: center;
 }
 
-.app-menu{
-	margin: 2em 0;
-}
-
 .app-menu > ul{
 	padding: 0;
 	width: 100%;
@@ -137,4 +134,69 @@ body{
 	color: #ffffff !important;
 	width: 100% !important;
 	padding-left: 2em !important;
+}
+
+.upload-btn{
+	border: none;
+	cursor: pointer;
+	border-radius: 0 5px 5px 0;
+	transition: 0.2s;
+	width: 90%;
+	padding: 0.8em;
+	color: #fff;
+	font-size: 1em;
+	text-decoration: none;
+	text-align: center;
+	background-color: #3babdf;
+}
+
+.upload-btn:hover{
+	background-color: #238ebf;
+	width: 100%;
+}
+
+.upload-container{
+	width: 100%;
+	padding: 2em 0 1em;
+}
+
+.document-viewer{
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-gap: 1em;
+	padding: 2em;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	overflow: scroll;
+}
+
+.element{
+	background-color: #dedede;
+	border-radius: 5px;
+	width: 14em;
+	height: 14em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.name{
+	width: 100%;
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.icon{
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+
+.options{
+	display: flex;
+	justify-content: space-around;
+	background-color: #eeeeee;
+	border-radius: 0 0 5px 5px;
 }

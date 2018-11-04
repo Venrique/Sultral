@@ -3,9 +3,8 @@
 <head>
 	<title>Archivos - Sultral</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 	<link rel="stylesheet" href="../CSS/Style2.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
 	<div class="app-container">
@@ -20,18 +19,30 @@
 		<main class="app-body">
 			<aside class="menu">
 				<nav class="app-menu">
+					<div class="upload-container">
+						<button class="upload-btn">Subir</button>
+					</div>
 					<ul>
-						<li><a href="#" id="upload" class="option" onclick="select(this)">Subir</a></li>
 						<li><a href="#" id="files" class="option selected-menu" onclick="select(this)">Mis archivos</a></li>
 						<li><a href="#" id="share" class="option" onclick="select(this)">Compartidos</a></li>
 						<li><a href="#" id="fav" class="option" onclick="select(this)">Favoritos</a></li>
 						<li><a href="#" id="bin" class="option" onclick="select(this)">Papelera</a></li>
-						<li><a href="#" id="contacts" class="option" onclick="select(this)">Contactos</a></li>
 					</ul>
 				</nav>
 			</aside>
 			<section class="document-viewer">
-
+				<div class="element">
+					<p class="name">Nueva Carpeta</p>
+					<div class="icon">
+						<img src="../IMG/folder-solid.svg" alt="Folder">
+					</div>
+					<div class="options">
+						<p>a</p>
+						<p>b</p>
+						<p>c</p>
+					</div>
+				</div>
+				
 			</section>
 		</main>
 	</div>
