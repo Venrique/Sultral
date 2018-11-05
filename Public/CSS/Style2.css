@@ -5,11 +5,12 @@
 
 *, ::before, ::after{
 	box-sizing: inherit;
-	font-family: 'Poppins'
 }
+
 body{
 	margin: 0;
 	background-color: rgb(255, 255, 255);
+	font-family: 'Poppins';
 }
 
 .app-container{
@@ -177,21 +178,31 @@ body{
 	border-radius: 5px;
 	width: 14em;
 	height: 14em;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	display: grid;
+	grid-template-rows: 1fr 7fr 1fr;
 }
 
 .name{
 	width: 100%;
 	text-align: center;
 	font-size: 0.8em;
+	margin: 1rem 0 0;
+	font-weight: 700;
+	color: #444;
 }
 
-.icon{
-	width: 50%;
-	margin: auto;
+.nav-button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #f7f7f7;
+	font-size: 6em;
 	text-align: center;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	transition: 0.3s all;
 }
 
 .options{
@@ -199,4 +210,73 @@ body{
 	justify-content: space-around;
 	background-color: #eeeeee;
 	border-radius: 0 0 5px 5px;
+	padding: 0.8em;
+	width: 100%;
+}
+
+.option{
+	border: none;
+	cursor: pointer;
+	font-size: 1.2em;
+	background-color: transparent;
+	border-radius: 3px; 
+	color: #444;
+	transition: 0.3s all;
+	outline: none;
+}
+
+.option:hover{
+	color: #888;
+}
+
+.option:focus{
+	color: #000000;
+}
+
+.red{
+	color: #e00;
+}
+
+.orange{
+	color: #f50;
+}
+
+.green{
+	color: #0a0;
+}
+
+.blue{
+	color: #3898ff;
+}
+
+.yellow{
+	color:#ffef77;
+}
+
+.grey{
+	color: #adadad;
+}
+
+.red:hover{
+	color: #c00;
+}
+
+.orange:hover{
+	color: #d40;
+}
+
+.green:hover{
+	color: #070;
+}
+
+.blue:hover{
+	color: #227ad8;
+}
+
+.yellow:hover{
+	color: #ffea4f;
+}
+
+.grey:hover{
+	color: #a0a0a0;
 }
