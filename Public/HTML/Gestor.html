@@ -149,17 +149,13 @@
 		function hasClass(element, className) {
 			return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 		};
-
 		var elementos;
-
 		function select(elemento){
 			
 			elementos = document.querySelectorAll(".option");
-
 			elementos.forEach( (elem) => {
 				elem.className = elem.className.replace(/\bselected-menu\b/g, "");
 			});
-
 			if(!hasClass(elemento, "selected-menu")){
 				elemento.className += " selected-menu";
 			}
