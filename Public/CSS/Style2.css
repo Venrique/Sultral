@@ -23,10 +23,9 @@ body{
 
 .app-header{
 	display: grid;
-	grid-template-columns: 1fr 5fr 1fr;
+	grid-template-columns: 1fr 5fr;
 	width: 100%;
 	padding: 0;
-	height: 8vh;
 	justify-items: center;
 	align-items: center;
 	background-color: #333333;
@@ -57,8 +56,8 @@ body{
 
 .search-form{
 	justify-self: left;
-	width: 60%;
-	margin: 0 auto;
+	width: 100%;
+	margin: 0 2em;
 }
 
 .search-form > input[type="text"]{
@@ -87,7 +86,7 @@ body{
 	display: grid;
 	grid-template-columns: 2fr 12fr;
 	background-color: #ffffff;
-	height: 92vh;
+	height: 89.5vh;
 }
 
 .app-menu > ul > li > a{
@@ -474,8 +473,10 @@ body{
 }
 .config-aside nav ul li{
 	margin-top: 1em; 
+
 }
 .config-aside nav ul li a{
+
 	text-decoration: none;
 	color:#000000;
 }
@@ -514,10 +515,12 @@ body{
 	display: flex;
 	flex-direction: column;
 	
-}
+<<<<<<< HEAD
+=======
+
+
 #config-privacidad input{
 	width: 40%;
-	height: 34px;
 	 border-radius: 3px;
   border: 1px solid transparent;
   border-top: none;
@@ -554,6 +557,7 @@ body{
 
 .menu-opciones{
 	display: flex;
+	align-items: center;
 	width: 100%;
 }
 
@@ -561,9 +565,3 @@ body{
 	width: 100%;
 }
 
-.search-form{
-	display: flex;
-	align-items: center;
-	width: 100%;
-	margin: 0 2em;
-}

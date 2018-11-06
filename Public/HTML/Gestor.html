@@ -14,18 +14,17 @@
 				<a href="#"><img src="../IMG/logo_sultral.png" alt="Sultral"></a>
 			</div>
 			<div class="menu-opciones">
-				<form action="#" method="GET" class="search-form">
-					<input type="text" name="search" id="search" placeholder="Buscar..." required>
+								<form action="#" method="GET" class="search-form">
+							<input type="text" name="search" id="search" placeholder="Buscar..." required>
 				</form>
 				<nav>
 					<ul class="menu-header">
-						<li><a href="">Perfíl</a></li>
 						<li><a href="">Configuración</a></li>
 						<li><a href="">Contáctos</a></li>
 						<li><a href="">Cerrar Sesión</a></li>
 					</ul>
 				</nav>
-			</div>		
+			</div>			
 		</header>
 		<main class="app-body">
 			<aside class="menu">
@@ -159,17 +158,13 @@
 		function hasClass(element, className) {
 			return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 		};
-
 		var elementos;
-
 		function select(elemento){
 			
 			elementos = document.querySelectorAll(".option");
-
 			elementos.forEach( (elem) => {
 				elem.className = elem.className.replace(/\bselected-menu\b/g, "");
 			});
-
 			if(!hasClass(elemento, "selected-menu")){
 				elemento.className += " selected-menu";
 			}
