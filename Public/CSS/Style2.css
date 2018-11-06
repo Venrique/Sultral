@@ -293,7 +293,7 @@ body{
 	background-color: transparent;
 	border-radius: 5px;
 	width: 13em;
-	height: 50em;
+	height: 13em;
 	display: grid;
 	grid-template-rows: 7fr 3fr;
 	border: dashed 0.3em #adadad;
@@ -538,3 +538,42 @@ body{
 	margin-top: 1em;
 }
 */
+
+.menu-header{
+	display: flex;
+	justify-content: flex-end;
+	list-style: none;
+}
+
+.menu-header li{
+	padding: 0 1em;
+}
+
+.menu-header li a{
+	text-decoration: none;
+	color: #fff;
+	
+}
+
+.menu-header li a:hover{
+	transition: all 0.3s ease-out;
+	text-decoration: underline;
+	text-decoration-color: #c3dbf9;
+	color: #c3dbf9;
+}
+
+.menu-opciones{
+	display: flex;
+	width: 100%;
+}
+
+.menu-opciones nav{
+	width: 100%;
+}
+
+.search-form{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin: 0 2em;
+}
