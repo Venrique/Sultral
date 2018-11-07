@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    section.container
+      .prueba
+        .div-login
+          .form
+            form.formulario-login(method='POST')
+              h1 INICIAR SESIÓN
+              label(for='user') Usuario:
+              input#user.input(type='text', name='usuario', placeholder='Usuario')
+              label(for='pass') Contraseña:
+              input#pass.input(type='password', name='contrasenia', placeholder='***************')
+              .botones-login
+                input.btn-login.btn-azul(type='submit', value='Iniciar sesión')
+                p
+                  | ¿No tienes una cuenta? 
+                  a(href='Registrar.pug') ¡Regístrate Ya!
+        .crear
+          h2
+            | Tus archivos, 
+            br
+            | donde quieras y cuando quieras
+          img(src='../public/images/loginImg.jpg', alt='Connect')
