@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header
+    p SULTRAL
+      div
+        nav
+          ul
+            li
+              a(href='Public/HTML/LogIn.html') Iniciar Sesión
+            li
+              a(href='Public/HTML/Registrar.html') Crear Cuenta
+  section.Seccion1
+    h3 LOGO
+    h3(style='font-size: 2.5rem;') ¡Comparte tus archivos con todo el mundo!
+    a.btn-azul(href='#') Empezar a compartir
