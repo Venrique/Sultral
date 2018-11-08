@@ -8,11 +8,11 @@ block content
           p
             | Al crear una cuenta podrás disfrutar de todas las funcionalidades que ofrece Sultral mientras mantienes tus archivos seguros, organizados y accesibles desde cualquier computadora.
           label(for='usuario') Usuario:
-          input#usuario.input.r-input(type='text', placeholder='Usuario')
+          input#usuario.input.r-input(type='text',name='usuario', placeholder='Usuario')
           label(for='correo') Correo:
-          input#correo.input.r-input(type='email', placeholder='sultral@example.com')
+          input#correo.input.r-input(type='email',name='correo', placeholder='sultral@example.com')
           label(for='contraseña') Contraseña:
-          input.input.r-input(type='password', id='contraseña', placeholder='***********')
+          input#contrasenia.input.r-input(type='password',name='contrasenia', placeholder='***********')
           label(for='confirm') Confirmar contraseña:
-          input#confirm.input.r-input(type='password', placeholder='***********')
+          input#confirm.input.r-input(type='password',name='confirm', placeholder='***********')
           input.btn-registro.btn-azul(type='submit', value='¡Regístrate ya!')

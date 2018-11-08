@@ -3,11 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
+var registerRouter = require('./routes/register');
+var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 
+
 var app = express();
+
+//CONEXION A BASE DE DATOS
+mongoose.connect('mongodb://Master:'+ process.env.MONGO_ATLAS_PW +'@sultral-shard-00-00-pidjg.mongodb.net:27017,sultral-shard-00-01-pidjg.mongodb.net:27017,sultral-shard-00-02-pidjg.mongodb.net:27017/test?ssl=true&replicaSet=Sultral-shard-0&authSource=admin&retryWrites=true');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/Registrar', registerRouter);
+app.use('/LogIn', loginRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
