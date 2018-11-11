@@ -1,0 +1,39 @@
+doctype html
+head
+  title Configuracion de usuario
+  meta(charset='utf-8')
+  link(rel='stylesheet' type='text/css' href='stylesheets/Style2.css')
+  link(href='https://fonts.googleapis.com/css?family=Poppins:400,700' rel='stylesheet')
+header
+  .config-header
+    p CONFIGURACIONES
+    a(href='Gestor.pug')  Regresar
+.config-container
+  aside.config-aside
+    section
+      nav
+        ul
+          li
+            a(href='#config-detalle') Detalle
+          li
+            a(href='#config-perfil') Perfil
+          li
+            a(href='#config-privacidad') Privacidad
+  section.config-section
+    #config-detalle
+      h3  Detalles de la cuenta 
+      p Almacenamiento: 2.0 GB
+    #config-perfil
+      h3 Perfil
+      label(for='usuario')  Usuario:
+      input(type='text' name='usuario' placeholder='User1234')
+      label(for='correo') Correo: 
+      input(type='text' name='correo' placeholder='User123@hotmail.com')
+    #config-privacidad
+      h3  Privacidad 
+      label(for='contrasenia-actual' placeholder='**********') Contrase&ntilde;a actual: 
+      input(type='text' name='contraseniaa-actual' placeholder='**********')
+      label(for='contrasenia-nueva') Contrase&ntilde;a nueva: 
+      input(type='text' name='contraseniaa-nueva' placeholder='**********')
+      label(for='confirmacion') Confirmar contrase&ntilde;a nueva: 
+      input(type='text' name='confirmacion' placeholder='**********')

@@ -1,0 +1,175 @@
+doctype html
+html
+  head
+    title Archivos - Sultral
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/stylesheets/Style2.css', type='text/css')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css', integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU', crossorigin='anonymous')
+    link(href='https://fonts.googleapis.com/css?family=Poppins:400,700', rel='stylesheet')
+  body
+    .app-container
+      header.app-header
+        .logo-app
+          a(href='#')
+            img(src='/images/logo_sultral.png', alt='Sultral')
+        .menu-opciones
+          form.search-form(action='#', method='GET')
+            input#search(type='text', name='search', placeholder='Buscar...', required='')
+          nav
+            ul.menu-header
+              li
+                a(href='ConfigUsuario') Configuración
+              li
+                a(href='') Contactos
+              li
+                a(href='') Cerrar Sesión
+      main.app-body
+        aside.menu
+          nav.app-menu
+            .upload-container
+              button.upload-btn Subir
+            ul
+              li
+                a#files.option.selected-menu(href='#', onclick='select(this)') Mis archivos
+              li
+                a#share.option(href='#', onclick='select(this)') Compartidos
+              li
+                a#fav.option(href='#', onclick='select(this)') Favoritos
+              li
+                a#bin.option(href='#', onclick='select(this)') Papelera
+        section.application
+          .route
+            p
+              a(href='#') root
+              |  > 
+              a(href='#') Sultral
+              |  > 
+              a(href='#') 2018
+          .document-viewer
+            .element
+              p.name Carpeta de Ejemplo
+              button.nav-button.yellow
+                i.fa.fa-folder-open
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Presentación.pptx
+              button.nav-button.orange
+                i.fas.fa-file-powerpoint
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.far.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Documento.docx
+              button.nav-button.blue
+                i.fas.fa-file-word
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.far.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Libro.xlsx
+              button.nav-button.green
+                i.fas.fa-file-excel
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.fas.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Documento.pdf
+              button.nav-button.red
+                i.fas.fa-file-pdf
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.fas.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Documento.txt
+              button.nav-button.grey
+                i.fas.fa-file-alt
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.far.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Fichero.sql
+              button.nav-button.white
+                i.fas.fa-file
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.fas.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Imagen.jpg
+              button.nav-button.grey
+                i.fas.fa-image
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.far.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Video.mp4
+              button.nav-button.grey
+                i.fas.fa-file-video
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.fas.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .element
+              p.name Audio.mp3
+              button.nav-button.grey
+                i.fas.fa-file-audio
+              .options
+                button.option
+                  i.fas.fa-download
+                button.option
+                  i.far.fa-star
+                button.option
+                  i.fas.fa-ellipsis-h
+            .new-folder
+              .icon-folder
+                i.fas.fa-folder-plus
+              p.new-f-text
+                | Nueva Carpeta
+    script.
+      function hasClass(element, className) {
+      return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+      };
+      var elementos;
+      function select(elemento){
+      elementos = document.querySelectorAll(".option");
+      elementos.forEach( (elem) => {
+      elem.className = elem.className.replace(/\\bselected-menu\b/g, "");
+      });
+      if(!hasClass(elemento, "selected-menu")){
+      elemento.className += " selected-menu";
+      }
+      };
