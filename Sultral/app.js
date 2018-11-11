@@ -14,7 +14,9 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 //CONEXION A BASE DE DATOS
-mongoose.connect('mongodb://Master:'+ process.env.MONGO_ATLAS_PW +'@sultral-shard-00-00-pidjg.mongodb.net:27017,sultral-shard-00-01-pidjg.mongodb.net:27017,sultral-shard-00-02-pidjg.mongodb.net:27017/test?ssl=true&replicaSet=Sultral-shard-0&authSource=admin&retryWrites=true');
+mongoose.connect('mongodb://Master:'+ process.env.MONGO_ATLAS_PW +'@sultral-shard-00-00-pidjg.mongodb.net:27017,sultral-shard-00-01-pidjg.mongodb.net:27017,sultral-shard-00-02-pidjg.mongodb.net:27017/test?ssl=true&replicaSet=Sultral-shard-0&authSource=admin&retryWrites=true',{
+  useNewUrlParser: true
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

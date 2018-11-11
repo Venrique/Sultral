@@ -264,3 +264,12 @@ body header nav ul li a:hover{
 	text-decoration: none;
 	text-align: center;
 }
+
+.error{
+	font-size: 0.7em;
+	color: #ff0000;
+}
+
+.err-input{
+	border: 1px solid #ff0000;
+}
