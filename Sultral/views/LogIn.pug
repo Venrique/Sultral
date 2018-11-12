@@ -11,6 +11,7 @@ block content
               input#user.input(type='text', name='usuario', placeholder='Usuario')
               label(for='pass') Contraseña:
               input#pass.input(type='password', name='contrasenia', placeholder='***************')
+              .error= err
               .botones-login
                 input.btn-login.btn-azul(type='submit', value='Iniciar sesión')
                 p

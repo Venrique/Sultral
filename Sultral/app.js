@@ -35,7 +35,7 @@ app.use('/Registrar', registerRouter);
 app.use('/LogIn', loginRouter);
 app.use('/users', usersRouter);
 app.use('/ConfigUsuario', configUserRouter);
-app.use('/gestor', gestorRouter);
+app.use('/Gestor', gestorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
