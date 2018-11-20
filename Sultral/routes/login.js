@@ -22,7 +22,8 @@ router.post('/', function(req,res,next){
             }
 
             if(result){
-                return res.render('Gestor', { title: 'Sultral - Gestor'});
+                
+                return res.redirect('Gestor/'+user.user+'/root');
             }
 
             return res.render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia});
