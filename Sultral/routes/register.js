@@ -50,7 +50,7 @@ router.post('/', function (req, res, next) {
                                     //se guarda el usuario en la base de datos
                                     usuario.save().then(result => {
                                         console.log(result);
-                                        return res.render('LogIn', { title: 'Sultral - Iniciar Sesión' });
+                                        return res.redirect('LogIn');
                                     }).catch(error => {
                                         console.log(error);
                                         return res.render('Registrar', {
