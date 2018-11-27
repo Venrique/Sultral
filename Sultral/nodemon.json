@@ -1,5 +1,6 @@
 {
     "env":{
-        "MONGO_ATLAS_PW": "Sultral123admon"
+        "MONGO_ATLAS_PW": "Sultral123admon",
+        "JWT_KEY": "lapleis"
     }
 }
