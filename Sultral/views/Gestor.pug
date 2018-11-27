@@ -159,57 +159,14 @@ html
     script.
       document.getElementById("user").value = "#{username}";
       let files = document.getElementById("files");
-      files.href = "/Gestor/#{username}/root";
+      files.href = "/Gestor/#{username}/Root";
       let shared = document.getElementById("share");
-      shared.href = "/Gestor/#{username}/shared";
+      shared.href = "/Gestor/#{username}/Compartidos";
       let fav = document.getElementById("fav");
-      fav.href = "/Gestor/#{username}/fav";
+      fav.href = "/Gestor/#{username}/Favoritos";
       let bin = document.getElementById("bin");
-      bin.href = "/Gestor/#{username}/bin";
+      bin.href = "/Gestor/#{username}/Papelera";
 
       let currentLoc = "";
       let loc = "#{varLoc}";
-      let locations = loc.split("-");
-      console.log(locations[0]);
-      let filesRoute = document.getElementById("filesRoute");
-      for(let i = 0; i<locations.length; i++){
-        if(i > 0){
-          currentLoc = currentLoc+"-"+locations[i];
-        }else{
-          currentLoc = currentLoc+locations[i];
-        }
-        let element = document.createElement("a");
-        element.href = currentLoc;
-        let text = document.createTextNode(locations[i]);
-        element.appendChild(text);
-        filesRoute.appendChild(element);
-        filesRoute.appendChild(document.createTextNode(" > "));
-      }
-
-      function hasClass(element, className) {
-        return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
-      };
-
-      var elementos;
-
-      function select(elemento){
-        elementos = document.querySelectorAll(".option");
-
-        elementos.forEach( (elem) => {
-          elem.className = elem.className.replace(/\bselected-menu\b/g, "");
-        });
-
-        if(!hasClass(elemento, "selected-menu")){
-        elemento.className += " selected-menu";
-        }
-      };
-
-      if(locations[0] == 'root'){
-        select(files);
-      }else if(locations[0] == 'shared'){
-        select(shared);
-      }else if(locations[0] == 'fav'){
-        select(fav);
-      }else if(locations[0] == 'bin'){
-        select(bin);
-      }
+    script(src='/js/gestorFunc.js')

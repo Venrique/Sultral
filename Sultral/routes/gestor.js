@@ -9,4 +9,11 @@ router.get('/:username/:loc', function(req, res, next) {
 
 });
 
+router.get('/:username/', function(req, res, next) {
+
+  res.render('Gestor', { title: 'Sultral', varLoc: 'Root', username: req.params.username});
+  
+
+});
+
 module.exports = router;
