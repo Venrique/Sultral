@@ -263,6 +263,13 @@ body header nav ul li a:hover{
 	justify-content: center;
 }
 
+.radios{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 0.1em;
+}
+
 .formulario-registro{
 	display: flex;
 	flex-direction: column;

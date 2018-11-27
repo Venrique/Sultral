@@ -11,28 +11,53 @@ block content
               | tus archivos seguros, organizados y accesibles desde cualquier computadora.
           .reg-left
             label(for='usuario') Usuario:
-            input#usuario.input.r-input(type='text', name='usuario', placeholder='Usuario')
+            if(errUser)
+              input#usuario.input.r-input.err-input(type='text',name='usuario', placeholder='Usuario', value=usuario, required)
+            else
+              input#usuario.input.r-input(type='text', name='usuario', placeholder='Usuario', value=usuario, required)
             label(for='correo') Correo:
-            input#correo.input.r-input(type='email', name='correo', placeholder='sultral@sultral.com')
+            if(errEmail)
+              input#correo.input.r-input.err-input(type='email',name='correo', placeholder='sultral@example.com', value=correo, required)
+            else
+              input#correo.input.r-input(type='email', name='correo', placeholder='sultral@sultral.com', value=correo, required)
             label(for='contrasenia') Contraseña:
-            input#contrasenia.input.r-input(type='password', name='contrasenia', placeholder='***********')
+            input#contrasenia.input.r-input(type='password', name='contrasenia', placeholder='***********', value=pass, required)
             label(for='confirm') Confirmar contraseña:
-            input#confirm.input.r-input(type='password', name='confirm', placeholder='***********')
+            input#confirm.input.r-input(type='password', name='confirm', placeholder='***********', value=passconfirm, required)
           .reg-right
             label(for='nombres') Nombres:
-            input#nombres.input.r-input(type='text', name='nombres', placeholder='Armando Esteban')
+            input#nombres.input.r-input(type='text', name='nombres', placeholder='Armando Esteban', value=nombres, required)
             label(for='apellidos') Apellidos:
-            input#apellidos.input.r-input(type='text', name='apellidos', placeholder='Quito Parado')
+            input#apellidos.input.r-input(type='text', name='apellidos', placeholder='Quito Parado', value=apellidos, required)
             label(for='fechaNac') Fecha de Nacimiento:
-            input#fechaNac.input.r-input(type='date', name='fechaNac')
+            input#fechaNac.input.r-input(type='date', name='fechaNac', value=fecha, required)
             label(for='genero') Género:
             br
-            label
-              input(type='radio', name='genero', value='Masculino')
-              |  Masculino
-            label
-              input(type='radio', name='genero', value='Femenino')
-              |  Femenino
-          .error.form-2col
+            .radios
+              label
+                input(type='radio', name='genero', value='Masculino', checked="true")
+                |  Masculino
+              label
+                if(gen)
+                  input(type='radio', name='genero', value='Femenino', checked="true")
+                  |  Femenino
+                else
+                  input(type='radio', name='genero', value='Femenino')
+                  |  Femenino
+          .error.form-2col= err
           .form-2col.submit-reg
             input.btn-registro.btn-azul(type='submit', value='¡Regístrate ya!')
+    script.
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+      if(dd<10){
+              dd='0'+dd
+          } 
+          if(mm<10){
+              mm='0'+mm
+          } 
+
+      today = yyyy+'-'+mm+'-'+dd;
+      document.getElementById("fechaNac").setAttribute("max", today);
