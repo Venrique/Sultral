@@ -28,6 +28,14 @@ body{
 	background-color: #238ebf;
 }
 
+.btn-rojo{
+	background-color: #c70000;
+}
+
+.btn-rojo:hover{
+	background-color: #a00000;
+}
+
 body header{
 	background-color: white;
 	display: flex;
@@ -44,6 +52,20 @@ header div{
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.logo-main{
+	width: 18em;
+}
+
+.logo-nav{
+	width: 7em;
+	display: flex;
+	align-items: center;
+}
+
+.logo-nav > img{
+	width: 100%;
 }
 
 body header p a{
@@ -86,6 +108,17 @@ body header nav ul li a:hover{
 	position: relative;
 	z-index: 1;
 }
+
+.error-nf{
+	height: calc(100vh - 5rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	color: #000;
+}
+
 .Seccion1::after{
 	content:"";
 	position:absolute;
@@ -99,7 +132,7 @@ body header nav ul li a:hover{
 	z-index:-1;
 
 }
-.Seccion1 a{
+.custom-btn{
 	margin-top: 2%;
 	text-decoration: none;
 	border-radius: 5px;
@@ -108,7 +141,7 @@ body header nav ul li a:hover{
 	transition: 0.3s all;
 }
 
-.Seccion1 a:hover{
+.custom-btn:hover{
 	padding: 0.8rem 3.2rem;
 }
 
