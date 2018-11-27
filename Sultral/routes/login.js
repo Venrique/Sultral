@@ -29,10 +29,10 @@ router.post('/', function (req, res, next) {
                         Id: user._id
                     }, process.env.JWT_KEY,
                         {
-                            expiresIn: 60
+                            expiresIn: 86400
                         });
-                    console.log(token);
-                    return res.redirect('Gestor/' + user.user + '/root');
+                    //console.log(token);
+                    return res.status(200).cookie('token',token,{ maxAge: 86400 }).redirect('Gestor/' + user.user + '/root');
                 }
 
                 return res.render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia });
