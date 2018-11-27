@@ -2,8 +2,8 @@ doctype html
 head
   title Configuracion de usuario
   meta(charset='utf-8')
-  link(rel='stylesheet' type='text/css' href='stylesheets/Style2.css')
-  link(href='https://fonts.googleapis.com/css?family=Poppins:400,700' rel='stylesheet')
+  link(rel='stylesheet', type='text/css', href='stylesheets/Style2.css')
+  link(href='https://fonts.googleapis.com/css?family=Poppins:400,700', rel='stylesheet')
 header
   .config-header
     p CONFIGURACIONES
@@ -25,19 +25,22 @@ header
       p Almacenamiento: 2.0 GB
     #config-perfil
       h3 Perfil
-      form#formulario-ActualizarPerfil(method ='PUT')
-        label(for='usuario')  Usuario:
-        input(type='text' name='usuario' placeholder='User1234')
-        label(for='correo') Correo: 
-        input(type='text' name='correo' placeholder='User123@hotmail.com')
-        input(type="submit" value="Enviar") 
+      
+      label(for='Nombre/s')  Nombre/s:
+      input(type='text', name='Nombre', placeholder='Lorenzo Fernando')
+      label(for='Apellido/s')  Apellido/s:
+      input(type='text', name='Apellido', placeholder='Pleitez Enrique')
+      label(for='FechaNac')  Fecha de Nacimiento:
+      input(type='Date', name='FechaNac')
+      label(for='correo') Correo: 
+      input(type='text', name='correo', placeholder='User123@hotmail.com')
+      input(type='submit', value='Enviar')
     #config-privacidad
       h3  Privacidad 
       form#formulario-ActualizarContrasenia(method='POST')
-        label(for='contrasenia-actual' placeholder='**********') Contrase&ntilde;a actual: 
-        input(type='text' name='contraseniaa-actual' placeholder='**********')
-        label(for='contrasenia-nueva') Contrase&ntilde;a nueva: 
-        input(type='text' name='nueva' placeholder='**********')
-        label(for='confirmacion') Confirmar contrase&ntilde;a nueva: 
-        input(type='text' name='confirmacion' placeholder='**********')
-        input(type="submit" value="Enviar") 
+        label(for='nueva') Contraseña nueva: 
+        input(type='text', name='nueva', placeholder='**********')
+        label(for='confirmacion') Confirmar contraseña nueva: 
+        input(type='text', name='confirmacion', placeholder='**********')
+        input(type='submit', value='Enviar')
+        .error=err
