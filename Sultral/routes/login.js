@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
 
             bcrypt.compare(req.body.contrasenia, user.pass, (err, result) => {
                 if (err) {
-                    return res.render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia });
+                    return res.status(400).render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia });
                 }
 
                 if (result) {
@@ -35,7 +35,7 @@ router.post('/', function (req, res, next) {
                     return res.status(200).cookie('token',token,{ maxAge: 86400000 }).redirect('Gestor/' + user.user + '/root');
                 }
 
-                return res.render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia });
+                return res.status(400).render('LogIn', { title: 'Sultral - Iniciar Sesión', err: '*Inicio de sesión fallido. Por favor revise sus credenciales.', usuario: req.body.usuario, pass: req.body.contrasenia });
             });
         })
         .catch(error => {
