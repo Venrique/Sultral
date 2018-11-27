@@ -594,7 +594,7 @@ body{
 	cursor: pointer;
 	width: 2em;
 	height: 2em;
-	text-align: center;
+	padding: 0.5em;
 }
 
 .submit-file:hover{
