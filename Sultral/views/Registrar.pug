@@ -4,22 +4,35 @@ block content
     section.container
       .register-box
         form.formulario-registro(method='POST')
-          h2 CREA UNA CUENTA
-          p
-            | Al crear una cuenta podrás disfrutar de todas las funcionalidades que ofrece Sultral mientras mantienes tus archivos seguros, organizados y accesibles desde cualquier computadora.
-          label(for='usuario') Usuario:
-          if(errUser)
-            input#usuario.input.r-input.err-input(type='text',name='usuario', placeholder='Usuario', value=usuario)
-          else
-            input#usuario.input.r-input(type='text',name='usuario', placeholder='Usuario', value=usuario)
-          label(for='correo') Correo:
-          if(errEmail)
-            input#correo.input.r-input.err-input(type='email',name='correo', placeholder='sultral@example.com', value=correo)
-          else
-            input#correo.input.r-input(type='email',name='correo', placeholder='sultral@sultral.com', value=correo) 
-          label(for='contraseña') Contraseña:
-          input#contrasenia.input.r-input(type='password',name='contrasenia', placeholder='***********', value=pass)
-          label(for='confirm') Confirmar contraseña:
-          input#confirm.input.r-input(type='password',name='confirm', placeholder='***********', value=passconfirm)
-          .error= err
-          input.btn-registro.btn-azul(type='submit', value='¡Regístrate ya!')
+          .form-2col
+            h2 CREA UNA CUENTA
+            p
+              | Al crear una cuenta podrás disfrutar de todas las funcionalidades que ofrece Sultral mientras mantienes
+              | tus archivos seguros, organizados y accesibles desde cualquier computadora.
+          .reg-left
+            label(for='usuario') Usuario:
+            input#usuario.input.r-input(type='text', name='usuario', placeholder='Usuario')
+            label(for='correo') Correo:
+            input#correo.input.r-input(type='email', name='correo', placeholder='sultral@sultral.com')
+            label(for='contrasenia') Contraseña:
+            input#contrasenia.input.r-input(type='password', name='contrasenia', placeholder='***********')
+            label(for='confirm') Confirmar contraseña:
+            input#confirm.input.r-input(type='password', name='confirm', placeholder='***********')
+          .reg-right
+            label(for='nombres') Nombres:
+            input#nombres.input.r-input(type='text', name='nombres', placeholder='Armando Esteban')
+            label(for='apellidos') Apellidos:
+            input#apellidos.input.r-input(type='text', name='apellidos', placeholder='Quito Parado')
+            label(for='fechaNac') Fecha de Nacimiento:
+            input#fechaNac.input.r-input(type='date', name='fechaNac')
+            label(for='genero') Género:
+            br
+            label
+              input(type='radio', name='genero', value='Masculino')
+              |  Masculino
+            label
+              input(type='radio', name='genero', value='Femenino')
+              |  Femenino
+          .error.form-2col
+          .form-2col.submit-reg
+            input.btn-registro.btn-azul(type='submit', value='¡Regístrate ya!')

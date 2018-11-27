@@ -413,11 +413,10 @@ body{
 	color: blue;
 }
 .config-section{
-	padding: 4em;
-	
+	padding: 1em;
 
     overflow-y: hidden;
-    height: 20em;
+    height: 27em;
   
 	
 }
@@ -438,6 +437,7 @@ body{
 	height: 40px;
 	 border-radius: 3px;
 	 border: none;
+	 margin-top:20px;
 	 padding-left: 1%;
 
 }
@@ -458,6 +458,14 @@ body{
 	flex-direction: column;
 	
 
+}
+#formulario-ActualizarPerfil{
+	display:flex;
+	flex-direction: column;
+}
+#formulario-ActualizarContrasenia{
+	display:flex;
+	flex-direction: column;
 }
 
 .menu-header{

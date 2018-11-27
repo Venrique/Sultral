@@ -27,4 +27,17 @@ router.post('/', function (req, res, next) {
 
 
  });
+
+ router.put('/', function (req, res, next) {
+
+    bcrypt.hash(req.body.nueva, 10, (err, hash) => {
+        //si da error el encriptado
+        Usuario.findOneAndUpdate({user: "ricardoDef"}, {pass: hash}, function (err, place) {
+            res.send(place);
+            console.log(place.pass);
+          });
+    
+            });
+ });
+
 module.exports = router;

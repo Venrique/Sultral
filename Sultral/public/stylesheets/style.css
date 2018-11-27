@@ -230,9 +230,37 @@ body header nav ul li a:hover{
 
 .register-box{
 	background-color: #fff;
-	width: 30%;
+	width: 60%;
 	box-shadow: #AFAFAF 1px 1px 10px;
 	padding: 2em 3em;
+}
+
+.register-box > form{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 2em;
+}
+
+.register-box > form  p{
+	font-size: 0.9em;
+}
+
+.register-box > form  h2{
+	text-align: center;
+}
+
+.form-2col{
+	grid-column: span 2;
+	width: 100%;
+}
+
+.submit-reg > input[type="submit"]{
+	width: 40%;
+}
+
+.submit-reg{
+	display: flex;
+	justify-content: center;
 }
 
 .formulario-registro{

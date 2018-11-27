@@ -25,17 +25,19 @@ header
       p Almacenamiento: 2.0 GB
     #config-perfil
       h3 Perfil
-      label(for='usuario')  Usuario:
-      input(type='text' name='usuario' placeholder='User1234')
-      label(for='correo') Correo: 
-      input(type='text' name='correo' placeholder='User123@hotmail.com')
+      form#formulario-ActualizarPerfil(method ='PUT')
+        label(for='usuario')  Usuario:
+        input(type='text' name='usuario' placeholder='User1234')
+        label(for='correo') Correo: 
+        input(type='text' name='correo' placeholder='User123@hotmail.com')
+        input(type="submit" value="Enviar") 
     #config-privacidad
       h3  Privacidad 
-      form.formulario-ActualizarContrasenia(method='POST')
-        input(type="submit" value="Enviar")
+      form#formulario-ActualizarContrasenia(method='POST')
         label(for='contrasenia-actual' placeholder='**********') Contrase&ntilde;a actual: 
         input(type='text' name='contraseniaa-actual' placeholder='**********')
         label(for='contrasenia-nueva') Contrase&ntilde;a nueva: 
         input(type='text' name='nueva' placeholder='**********')
         label(for='confirmacion') Confirmar contrase&ntilde;a nueva: 
-        input(type='text' name='confirmacion' placeholder='**********') 
+        input(type='text' name='confirmacion' placeholder='**********')
+        input(type="submit" value="Enviar") 
