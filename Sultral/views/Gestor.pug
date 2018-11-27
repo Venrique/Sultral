@@ -151,11 +151,19 @@ html
                   i.far.fa-star
                 button.option
                   i.fas.fa-ellipsis-h
-            .new-folder
+            .new-folder.mostrar
               .icon-folder
                 i.fas.fa-folder-plus
               p.new-f-text
                 | Nueva Carpeta
+    .mascara(role='dialog')
+    .modal(role='alert')
+      button.cerrar(role='button') X
+      form(class='centrado', method='POST')
+        label(for='f-name') Nombre de la carpeta: 
+        input(type='text', id='f-name', name='f-name', placeholder='Nueva Carpeta', class='txtForm', required)
+        button.submit-file
+          i.fas.fa-plus
     script.
       document.getElementById("user").value = "#{username}";
       let files = document.getElementById("files");

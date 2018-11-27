@@ -336,6 +336,7 @@ body{
 	transition: 0.3s all;
 }
 
+
 .icon-folder{
 	font-size: 6em;
 	align-self: end;
@@ -430,7 +431,7 @@ body{
 	margin-top: 1em;
 
 }
-.config-section div input {
+.config-section div input, .txtForm {
 	width: 40%;
 	
 	box-shadow: #AFAFAF 1px 1px 5px;
@@ -499,4 +500,103 @@ body{
 
 .menu-opciones nav{
 	width: 100%;
+}
+
+/* Modal */
+.cerrar{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 30px;
+  background: rgb(117, 117, 117);
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0 5px 0 5px;
+  transition: 0.4s All;
+}
+
+.cerrar:hover{
+	background-color: rgb(65, 65, 65);
+	font-weight: 900;
+}
+
+.mascara{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 73, 94, 0.8);
+  z-index: 50;
+  visibility: hidden;
+  
+  opacity: 0;
+  
+  transition: 0.7s;
+}
+
+.modal{
+  position: fixed;
+  top: calc(50% - 3em);
+  left: 42%;
+  width: 30%;
+  height: 150px;
+  margin-left: -150px;
+  margin-top: -75px;
+  background: #bdc3c7;
+  z-index: 100;
+  visibility: hidden;
+  border-radius: 5px;
+  font-size: 1em;
+  
+  opacity: 0;
+  
+  transition: 0.5s ease-out;
+  
+  transform: translateY(45px);
+  
+  display: grid;
+}
+
+.activo{
+  visibility: visible;
+  opacity: 1;
+}
+
+.activo + .modal{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.centrado{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 1em;
+}
+
+.txtForm{
+	margin: 0 1em;
+	font-size: 1em;
+	height: 2em;
+}
+
+.submit-file{
+	border-radius: 2em;
+	font-size: 1em;
+	background-color: #3898ff;
+	color: #fff;
+	transition: 0.3s All;
+	border: none;
+	cursor: pointer;
+	width: 2em;
+	height: 2em;
+	text-align: center;
+}
+
+.submit-file:hover{
+	background-color: #227ad8;
 }
