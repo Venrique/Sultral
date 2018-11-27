@@ -42,3 +42,33 @@ if (locations[0] == 'Root') {
 } else if (locations[0] == 'Papelera') {
     select(bin);
 }
+
+/* Modal */
+let btnMostrar = document.getElementsByClassName("mostrar")[0];
+let mascara = document.getElementsByClassName("mascara")[0];
+let btnCerrar = document.getElementsByClassName("cerrar")[0];
+
+btnMostrar.addEventListener("click", function(){
+    if (!hasClass(mascara, "activo")) {
+        mascara.className += " activo";
+    }
+});
+  
+function cerrarModal(){
+    mascara.className = mascara.className.replace(/\bactivo\b/g, "");
+}
+
+mascara.addEventListener("click", function(){
+    cerrarModal();
+});
+
+btnCerrar.addEventListener("click", function(){
+    cerrarModal();
+});
+
+document.onkeyup = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+        cerrarModal();
+    }
+};
