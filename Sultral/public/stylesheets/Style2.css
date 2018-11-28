@@ -588,6 +588,75 @@ body{
   transform: translateY(0);
 }
 
+/* Modal Archivos */
+.cerrarA{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 35px;
+	height: 30px;
+	background: rgb(117, 117, 117);
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+	border-radius: 0 5px 0 5px;
+	transition: 0.4s All;
+  }
+  
+  .cerrarA:hover{
+	  background-color: rgb(65, 65, 65);
+	  font-weight: 900;
+  }
+  
+  .mascaraA{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(52, 73, 94, 0.8);
+	z-index: 50;
+	visibility: hidden;
+	
+	opacity: 0;
+	
+	transition: 0.7s;
+  }
+  
+  .modalA{
+	position: fixed;
+	top: calc(50% - 3em);
+	left: 42%;
+	width: 30%;
+	height: 150px;
+	margin-left: -150px;
+	margin-top: -75px;
+	background: #bdc3c7;
+	z-index: 100;
+	visibility: hidden;
+	border-radius: 5px;
+	font-size: 1em;
+	
+	opacity: 0;
+	
+	transition: 0.5s ease-out;
+	
+	transform: translateY(45px);
+	
+	display: grid;
+  }
+  
+  .activoA{
+	visibility: visible;
+	opacity: 1;
+  }
+  
+  .activoA + .modalA{
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0);
+  }
+
 .centrado{
   display:flex;
   justify-content: center;
