@@ -1,0 +1,13 @@
+extends ConfigLayout
+block content
+    section.config-section
+        #config-privacidad
+            h3  Contactos
+            
+                label(for='Contacto')  Buscar contacto:
+                input#Nombre(type='text', name='Contacto', placeholder='Usuario123')
+                input(type='submit', value='Buscar' onClick='genera_tabla()')
+                .error=err
+                .aceptado=acept
+                .contactos=tabla
+                #2

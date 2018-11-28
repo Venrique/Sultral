@@ -9,7 +9,8 @@ const userSchema = new Schema({
     lastnames: {type: String, required: true},
     birthdate: {type: Date, required: true},
     gender: {type: String, required: true},
-    pass: {type: String, required: true}
+    pass: {type: String, required: true},
+    contactos: {type: [mongoose.Schema.Types.ObjectId]},
 });
 
 module.exports = mongoose.model('Usuario',userSchema);

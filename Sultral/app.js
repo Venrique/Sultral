@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var ConfigDetalleRouter = require('./routes/configDetalle');
 var ConfigPrivacidadRouter = require('./routes/ConfigPrivacidad');
 var ConfigInfoUsuario = require('./routes/ConfigInfoUsuario');
+var ConfigContactoRouter = require('./routes/ConfigContacto');
 var gestorRouter = require('./routes/gestor');
 const checkToken = require('./middleware/check_token');
 
@@ -42,7 +43,7 @@ app.use('/Gestor',checkToken, gestorRouter);
 app.use('/ConfigDetalle',checkToken,ConfigDetalleRouter);
 app.use('/ConfigInfoUsuario',checkToken, ConfigInfoUsuario);
 app.use('/ConfigPrivacidad',checkToken, ConfigPrivacidadRouter);
-
+app.use('/ConfigContacto',checkToken, ConfigContactoRouter );
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.render('Not-Found', { title: 'Sultral'});
