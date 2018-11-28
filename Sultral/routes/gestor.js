@@ -18,7 +18,7 @@ router.get('/:username/:loc', function(req, res, next) {
     console.log(files);
   })
 
-  res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc.toLowerCase(), username: req.params.username, actual: files[0]});
+  res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc.toLowerCase(), username: req.params.username});
 });
 
 router.get('/:username', function(req, res, next) {
