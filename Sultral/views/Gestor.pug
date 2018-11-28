@@ -160,20 +160,20 @@ html
     .modal(role='alert')
       button.cerrar(role='button') X
       form(class='centrado', method='POST')
-        label(for='f-name') Nombre de la carpeta: 
-        input(type='text', id='f-name', name='f-name', placeholder='Nueva Carpeta', class='txtForm', required)
+        label(for='fname') Nombre de la carpeta: 
+        input(type='text', id='fname', name='fname', placeholder='Nueva Carpeta', class='txtForm', required)
         button.submit-file
           i.fas.fa-plus
     script.
       document.getElementById("user").value = "#{username}";
       let files = document.getElementById("files");
-      files.href = "/Gestor/#{username}/Root";
+      files.href = "/Gestor/#{username}/root";
       let shared = document.getElementById("share");
-      shared.href = "/Gestor/#{username}/Compartidos";
+      shared.href = "/Gestor/#{username}/compartidos";
       let fav = document.getElementById("fav");
-      fav.href = "/Gestor/#{username}/Favoritos";
+      fav.href = "/Gestor/#{username}/favoritos";
       let bin = document.getElementById("bin");
-      bin.href = "/Gestor/#{username}/Papelera";
+      bin.href = "/Gestor/#{username}/papelera";
 
       let currentLoc = "";
       let loc = "#{varLoc}";

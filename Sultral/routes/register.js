@@ -3,6 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const Usuario = require('../models/user');
+const Element = require('../models/element');
 const bcrypt = require('bcrypt');
 
 const regexPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
@@ -47,9 +48,11 @@ router.post('/', function (req, res, next) {
                                     });
                                     //se crea el usuario usando el modelo
                                 } else {
-                                    
+                                    let idUsu = new mongoose.Types.ObjectId();
+                                    var carpeta;
+
                                     const usuario = new Usuario({
-                                        _id: new mongoose.Types.ObjectId(),
+                                        _id: idUsu,
                                         user: req.body.usuario.trim(),
                                         email: req.body.correo.trim(),
                                         pass: hash,
@@ -61,6 +64,70 @@ router.post('/', function (req, res, next) {
                                     //se guarda el usuario en la base de datos
                                     usuario.save().then(result => {
                                         console.log(result);
+                                        carpeta = new Element({
+                                            _id: new mongoose.Types.ObjectId(),
+                                            nombre: 'root',
+                                            ext: null,
+                                            contenedor: null,
+                                            contenido: [],
+                                            creador: idUsu,
+                                            compartido: []
+                                        });
+                                        //Se crean las 4 carpetas básicas
+                                        carpeta.save().then(result => {
+                                            console.log(result);
+                                        }).catch(error => {
+                                            console.log(error);
+                                        });
+
+                                        carpeta = new Element({
+                                            _id: new mongoose.Types.ObjectId(),
+                                            nombre: 'papelera',
+                                            ext: null,
+                                            contenedor: null,
+                                            contenido: [],
+                                            creador: idUsu,
+                                            compartido: []
+                                        });
+                                    
+                                        carpeta.save().then(result => {
+                                            console.log(result);
+                                        }).catch(error => {
+                                            console.log(error);
+                                        });
+
+                                        carpeta = new Element({
+                                            _id: new mongoose.Types.ObjectId(),
+                                            nombre: 'favoritos',
+                                            ext: null,
+                                            contenedor: null,
+                                            contenido: [],
+                                            creador: idUsu,
+                                            compartido: []
+                                        });
+                                    
+                                        carpeta.save().then(result => {
+                                            console.log(result);
+                                        }).catch(error => {
+                                            console.log(error);
+                                        });
+
+                                        carpeta = new Element({
+                                            _id: new mongoose.Types.ObjectId(),
+                                            nombre: 'compartidos',
+                                            ext: null,
+                                            contenedor: null,
+                                            contenido: [],
+                                            creador: idUsu,
+                                            compartido: []
+                                        });
+                                    
+                                        carpeta.save().then(result => {
+                                            console.log(result);
+                                        }).catch(error => {
+                                            console.log(error);
+                                        });
+                                        //Se termina la ejecución
                                         return res.status(200).redirect('LogIn');
                                     }).catch(error => {
                                         console.log(error);

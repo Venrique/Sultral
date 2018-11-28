@@ -9,7 +9,7 @@ for (let i = 0; i < locations.length; i++) {
     }
     let element = document.createElement("a");
     element.href = currentLoc;
-    let text = document.createTextNode(locations[i]);
+    let text = document.createTextNode(locations[i].charAt(0).toUpperCase()+locations[i].slice(1));
     element.appendChild(text);
     filesRoute.appendChild(element);
     filesRoute.appendChild(document.createTextNode(" > "));
@@ -33,13 +33,13 @@ function select(elemento) {
     }
 };
 
-if (locations[0] == 'Root') {
+if (locations[0] == 'root') {
     select(files);
-} else if (locations[0] == 'Compartidos') {
+} else if (locations[0] == 'compartidos') {
     select(shared);
-} else if (locations[0] == 'Favoritos') {
+} else if (locations[0] == 'favoritos') {
     select(fav);
-} else if (locations[0] == 'Papelera') {
+} else if (locations[0] == 'papelera') {
     select(bin);
 }
 
@@ -56,6 +56,8 @@ btnMostrar.addEventListener("click", function(){
   
 function cerrarModal(){
     mascara.className = mascara.className.replace(/\bactivo\b/g, "");
+    let nombreCarpeta = document.getElementById('fname');
+    nombreCarpeta.value = "";
 }
 
 mascara.addEventListener("click", function(){
