@@ -415,17 +415,19 @@ body{
 }
 .config-section{
 	padding: 1em;
-
+	align-items: center;
     overflow-y: hidden;
-    height: 31em;
+    height: 100%;
   
 	
 }
 .config-section div{
-	height: 30em;
+	align-items: center;
+	
 }
 .config-section div h3{
-	padding-top:2em;
+	padding-top:0.3em;
+	
 }
 .config-section div label{
 	margin-top: 1em;
@@ -438,9 +440,13 @@ body{
 	height: 40px;
 	 border-radius: 3px;
 	 border: none;
-	 margin-top:20px;
+	 margin-top:2em;
 	 padding-left: 1%;
 
+}
+.config-section form{
+	width: 100%;
+	align-items: center;
 }
 
 #config-detalle{
@@ -463,10 +469,12 @@ body{
 #formulario-ActualizarPerfil{
 	display:flex;
 	flex-direction: column;
+	
 }
 #formulario-ActualizarContrasenia{
 	display:flex;
 	flex-direction: column;
+	
 }
 
 .menu-header{

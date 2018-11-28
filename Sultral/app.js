@@ -9,7 +9,9 @@ var indexRouter = require('./routes/index');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
-var configUserRouter = require('./routes/ConfigUser');
+var ConfigDetalleRouter = require('./routes/configDetalle');
+var ConfigPrivacidadRouter = require('./routes/ConfigPrivacidad');
+var ConfigInfoUsuario = require('./routes/ConfigInfoUsuario');
 var gestorRouter = require('./routes/gestor');
 const checkToken = require('./middleware/check_token');
 
@@ -36,8 +38,10 @@ app.use('/Cerrar', indexRouter);
 app.use('/Registrar', registerRouter);
 app.use('/LogIn', loginRouter);
 app.use('/users', usersRouter);
-app.use('/Config-usuario',checkToken, configUserRouter);
 app.use('/Gestor',checkToken, gestorRouter);
+app.use('/ConfigDetalle',checkToken,ConfigDetalleRouter);
+app.use('/ConfigInfoUsuario',checkToken, ConfigInfoUsuario);
+app.use('/ConfigPrivacidad',checkToken, ConfigPrivacidadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
