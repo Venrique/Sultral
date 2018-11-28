@@ -12,8 +12,14 @@ html
       div
         nav
           ul
-            li
-              a(href='LogIn') Iniciar Sesión
-            li
-              a(href='Registrar') Crear Cuenta
+            if(sesion)
+              li.welcome
+                p ¡Un placer tenerte de vuelta #{user}!
+              li
+                a(href='Gestor/'+user+'/root') Entrar a Sultral
+            else
+              li
+                a(href='LogIn') Iniciar Sesión
+              li
+                a(href='Registrar') Crear Cuenta
     block content
