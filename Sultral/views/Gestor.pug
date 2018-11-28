@@ -169,9 +169,9 @@ html
     .mascaraA(role='dialog')
     .modalA(role='alert')
       button.cerrarA(role='button') X
-      form(class='centrado', method='POST')
-        label(for='finame') Nombre del Fichero: 
-        input(type='text', id='finame', name='finame', placeholder='Nueva Carpeta', class='txtForm', required)
+      form(class='centrado', method='POST', action='/Gestor/'+varLoc+'/upload',encType='multipart/form-data')
+        label(for='finame') Fichero: 
+        input(type='file', id='finame', name='finame', placeholder='Nueva Carpeta', class='txtForm')
         button.submit-file
           i.fas.fa-plus
     script.
