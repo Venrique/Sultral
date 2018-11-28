@@ -4,10 +4,12 @@ block content
         #config-privacidad
             h3  Privacidad 
             form#formulario-ActualizarContrasenia(method='POST')
+                label(for='anterior') Contraseña actual: 
+                input(type='password', name='anterior', placeholder='**********')
                 label(for='nueva') Contraseña nueva: 
-                input(type='text', name='nueva', placeholder='**********')
+                input(type='password', name='nueva', placeholder='**********')
                 label(for='confirmacion') Confirmar contraseña nueva: 
-                input(type='text', name='confirmacion', placeholder='**********')
+                input(type='password', name='confirmacion', placeholder='**********')
                 input(type='submit', value='Enviar')
                 .error=err
                 

@@ -381,6 +381,9 @@ body{
 	color:#000000;
 	
 }
+.config-header a:hover{
+	color:blue;
+}
 .config-container{
 	display: grid;
 	grid-template-columns: repeat(2, 15% 85%);
@@ -442,6 +445,12 @@ body{
 	 border: none;
 	 margin-top:2em;
 	 padding-left: 1%;
+
+}
+.config-section div input[type=submit]:hover{
+	background-color: #444;
+	color: white;
+	transition: all 0.3s;
 
 }
 .config-section form{
@@ -613,4 +622,9 @@ body{
 	margin-top:1em; 
 	font-size: 0.7em;
 	color: #ff0000;
+}
+.aceptado{
+	margin-top:1em; 
+	font-size: 0.7em;
+	color: #0a0;
 }

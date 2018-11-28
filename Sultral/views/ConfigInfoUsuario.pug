@@ -5,15 +5,16 @@ block content
             h3  Informacion general
             form#formulario-ActualizarContrasenia(method='POST')
                 label(for='Nombre/s')  Nombre/s:
-                input(type='text', name='Nombre', placeholder='Lorenzo Fernando')
+                input#Nombre(type='text', name='Nombre', placeholder='Lorenzo Fernando')
                 label(for='Apellido/s')  Apellido/s:
-                input(type='text', name='Apellido', placeholder='Pleitez Enrique')
+                input#Apellido(type='text', name='Apellido', placeholder='Pleitez Enrique')
                 label(for='FechaNac')  Fecha de Nacimiento:
-                input(type='Date', name='FechaNac')
+                input#FechaNac(type='Date', name='FechaNac')
                 label(for='correo') Correo: 
-                input(type='text', name='correo', placeholder='User123@hotmail.com')
+                input#correo(type='text', name='correo', placeholder='User123@hotmail.com')
                 input(type='submit', value='Enviar')
                 .error=err
+                .aceptado=acept
 
 
 
