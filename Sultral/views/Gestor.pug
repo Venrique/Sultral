@@ -7,6 +7,9 @@ html
     link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css', integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU', crossorigin='anonymous')
     link(href='https://fonts.googleapis.com/css?family=Poppins:400,700', rel='stylesheet')
   body
+    script.
+      var loc = "#{varLoc}";
+      
     .app-container
       header.app-header
         .logo-app
@@ -15,7 +18,6 @@ html
         .menu-opciones
           form.search-form(action='#', method='GET')
             input#search(type='text', name='search', placeholder='Buscar...', required='')
-            input#user(type='hidden', name='user')
           nav
             ul.menu-header
               li
@@ -165,16 +167,24 @@ html
         button.submit-file
           i.fas.fa-plus
     script.
-      document.getElementById("user").value = "#{username}";
+      let carpetas = JSON.parse('#{carpetasOrigen}'.replace(/&quot;/g,'"'));
+
+      if(loc != "-"){
+        var contenido = JSON.parse('#{contenido}'.replace(/&quot;/g,'"'));
+        var actual = JSON.parse('#{actual}'.replace(/&quot;/g,'"'));
+        if(actual[0]['contenedor'] != null){
+          var contenedor = JSON.parse('#{contenedor}'.replace(/&quot;/g,'"'));
+        }
+      }
+
       let files = document.getElementById("files");
-      files.href = "/Gestor/#{username}/root";
+      files.href = "/Gestor/"+carpetas[3]['_id'];
       let shared = document.getElementById("share");
-      shared.href = "/Gestor/#{username}/compartidos";
+      shared.href = "/Gestor/"+carpetas[0]['_id'];
       let fav = document.getElementById("fav");
-      fav.href = "/Gestor/#{username}/favoritos";
+      fav.href = "/Gestor/"+carpetas[1]['_id'];
       let bin = document.getElementById("bin");
-      bin.href = "/Gestor/#{username}/papelera";
+      bin.href = "/Gestor/"+carpetas[2]['_id'];
 
       let currentLoc = "";
-      let loc = "#{varLoc}";
     script(src='/js/gestorFunc.js')

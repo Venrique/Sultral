@@ -1,4 +1,24 @@
-let locations = loc.split("-");
+if(loc != "-"){
+    let filesRoute = document.getElementById("filesRoute");
+    if(actual[0]['contenedor'] != null){
+        let element = document.createElement("a");
+        element.href = "/Gestor/"+contenedor[0]['_id'];
+        let text = document.createTextNode(contenedor[0]['nombre'].charAt(0).toUpperCase()+contenedor[0]['nombre'].slice(1));
+        element.appendChild(text);
+        filesRoute.appendChild(element);
+        filesRoute.appendChild(document.createTextNode(" > "));
+    }
+
+    element = document.createElement("a");
+    element.href = "/Gestor/"+actual[0]['_id'];
+    text = document.createTextNode(actual[0]['nombre'].charAt(0).toUpperCase()+actual[0]['nombre'].slice(1));
+    element.appendChild(text);
+    filesRoute.appendChild(element);
+    filesRoute.appendChild(document.createTextNode(" > "));
+
+}
+
+/*
 console.log(locations[0]);
 let filesRoute = document.getElementById("filesRoute");
 for (let i = 0; i < locations.length; i++) {
@@ -14,7 +34,7 @@ for (let i = 0; i < locations.length; i++) {
     filesRoute.appendChild(element);
     filesRoute.appendChild(document.createTextNode(" > "));
 }
-
+*/
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
 };
@@ -33,13 +53,13 @@ function select(elemento) {
     }
 };
 
-if (locations[0] == 'root') {
+if (loc == carpetas[3]['_id']) {
     select(files);
-} else if (locations[0] == 'compartidos') {
+} else if (loc == carpetas[0]['_id']) {
     select(shared);
-} else if (locations[0] == 'favoritos') {
+} else if (loc == carpetas[1]['_id']) {
     select(fav);
-} else if (locations[0] == 'papelera') {
+} else if (loc == carpetas[2]['_id']) {
     select(bin);
 }
 
