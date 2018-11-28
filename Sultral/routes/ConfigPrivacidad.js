@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    if(req.body.nueva && req.body.confirmacion){
-        if(req.body.nueva == req.body.confirmacion){
+    if(req.body.nueva && req.body.confirmacion && req.body.nueva == req.body.confirmacion){
+        
             bcrypt.hash(req.body.nueva, 10, (err, hash) => {
                 //si da error el encriptado
                 Usuario.findOneAndUpdate({user: "RicardoAlberto"}, {pass: hash}, function (err, place) {
@@ -31,12 +31,6 @@ router.post('/', function (req, res, next) {
             console.log("Las contraseñas no coinciden");
             return res.render('ConfigPrivacidad', { title: 'Configuracion Usuario' , err: "La contraseña nueva no coincide con la que usted esta ingresando en la confirmacion"});
         }
-    }
-    
-
- 
-
-
  });
 
 module.exports = router;
