@@ -7,19 +7,25 @@ const jwt = require('jsonwebtoken');
 
 /* GET home page. */
 router.get('/:username/:loc', function(req, res, next) {
-  console.log(req.params.loc);
-  res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, username: req.params.username});
+
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  let locations = req.params.loc.split("-");
+  let files;
+  
+  Element.find({"nombre" : locations[locations.length-1].toLowerCase(), "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null})
+  .exec().then((result) =>{
+    files = result;
+    console.log(files);
+  })
+
+  res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc.toLowerCase(), username: req.params.username, actual: files[0]});
 });
 
 router.get('/:username', function(req, res, next) {
-  console.log('Hola1');
   res.redirect('/Gestor/'+req.params.username+'/root');
-  
-
 });
 
 router.post('/:username/:loc', function(req, res, next){
-  console.log('Hola2');
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
 
   const carpeta = new Element({
