@@ -92,5 +92,31 @@ document.onkeyup = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
         cerrarModal();
+        cerrarModalA();
     }
 };
+
+/* Modal Archivos */
+let btnMostrarA = document.getElementsByClassName("upload-btn")[0];
+let mascaraA = document.getElementsByClassName("mascaraA")[0];
+let btnCerrarA = document.getElementsByClassName("cerrarA")[0];
+
+btnMostrarA.addEventListener("click", function(){
+    if (!hasClass(mascaraA, "activoA")) {
+        mascaraA.className += " activoA";
+    }
+});
+  
+function cerrarModalA(){
+    mascaraA.className = mascaraA.className.replace(/\bactivoA\b/g, "");
+    let nombreCarpeta = document.getElementById('finame');
+    nombreCarpeta.value = "";
+}
+
+mascaraA.addEventListener("click", function(){
+    cerrarModalA();
+});
+
+btnCerrarA.addEventListener("click", function(){
+    cerrarModalA();
+});

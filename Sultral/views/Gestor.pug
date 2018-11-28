@@ -166,6 +166,14 @@ html
         input(type='text', id='fname', name='fname', placeholder='Nueva Carpeta', class='txtForm', required)
         button.submit-file
           i.fas.fa-plus
+    .mascaraA(role='dialog')
+    .modalA(role='alert')
+      button.cerrarA(role='button') X
+      form(class='centrado', method='POST')
+        label(for='finame') Nombre del Fichero: 
+        input(type='text', id='finame', name='finame', placeholder='Nueva Carpeta', class='txtForm', required)
+        button.submit-file
+          i.fas.fa-plus
     script.
       let carpetas = JSON.parse('#{carpetasOrigen}'.replace(/&quot;/g,'"'));
 
