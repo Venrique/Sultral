@@ -3,7 +3,8 @@ block content
     section.config-section
       #config-detalle
         h3  Detalles de la cuenta 
-        p Almacenamiento: 2.0 GB
+        - let limite = (max/1024)/1024
+        p Almacenamiento: #{limite} GB
         .containerCanvas
         canvas#myChart= grafico
         script.
@@ -11,13 +12,13 @@ block content
           let massPopChart = new Chart(myChart,{
           type: 'doughnut',
           data:{ 
-            labels:['Utilizado','Disponible'],
+            labels:['Bytes utilizados','Bytes disponibles'],
              datasets:[
                {
                  label:'Population',
                   data:[
-                    63,
-                    17,
+                    #{utilizado},
+                    #{max} - #{utilizado},
                     ],
                    backgroundColor:[
                      'rgba(59, 171, 223, 1)',
