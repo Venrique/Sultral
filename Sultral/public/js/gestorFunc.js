@@ -126,8 +126,3 @@ cerrarAlert.addEventListener("click", () => {
 if(reqAlert){
     mostrarAlert();
 }
-
-/*
-    Agregar a Gestor.pug en lugar del seteo de link dentro del for each
-    - let link = "/Gestor/"+(archivo['ext'] ? varLoc +"/" : "")+archivo['_id'];
-*/
