@@ -4,3 +4,27 @@ block content
       #config-detalle
         h3  Detalles de la cuenta 
         p Almacenamiento: 2.0 GB
+        .containerCanvas
+        canvas#myChart= grafico
+        script.
+          let mychart = document.getElementById('myChart').getContext('2d');
+          let massPopChart = new Chart(myChart,{
+          type: 'doughnut',
+          data:{ 
+            labels:['Utilizado','Disponible'],
+             datasets:[
+               {
+                 label:'Population',
+                  data:[
+                    63,
+                    17,
+                    ],
+                   backgroundColor:[
+                     'rgba(59, 171, 223, 1)',
+                     'rgba(22, 148, 26, 1)'
+                     ]
+                   }
+                   ]},
+          options:{}
+          });
+
