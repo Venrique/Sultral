@@ -53,9 +53,7 @@ html
               for archivo in archivos
                 - let link = "/Gestor/"+archivo['_id'];
                 - let name = archivo['nombre'];
-                - let splitname = (archivo['ext'] ? name.substring(0, 14)+"..." : name.substring(0, 20));
-                - name = name + (archivo['ext'] ? "."+archivo['ext'] : "");
-                - splitname = splitname + (archivo['ext'] ? archivo['ext'] : "");
+                - let splitname = ((name.length > 17 && archivo['ext'] == null) ? name.substring(0,17)+"..." : ((name.length > 14 && archivo['ext'] != null) ? name.substring(0,14)+"..."+archivo['ext'] : (archivo['ext'] ? name+"."+archivo['ext'] : name)));
                 if archivo['ext'] == null
                   .element
                     p.name(title=name) #{splitname}
