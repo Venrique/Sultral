@@ -1,0 +1,107 @@
+:root {
+	box-sizing: border-box;
+	font-size: calc(0.05em + 1vw);
+}
+
+header img {
+	width: 6em;
+	height: 6em;
+}
+
+body {
+	box-sizing: inherit;
+	font-family: 'Poppins';
+	margin: 0;
+	background-color: #EFEFEF;
+}
+
+body header {
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	padding: 0.7rem 7rem;
+	height: 5rem;
+	border-bottom: none;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: #AFAFAF 1px 1px 5px;
+}
+
+body header p a {
+	text-decoration: none;
+	color: #000;
+}
+
+body header nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+body header nav ul li {
+	display: inline-block;
+}
+
+body header nav ul li a {
+	display: block;
+	text-decoration: none;
+	color:black;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+}
+
+body header nav ul li a:hover {
+	background-color: #4a4a4a;
+	transition: all 0.4s linear;
+	color:white;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container p {	
+	margin: 0.2;
+}
+
+h4 {
+	font-size: 1.3em;
+}
+
+.container img {
+	width: 30%;
+	height: 30%;	
+}
+
+h1 {
+	font-size: 2.5em;
+	margin: 0 auto;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: row;
+	margin: 0 6em;
+	padding: 0 10px;
+	border-bottom:1px solid #009838;	
+}
+
+.container2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 0 6em;
+    padding: 0 2px;
+}
+
+.container3 {
+    display: flex;
+	flex-direction: row; 
+	padding: 20px;   
+}
+
+.icono {
+	color: #3babdf;
+    font-size: 4em;
+    padding: 2.5rem;
+}
