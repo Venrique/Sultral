@@ -717,3 +717,48 @@ body{
 	cursor: pointer;
 	margin-right: 2em;
 }
+
+/* Alert */
+.alert{
+	width: 25%;
+	height: 10rem;
+	position: fixed;
+	bottom: 0;
+	right: -25%;
+	background-color:#eeeeee;
+	border-top: #227ad8 0.5rem solid;
+	box-shadow: 0 10px 30px #999;
+	transition: 0.5s All;
+
+	display: flex;
+	align-items: center;
+}
+
+.alert-activado{
+	right: 0;
+}
+
+.cerrar-alert{
+	margin: 0;
+	background-color: transparent;
+	border: none;
+	padding: 1em;
+	cursor: pointer;
+	transition: 0.5s All;
+	align-self: flex-start;
+}
+
+.cerrar-alert:hover{
+	color: #ff0000;
+}
+
+.contenido-alert{
+	padding: 1em;
+	display: grid;
+	align-items: center;
+	justify-items: center;
+}
+
+#titulo-alert{
+	margin: 0;
+}

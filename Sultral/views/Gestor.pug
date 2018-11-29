@@ -204,6 +204,14 @@ html
         button.submit-file
           i.fas.fa-upload
         p subir
+    .alert(role='alert')
+      button.cerrar-alert(role='button') X
+      .contenido-alert
+        div
+          h3#titulo-alert #{alertT}
+        div
+          p#mensaje-alert #{alertM}
+
     script.
       let carpetas = JSON.parse('#{carpetasOrigen}'.replace(/&quot;/g,'"'));
 
@@ -223,6 +231,8 @@ html
       fav.href = "/Gestor/"+carpetas[1]['_id'];
       let bin = document.getElementById("bin");
       bin.href = "/Gestor/"+carpetas[2]['_id'];
+
+      let reqAlert = #{alert};
 
       let currentLoc = "";
     script(src='/js/gestorFunc.js')

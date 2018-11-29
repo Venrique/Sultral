@@ -103,3 +103,26 @@ mascaraA.addEventListener("click", function(){
 btnCerrarA.addEventListener("click", function(){
     cerrarModalA();
 });
+
+
+/* Alert */
+let alert = document.getElementsByClassName("alert")[0];
+let cerrarAlert = document.getElementsByClassName("cerrar-alert")[0];
+
+function ocultarAlert(){
+    alert.className = alert.className.replace(/\b alert-activado\b/g, "");
+}
+
+function mostrarAlert(){
+    if (!hasClass(alert, "alert-activado")) {
+        alert.className += " alert-activado";
+    }
+}
+
+cerrarAlert.addEventListener("click", () => {
+    ocultarAlert();
+});
+
+if(reqAlert){
+    mostrarAlert();
+}
