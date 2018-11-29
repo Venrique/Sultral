@@ -30,7 +30,9 @@ html
         aside.menu
           nav.app-menu
             .upload-container
-              button.upload-btn Subir
+              - let origen = JSON.parse(carpetasOrigen.replace(/&quot;/g,'"'));
+              if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
+                button.upload-btn Subir
             ul
               li
                 a#files.option(href='#', onclick='select(this)') Mis archivos
@@ -45,119 +47,145 @@ html
             p#filesRoute
               
           .document-viewer
-            .element
-              p.name Carpeta de Ejemplo
-              button.nav-button.yellow
-                i.fa.fa-folder-open
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Presentación.pptx
-              button.nav-button.orange
-                i.fas.fa-file-powerpoint
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.far.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Documento.docx
-              button.nav-button.blue
-                i.fas.fa-file-word
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.far.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Libro.xlsx
-              button.nav-button.green
-                i.fas.fa-file-excel
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.fas.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Documento.pdf
-              button.nav-button.red
-                i.fas.fa-file-pdf
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.fas.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Documento.txt
-              button.nav-button.grey
-                i.fas.fa-file-alt
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.far.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Fichero.sql
-              button.nav-button.white
-                i.fas.fa-file
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.fas.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Imagen.jpg
-              button.nav-button.grey
-                i.fas.fa-image
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.far.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Video.mp4
-              button.nav-button.grey
-                i.fas.fa-file-video
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.fas.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .element
-              p.name Audio.mp3
-              button.nav-button.grey
-                i.fas.fa-file-audio
-              .options
-                button.option
-                  i.fas.fa-download
-                button.option
-                  i.far.fa-star
-                button.option
-                  i.fas.fa-ellipsis-h
-            .new-folder.mostrar
-              .icon-folder
-                i.fas.fa-folder-plus
-              p.new-f-text
-                | Nueva Carpeta
+            
+            if contenido != undefined
+              - var archivos = JSON.parse(contenido.replace(/&quot;/g,'"'));
+              for archivo in archivos
+                - let link = "/Gestor/"+archivo['_id'];
+                if archivo['ext'] == null
+                  - let name = archivo['nombre'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.yellow(href=link)
+                      i.fa.fa-folder-open
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "pdf"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.red
+                      i.fas.fa-file-pdf
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "pptx"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.orange
+                      i.fas.fa-file-powerpoint
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "docx"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.blue
+                      i.fas.fa-file-word
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "xlsx"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.green
+                      i.fas.fa-file-excel
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "txt"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.grey
+                      i.fas.fa-file-alt
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.grey
+                      i.fas.fa-file-image
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.grey
+                      i.fas.fa-file-video
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.grey
+                      i.fas.fa-file-audio
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+                else
+                  - let name = archivo['nombre']+"."+archivo['ext'];
+                  .element
+                    p.name #{name}
+                    a.nav-button.white
+                      i.fas.fa-file
+                    .options
+                      button.option
+                          i.fas.fa-download
+                      button.option
+                          i.fas.fa-star
+                      button.option
+                          i.fas.fa-ellipsis-h
+            if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
+              .new-folder.mostrar
+                .icon-folder
+                  i.fas.fa-folder-plus
+                p.new-f-text
+                  | Nueva Carpeta
     .mascara(role='dialog')
     .modal(role='alert')
       button.cerrar(role='button') X

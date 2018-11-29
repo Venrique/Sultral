@@ -18,23 +18,6 @@ if(loc != "-"){
 
 }
 
-/*
-console.log(locations[0]);
-let filesRoute = document.getElementById("filesRoute");
-for (let i = 0; i < locations.length; i++) {
-    if (i > 0) {
-        currentLoc = currentLoc + "-" + locations[i];
-    } else {
-        currentLoc = currentLoc + locations[i];
-    }
-    let element = document.createElement("a");
-    element.href = currentLoc;
-    let text = document.createTextNode(locations[i].charAt(0).toUpperCase()+locations[i].slice(1));
-    element.appendChild(text);
-    filesRoute.appendChild(element);
-    filesRoute.appendChild(document.createTextNode(" > "));
-}
-*/
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
 };
