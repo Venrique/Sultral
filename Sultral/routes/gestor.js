@@ -64,6 +64,12 @@ function redirecting(req, res, next, status){
     mensaje = "Se ha eliminado el archivo de tu carpeta Favoritos.";
   }
 
+  if(status == 1008){
+    reqAlert = true;
+    titulo = "Error";
+    mensaje = "El elemento especificado no puede agregarse a favoritos.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -135,28 +141,36 @@ router.get('/:loc/:file', function (req, res, next) {
 
 router.get('/:loc/:file/fav', function(req, res, next){
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
-  Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id), favorites: mongoose.Types.ObjectId(req.params.file) })
-  .exec().then((result) => {
+  Element.find({ _id: mongoose.Types.ObjectId(req.params.file)})
+  .exec().then((elem) => {
+    if(elem[0]['ext'] != null){
+      Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id), favorites: mongoose.Types.ObjectId(req.params.file) })
+      .exec().then((result) => {
 
-    if(result.length == 0){
-      Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $push: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
-        if (err) {
-          console.log(err);
+        if(result.length == 0){
+          Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $push: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+            if (err) {
+              console.log(err);
+            }else{
+              return redirecting(req, res, next, 1006);
+            }
+          });
         }else{
-          return redirecting(req, res, next, 1006);
+          Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+            if (err) {
+              console.log(err);
+            }else{
+              return redirecting(req, res, next, 1007);
+            }
+          });
         }
+
       });
     }else{
-      Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
-        if (err) {
-          console.log(err);
-        }else{
-          return redirecting(req, res, next, 1007);
-        }
-      });
+      return redirecting(req, res, next, 1008);
     }
-
   });
+  
 });
 
 router.get('/', function (req, res, next) {
