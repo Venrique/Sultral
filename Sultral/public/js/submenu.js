@@ -1,4 +1,5 @@
 var botones = document.getElementsByClassName('option2');
+var posx,posy;
 
 for (let i = 0; i < botones.length; i++) {
     botones[i].addEventListener("click", function(){
@@ -36,13 +37,24 @@ for (let i = 0; i < botones.length; i++) {
 
         opciones.appendChild(menu);
 
-        var x = event.clientX-80;
-        var y = event.clientY-10;
+        posx = event.clientX-80;
+        posy = event.clientY-10;
 
         var mainmenu = document.getElementById('main-menu');
-        console.log(x+ ' '+y);
-        mainmenu.style.top = y+'px';
-        mainmenu.style.left = x+'px';
+        console.log(posx+ ' '+posy);
+        mainmenu.style.top = posy+'px';
+        mainmenu.style.left = posx+'px';
         
     });
 }
+
+var body = document.getElementById('viewer');
+body.addEventListener('click', function(){
+    var submenu = document.getElementById('main-menu');
+
+    if(event.clientX < posx+100 || event.clientX > posx+100){
+        if(event.clientY < posy-10 || event.clientY > posy+10){
+            submenu.style.display = "none";
+        }
+    }
+});

@@ -46,7 +46,7 @@ html
           .route
             p#filesRoute
               
-          .document-viewer
+          .document-viewer#viewer
             
             if contenido != undefined
               - var archivos = JSON.parse(contenido.replace(/&quot;/g,'"'));
