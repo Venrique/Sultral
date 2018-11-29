@@ -27,35 +27,43 @@ function redirecting(req, res, next, status){
     mensaje = "Se ha creado la nueva carpeta.";
   }
 
-  Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
-    .sort({ nombre: 1 })
-    .exec().then((result) => {
-      contFolders = result;
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  .exec().then((result) => {
+    if(result.length != 0){
+      Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
+      .sort({ nombre: 1 })
+      .exec().then((result) => {
+        contFolders = result;
 
-      Element.find({ "contenedor": mongoose.Types.ObjectId(req.params.loc) })
+        Element.find({ "contenedor": mongoose.Types.ObjectId(req.params.loc) })
         .sort({ nombre: 1 })
         .exec().then((result) => {
           files = result;
 
           Element.find({ "_id": mongoose.Types.ObjectId(req.params.loc) })
+          .sort({ nombre: 1 })
+          .exec().then((result) => {
+            actual = result;
+
+            Element.find({ "contenido": mongoose.Types.ObjectId(req.params.loc) })
             .sort({ nombre: 1 })
             .exec().then((result) => {
-              actual = result;
+              container = result;
 
-              Element.find({ "contenido": mongoose.Types.ObjectId(req.params.loc) })
-                .sort({ nombre: 1 })
-                .exec().then((result) => {
-                  container = result;
-
-                  return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), alert: reqAlert, alertT: titulo, alertM: mensaje });
-
-                });
+              return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), alert: reqAlert, alertT: titulo, alertM: mensaje });
 
             });
 
+          });
+
         });
 
-    });
+      });
+    }else{
+      return res.redirect('/Gestor/');
+    }
+  });
+  
 }
 
 /* GET home page. */
