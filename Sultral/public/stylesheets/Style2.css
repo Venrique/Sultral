@@ -627,8 +627,8 @@ body{
   .modalA{
 	position: fixed;
 	top: calc(50% - 3em);
-	left: 26%;
-	width: 70%;
+	left: 42%;
+	width: 30%;
 	height: 150px;
 	margin-left: -150px;
 	margin-top: -75px;
@@ -682,6 +682,7 @@ body{
 	width: 2em;
 	height: 2em;
 	padding: 0.5em;
+	margin-right: 0.2em;
 }
 
 .submit-file:hover{
@@ -697,4 +698,22 @@ body{
 	margin-top:1em; 
 	font-size: 0.7em;
 	color: #0a0;
+}
+
+.inputfile{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.lblupload{
+	color: #fff;
+	background-color: #227ad8;
+	padding: 0.7em;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 2em;
 }

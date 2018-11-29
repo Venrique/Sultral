@@ -198,10 +198,12 @@ html
     .modalA(role='alert')
       button.cerrarA(role='button') X
       form(class='centrado', method='POST', action='/Gestor/'+varLoc+'/upload',encType='multipart/form-data')
-        label(for='finame') Fichero: 
-        input(type='file', id='finame', name='finame', placeholder='Nueva Carpeta', class='txtForm')
+        input(type='file', id='finame', name='finame', placeholder='Nueva Carpeta', class='inputfile')
+        label.lblupload(for='finame') 
+          span Elegir Archivo 
         button.submit-file
-          i.fas.fa-plus
+          i.fas.fa-upload
+        p subir
     script.
       let carpetas = JSON.parse('#{carpetasOrigen}'.replace(/&quot;/g,'"'));
 
@@ -224,3 +226,4 @@ html
 
       let currentLoc = "";
     script(src='/js/gestorFunc.js')
+    script(src='/js/labelSubir.js')
