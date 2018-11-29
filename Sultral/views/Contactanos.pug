@@ -1,28 +1,6 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    link(href='https://fonts.googleapis.com/css?family=Poppins', rel='stylesheet')
-    link(rel='stylesheet', type='text/css', href='/stylesheets/style-Contactanos.css')
-    title Sultral - Contáctanos
-  body
-    header
-      p
-        a(href='')
-          img(src='/images/logo_sultral.png', alt='SULTRAL')
-      nav
-        ul
-          li
-            a(href='LogIn') Iniciar Sesión
-          li
-            a(href='Registrar') Crear Cuenta
-          li
-            a(href='AcercaDe') Acerca De
-          li
-            a(href='Contactanos') Contactanos
-    section.container
+extends layout
+block content
+    section.container5
       .contactanos-box
         form.formulario-contactanos(method="post")
           h2 Contáctanos
@@ -37,6 +15,6 @@ html(lang='en')
           input#Motivo.r-input(type='text', name='motivo', placeholder="Motivo del correo" required)
           label(for='mensaje') Mensaje:
           textarea#mensaje.r-input(name='mensaje', placeholder="Cuerpo del mensaje", required)
-          input.btn-azul(type='submit', value='Enviar')
+          input.btn-azul2(type='submit', value='Enviar')
           .error=err
           .aceptado=acept
