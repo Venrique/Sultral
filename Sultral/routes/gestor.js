@@ -52,6 +52,18 @@ function redirecting(req, res, next, status){
     mensaje = "Ya existe un archivo con ese nombre y extensión en este directorio.";
   }
 
+  if(status == 1006){
+    reqAlert = true;
+    titulo = "Favoritos actualizado";
+    mensaje = "Se ha añadido el archivo a tu carpeta Favoritos.";
+  }
+
+  if(status == 1007){
+    reqAlert = true;
+    titulo = "Favoritos actualizado";
+    mensaje = "Se ha eliminado el archivo de tu carpeta Favoritos.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -75,7 +87,11 @@ function redirecting(req, res, next, status){
             .exec().then((result) => {
               container = result;
 
-              return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), alert: reqAlert, alertT: titulo, alertM: mensaje });
+              Usuario.find({"_id": mongoose.Types.ObjectId(decode.Id)})
+              .exec().then((user) => {
+                return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), favoritos: user[0]['favorites'], alert: reqAlert, alertT: titulo, alertM: mensaje });
+
+              }); 
 
             });
 
@@ -115,6 +131,32 @@ router.get('/:loc/:file', function (req, res, next) {
     }
   });    
 
+});
+
+router.get('/:loc/:file/fav', function(req, res, next){
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id), favorites: mongoose.Types.ObjectId(req.params.file) })
+  .exec().then((result) => {
+
+    if(result.length == 0){
+      Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $push: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+        if (err) {
+          console.log(err);
+        }else{
+          return redirecting(req, res, next, 1006);
+        }
+      });
+    }else{
+      Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+        if (err) {
+          console.log(err);
+        }else{
+          return redirecting(req, res, next, 1007);
+        }
+      });
+    }
+
+  });
 });
 
 router.get('/', function (req, res, next) {

@@ -51,7 +51,12 @@ html
             if contenido != undefined
               - var archivos = JSON.parse(contenido.replace(/&quot;/g,'"'));
               for archivo in archivos
+                - let fav = false;
+                for id in favoritos
+                  if id == archivo['_id']
+                    - fav = true;
                 - let link = "/Gestor/"+(archivo['ext'] ? varLoc +"/" : "")+archivo['_id'];
+                - let linkFav = "/Gestor/"+varLoc +"/"+archivo['_id']+"/fav";
                 - let name = archivo['nombre'];
                 - let splitname = ((name.length > 17 && archivo['ext'] == null) ? name.substring(0,17)+"..." : ((name.length > 14 && archivo['ext'] != null) ? name.substring(0,14)+"..."+archivo['ext'] : (archivo['ext'] ? name+"."+archivo['ext'] : name)));
                 if archivo['ext'] == null
@@ -70,8 +75,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pptx"
@@ -82,8 +90,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "docx"
@@ -94,8 +105,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "xlsx"
@@ -106,8 +120,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "txt"
@@ -118,8 +135,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
@@ -130,8 +150,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
@@ -142,8 +165,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
@@ -154,8 +180,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
                 else
@@ -166,8 +195,11 @@ html
                     .options
                       a.option(href=link)
                           i.fas.fa-download
-                      button.option
+                      a.option.gold(href=linkFav)
+                        if fav
                           i.fas.fa-star
+                        else
+                          i.far.fa-star
                       button.option2
                           i.fas.fa-ellipsis-h
             if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"

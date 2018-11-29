@@ -306,6 +306,10 @@ body{
 	color: #ffffff;
 }
 
+.gold{
+	color:#f0d400;
+}
+
 .red:hover{
 	color: #c00;
 }
@@ -332,6 +336,10 @@ body{
 
 .white:hover{
 	color: #f2f2f2;
+}
+
+.gold:hover{
+	color:#ffe313;
 }
 
 .new-folder{
