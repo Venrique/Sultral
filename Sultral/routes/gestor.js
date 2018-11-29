@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Element = require('../models/element');
 const jwt = require('jsonwebtoken');
 const upload = require('express-fileupload');
+const Usuario = require('../models/user');
 router.use(upload());
 
 function redirecting(req, res, next, status){
@@ -15,7 +16,7 @@ function redirecting(req, res, next, status){
   let reqAlert, titulo, mensaje;
   reqAlert = false;
 
-  if(status == 409){
+  if(status == 1000){
     reqAlert = true;
     titulo = "Error al crear carpeta";
     mensaje = "El nombre que intenta utilizar ya existe en este directorio.";
@@ -31,6 +32,24 @@ function redirecting(req, res, next, status){
     reqAlert = true;
     titulo = "Fallo al realizar la descarga";
     mensaje = "El archivo solicitado pudo descargarse.";
+  }
+
+  if(status == 1003){
+    reqAlert = true;
+    titulo = "Accion exitosa";
+    mensaje = "Se ha subido el archivo.";
+  }
+
+  if(status == 1004){
+    reqAlert = true;
+    titulo = "Error al subir archivo";
+    mensaje = "No cuenta con el espacio suficiente para subir este archivo.";
+  }
+
+  if(status == 1005){
+    reqAlert = true;
+    titulo = "Error al subir archivo";
+    mensaje = "Ya existe un archivo con ese nombre y extensión en este directorio.";
   }
 
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
@@ -145,7 +164,7 @@ router.post('/:loc', function (req, res, next) {
       });
     }else{
       
-      return redirecting(req, res, next, 409);
+      return redirecting(req, res, next, 1000);
 
     }
 
@@ -160,35 +179,61 @@ router.post('/:loc/upload', function (req, res, next) {
 
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
 
-  archivo.mv('Sultral/../User_files/' + fileId + '.sultral', function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      const archivoup = new Element({
-        _id: fileId,
-        nombre: nombref[0],
-        ext: nombref[1],
-        contenedor: req.params.loc,
-        contenido: null,
-        creador: mongoose.Types.ObjectId(decode.Id),
-        compartido: []
+  Element.find({nombre: nombref[0], ext: nombref[1], contenedor: mongoose.Types.ObjectId(req.params.loc)})
+  .exec().then((almacenado) => {
+    if(almacenado.length == 0){
+
+      Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id) })
+      .exec().then((usu) => {
+        
+        if(archivo.data.length/1024 < usu[0]['maxstorage']-usu[0]['storage']){
+          archivo.mv('Sultral/../User_files/' + fileId + '.sultral', function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              const archivoup = new Element({
+                _id: fileId,
+                nombre: nombref[0],
+                ext: nombref[1],
+                contenedor: req.params.loc,
+                contenido: null,
+                creador: mongoose.Types.ObjectId(decode.Id),
+                compartido: []
+              });
+        
+              archivoup.save().then(result => {
+                console.log(result);
+                Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.loc) }, { $push: { contenido: fileId } }, function (err, place) {
+                  if (err) {
+                    console.log(err);
+                  }else{
+                    Usuario.findOneAndUpdate({ _id: decode.Id }, { $inc: { storage: archivo.data.length/1024 } }, function (err, place) {
+                      if (err) {
+                        console.log(err);
+                      }else{
+                        return redirecting(req, res, next, 1003);
+                      }
+                    });
+                  }
+                });
+              }).catch(error => {
+                console.log(error);
+                return res.status(400).redirect('/Gestor/' + req.params.loc);
+              });
+            }
+        
+          });
+        }else{
+          return redirecting(req, res, next, 1004);
+        }
+
       });
 
-      archivoup.save().then(result => {
-        console.log(result);
-        Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.loc) }, { $push: { contenido: fileId } }, function (err, place) {
-          if (err) {
-            console.log(err);
-          }
-        });
-        return res.status(200).redirect('/Gestor/' + req.params.loc);
-      }).catch(error => {
-        console.log(error);
-        return res.status(400).redirect('/Gestor/' + req.params.loc);
-      });
+    }else{
+      return redirecting(req, res, next, 1005);
     }
-
   });
+  
 });
 
 

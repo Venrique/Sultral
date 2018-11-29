@@ -11,6 +11,8 @@ const userSchema = new Schema({
     gender: {type: String, required: true},
     pass: {type: String, required: true},
     contactos: {type: [mongoose.Schema.Types.ObjectId]},
+    storage: {type: mongoose.Schema.Types.Number, required: true},
+    maxstorage: {type: mongoose.Schema.Types.Number, required: true}
 });
 
 module.exports = mongoose.model('Usuario',userSchema);

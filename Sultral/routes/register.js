@@ -59,7 +59,9 @@ router.post('/', function (req, res, next) {
                                         names: req.body.nombres.trim(),
                                         lastnames: req.body.apellidos.trim(),
                                         birthdate: new Date(req.body.fechaNac),
-                                        gender: genero
+                                        gender: genero,
+                                        storage: 0,
+                                        maxstorage: 2097152
                                     });
                                     //se guarda el usuario en la base de datos
                                     usuario.save().then(result => {
