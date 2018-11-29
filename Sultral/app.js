@@ -46,8 +46,8 @@ app.use('/ConfigDetalle',checkToken,ConfigDetalleRouter);
 app.use('/ConfigInfoUsuario',checkToken, ConfigInfoUsuario);
 app.use('/ConfigPrivacidad',checkToken, ConfigPrivacidadRouter);
 app.use('/ConfigContacto',checkToken, ConfigContactoRouter );
-app.use('/AcercaDe',AcercaDeRouter);
-app.use('/Contactanos',ContactanosRouter);
+app.use('/AcercaDe',checkToken,AcercaDeRouter);
+app.use('/Contactanos',checkToken,ContactanosRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.render('Not-Found', { title: 'Sultral'});

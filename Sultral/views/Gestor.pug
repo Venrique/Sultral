@@ -26,6 +26,7 @@ html
                 a(href='') Contactos
               li
                 a(href='../../Cerrar') Cerrar Sesión
+      #temp
       main.app-body
         aside.menu
           nav.app-menu
@@ -61,8 +62,8 @@ html
                       i.fa.fa-folder-open
                     .options
                       button.option
-                          i.fas.fa-download
-                      button.option
+                          i.fas.fa-download 
+                      button.option2
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pdf"
                   .element
@@ -229,3 +230,4 @@ html
       let currentLoc = "";
     script(src='/js/gestorFunc.js')
     script(src='/js/labelSubir.js')
+    script(src='/js/submenu.js')
