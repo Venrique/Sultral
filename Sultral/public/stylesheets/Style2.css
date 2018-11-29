@@ -5,12 +5,12 @@
 
 *, ::before, ::after{
 	box-sizing: inherit;
+	font-family: 'Poppins';
 }
 
 body{
 	margin: 0;
 	background-color: rgb(255, 255, 255);
-	font-family: 'Poppins';
 }
 
 .app-container{
@@ -775,10 +775,6 @@ body{
 	margin: 0;
 }
 
-input.toggle { display: none; }
-input.toggle ~ .menu-panel { display: block; }
-input.toggle:checked ~ .menu-panel { display: none; }
-
 .menu-panel {
 	position: absolute;
 	margin-left: 5.5em;
@@ -807,6 +803,7 @@ input.toggle:checked ~ .menu-panel { display: none; }
 	font-weight: bold;
 	text-transform: uppercase;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 .menu-panel:hover .row:hover { background: #ebebeb; color: #555555; border-radius: 3px; }

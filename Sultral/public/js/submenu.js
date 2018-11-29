@@ -17,6 +17,16 @@ for (let i = 0; i < botones.length; i++) {
         link.appendChild(texto);
         menu.appendChild(link);
 
+        var link = document.createElement('a');
+        link.classList.add('row');
+       
+        var texto = document.createElement('div');
+        var tex = document.createTextNode('Renombrar');
+
+        texto.appendChild(tex);
+        link.appendChild(texto);
+        menu.appendChild(link);
+
         var opciones = document.getElementById('temp');
 
         while (opciones.firstChild) {
