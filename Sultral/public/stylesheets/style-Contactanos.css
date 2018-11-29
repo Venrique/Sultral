@@ -1,0 +1,124 @@
+:root{
+	box-sizing: border-box;
+	font-size: calc(0.05em + 1vw);
+}
+
+*, ::before, ::after{
+	box-sizing: inherit;
+	font-family: 'Poppins'
+}
+
+header img {
+	width: 6em;
+	height: 6em;
+}
+
+body{
+	margin: 0;
+	background-color: #EFEFEF;
+}
+
+body header{
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	padding: 0.7rem 7rem;
+	height: 5rem;
+	border-bottom: none;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: #AFAFAF 1px 1px 5px;
+}
+
+body header p a{
+	text-decoration: none;
+	color: #000;
+}
+
+body header nav ul{
+	margin: 0;
+	padding: 0;
+}
+
+body header nav ul li{
+	display: inline-block;
+}
+
+body header nav ul li a{
+	display: block;
+	text-decoration: none;
+	color:black;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+}
+
+body header nav ul li a:hover{
+	background-color: #4a4a4a;
+	transition: all 0.4s linear;
+	color:white;
+}
+
+.container{
+	height: calc(100vh - 5rem);
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    margin: 8em 0;
+}
+
+.r-input{
+	margin-bottom: 2em;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px;
+	box-shadow: #AFAFAF 1px 1px 10px;
+	font-size: 1em;
+}
+
+.btn-azul{
+    background-color: #3babdf;
+    border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 2em;
+	transition: 0.2s;
+	padding: 0.8em;
+	box-shadow: #AFAFAF 1px 1px 10px;
+	color: #fff;
+	font-size: 0.8em;
+	text-decoration: none;
+	text-align: center;
+}
+
+.btn-azul:hover{
+	background-color: #238ebf;
+}
+
+.contactanos-box{
+	background-color: #fff;
+	width: 50%;
+	box-shadow: #AFAFAF 1px 1px 10px;
+	padding: 2em 3em;
+}
+
+.formulario-contactanos{
+	display: flex;
+	flex-direction: column;
+}
+
+.formulario-contactanos h2{
+	border-bottom: #AFAFAF 2px solid;
+	margin-top: 0;
+}
+
+.formulario-contactanos p{
+	font-size: 1em;
+	color: #4a4a4a;
+	text-align: justify;
+}
+
+textarea{
+	resize: none;
+	height: 7em;
+}
