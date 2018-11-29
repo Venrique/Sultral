@@ -144,7 +144,10 @@ body header nav ul li a:hover{
 .custom-btn:hover{
 	padding: 0.8rem 3.2rem;
 }
-
+.container3{
+	display: flex;
+	flex-direction: column;
+}
 .container{
 	width: 100vw;
 	height: calc(100vh - 5rem);

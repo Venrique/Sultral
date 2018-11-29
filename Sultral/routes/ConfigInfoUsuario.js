@@ -42,7 +42,7 @@ router.post('/', function (req, res, next) {
       if (regexp.test(req.body.correo)) {
         Usuario.findOneAndUpdate({ user: decode.usuario }, { email: req.body.correo }, function (err, place) {
          
-           res.status(200).render('ConfigInfoUsuario', { title: 'Configuracion Informacion del  usuario', Nombre : req.body.Nombre, Apellido: req.body.Apellido, correo : req.body.correo, FechaNac: req.body.FechaNac});
+         return  res.status(200).render('ConfigInfoUsuario', { title: 'Configuracion Informacion del  usuario', Nombre : req.body.Nombre, Apellido: req.body.Apellido, correo : req.body.correo, FechaNac: req.body.FechaNac});
      
 
         });

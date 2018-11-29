@@ -15,22 +15,28 @@ html(lang='en')
       nav
         ul
           li
-            a(href='') Iniciar Sesión
+            a(href='LogIn') Iniciar Sesión
           li
-            a(href='') Crear Cuenta
+            a(href='Registrar') Crear Cuenta
+          li
+            a(href='AcercaDe') Acerca De
+          li
+            a(href='Contactanos') Contactanos
     section.container
       .contactanos-box
-        form.formulario-contactanos(action="/Contactanos" method="post")
+        form.formulario-contactanos(method="post")
           h2 Contáctanos
           p Rellena el formulario y en breve nos pondremos en contacto contigo vía email.
           label(for='nombre') Nombre:
-          input#Nombre.r-input(type='text', name='nombre', required)
+          input#Nombre.r-input(type='text', name='nombre' placeholder="Juan Rodrigo", required)
           label(for='apellido') Apellido:
-          input#Apellido.r-input(type='text', name='apellido', required)
+          input#Apellido.r-input(type='text', name='apellido' placeholder="Lopez Yanes", required)
           label(for='correo') Correo:
-          input#correo.r-input(type='email', name='correo', required)
+          input#correo.r-input(type='email', name='correo' placeholder="AlgunCorreo@hotmail.com", required)
           label(for='motivo') Motivo:
-          input#Motivo.r-input(type='text', name='motivo', required)
+          input#Motivo.r-input(type='text', name='motivo', placeholder="Motivo del correo" required)
           label(for='mensaje') Mensaje:
-          textarea#mensaje.r-input(name='mensaje', required)
+          textarea#mensaje.r-input(name='mensaje', placeholder="Cuerpo del mensaje", required)
           input.btn-azul(type='submit', value='Enviar')
+          .error=err
+          .aceptado=acept
