@@ -27,6 +27,12 @@ function redirecting(req, res, next, status){
     mensaje = "Se ha creado la nueva carpeta.";
   }
 
+  if(status == 1002){
+    reqAlert = true;
+    titulo = "Fallo al realizar la descarga";
+    mensaje = "El archivo solicitado pudo descargarse.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -72,6 +78,23 @@ router.get('/:loc', function (req, res, next) {
   
   return redirecting(req, res, next);
   
+
+});
+
+router.get('/:loc/:file', function (req, res, next) {
+
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.file), "contenedor": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  .exec().then((result) => {
+    if(result.length != 0){
+
+      let archivo = 'Sultral/../User_files/' + req.params.file + '.sultral';
+      res.download(archivo, result[0]['nombre']+"."+result[0]['ext']);
+    }else{
+      return redirecting(req, res, next, 1002);
+    }
+  });    
 
 });
 
