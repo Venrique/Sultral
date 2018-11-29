@@ -2,9 +2,14 @@ doctype html
 html
   head
     title= title
+      meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
     link(href='https://fonts.googleapis.com/css?family=Poppins', rel='stylesheet')
-    meta(charset='utf-8')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.5.0/css/all.css', integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU', crossorigin='anonymous')
+    
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    
   body
     header
       a(href='/', class="logo-nav")
@@ -12,14 +17,22 @@ html
       div
         nav
           ul
-            if(sesion)
+            if (sesion)
               li.welcome
                 p ¡Un placer tenerte de vuelta #{user}!
               li
                 a(href='Gestor') Entrar a Sultral
+              li
+                a(href='AcercaDe') Acerca De
+              li
+                a(href='Contactanos') Contactanos
             else
               li
                 a(href='LogIn') Iniciar Sesión
               li
                 a(href='Registrar') Crear Cuenta
+              li
+                a(href='AcercaDe') Acerca De
+              li
+                a(href='Contactanos') Contactanos
     block content

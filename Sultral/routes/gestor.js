@@ -27,35 +27,49 @@ function redirecting(req, res, next, status){
     mensaje = "Se ha creado la nueva carpeta.";
   }
 
-  Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
-    .sort({ nombre: 1 })
-    .exec().then((result) => {
-      contFolders = result;
+  if(status == 1002){
+    reqAlert = true;
+    titulo = "Fallo al realizar la descarga";
+    mensaje = "El archivo solicitado pudo descargarse.";
+  }
 
-      Element.find({ "contenedor": mongoose.Types.ObjectId(req.params.loc) })
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  .exec().then((result) => {
+    if(result.length != 0){
+      Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
+      .sort({ nombre: 1 })
+      .exec().then((result) => {
+        contFolders = result;
+
+        Element.find({ "contenedor": mongoose.Types.ObjectId(req.params.loc) })
         .sort({ nombre: 1 })
         .exec().then((result) => {
           files = result;
 
           Element.find({ "_id": mongoose.Types.ObjectId(req.params.loc) })
+          .sort({ nombre: 1 })
+          .exec().then((result) => {
+            actual = result;
+
+            Element.find({ "contenido": mongoose.Types.ObjectId(req.params.loc) })
             .sort({ nombre: 1 })
             .exec().then((result) => {
-              actual = result;
+              container = result;
 
-              Element.find({ "contenido": mongoose.Types.ObjectId(req.params.loc) })
-                .sort({ nombre: 1 })
-                .exec().then((result) => {
-                  container = result;
-
-                  return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), alert: reqAlert, alertT: titulo, alertM: mensaje });
-
-                });
+              return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), alert: reqAlert, alertT: titulo, alertM: mensaje });
 
             });
 
+          });
+
         });
 
-    });
+      });
+    }else{
+      return res.redirect('/Gestor/');
+    }
+  });
+  
 }
 
 /* GET home page. */
@@ -64,6 +78,23 @@ router.get('/:loc', function (req, res, next) {
   
   return redirecting(req, res, next);
   
+
+});
+
+router.get('/:loc/:file', function (req, res, next) {
+
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.file), "contenedor": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  .exec().then((result) => {
+    if(result.length != 0){
+
+      let archivo = 'Sultral/../User_files/' + req.params.file + '.sultral';
+      res.download(archivo, result[0]['nombre']+"."+result[0]['ext']);
+    }else{
+      return redirecting(req, res, next, 1002);
+    }
+  });    
 
 });
 

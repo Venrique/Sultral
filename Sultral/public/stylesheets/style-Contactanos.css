@@ -58,6 +58,9 @@ body header nav ul li a:hover{
 	color:white;
 }
 
+.container h2{
+	text-align: center;
+}
 .container{
 	height: calc(100vh - 5rem);
 	display: flex;
@@ -121,4 +124,14 @@ body header nav ul li a:hover{
 textarea{
 	resize: none;
 	height: 7em;
+}
+.error{
+	margin-top:1em; 
+	font-size: 0.7em;
+	color: #ff0000;
+}
+.aceptado{
+	margin-top:1em; 
+	font-size: 0.7em;
+	color: #0a0;
 }

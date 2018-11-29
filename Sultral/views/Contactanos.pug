@@ -1,36 +1,20 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    link(href='https://fonts.googleapis.com/css?family=Poppins', rel='stylesheet')
-    link(rel='stylesheet', type='text/css', href='/stylesheets/style-Contactanos.css')
-    title Sultral - Contáctanos
-  body
-    header
-      p
-        a(href='')
-          img(src='/images/logo_sultral.png', alt='SULTRAL')
-      nav
-        ul
-          li
-            a(href='') Iniciar Sesión
-          li
-            a(href='') Crear Cuenta
-    section.container
+extends layout
+block content
+    section.container5
       .contactanos-box
-        form.formulario-contactanos(action="/Contactanos" method="post")
+        form.formulario-contactanos(method="post")
           h2 Contáctanos
           p Rellena el formulario y en breve nos pondremos en contacto contigo vía email.
           label(for='nombre') Nombre:
-          input#Nombre.r-input(type='text', name='nombre', required)
+          input#Nombre.r-input(type='text', name='nombre' placeholder="Juan Rodrigo", required)
           label(for='apellido') Apellido:
-          input#Apellido.r-input(type='text', name='apellido', required)
+          input#Apellido.r-input(type='text', name='apellido' placeholder="Lopez Yanes", required)
           label(for='correo') Correo:
-          input#correo.r-input(type='email', name='correo', required)
+          input#correo.r-input(type='email', name='correo' placeholder="AlgunCorreo@hotmail.com", required)
           label(for='motivo') Motivo:
-          input#Motivo.r-input(type='text', name='motivo', required)
+          input#Motivo.r-input(type='text', name='motivo', placeholder="Motivo del correo" required)
           label(for='mensaje') Mensaje:
-          textarea#mensaje.r-input(name='mensaje', required)
-          input.btn-azul(type='submit', value='Enviar')
+          textarea#mensaje.r-input(name='mensaje', placeholder="Cuerpo del mensaje", required)
+          input.btn-azul2(type='submit', value='Enviar')
+          .error=err
+          .aceptado=acept
