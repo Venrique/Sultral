@@ -221,6 +221,7 @@ body{
 	margin: 1rem 0 0;
 	font-weight: 700;
 	color: #444;
+	cursor: pointer;
 }
 
 .nav-button{

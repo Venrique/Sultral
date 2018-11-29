@@ -7,18 +7,24 @@ const jwt = require('jsonwebtoken');
 const upload = require('express-fileupload');
 router.use(upload());
 
-/* GET home page. */
-router.get('/:loc', function (req, res, next) {
+function redirecting(req, res, next, status){
 
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
   let contFolders;
   let files, actual, container;
   let reqAlert, titulo, mensaje;
-  if(true){
-    console.log("Error, mostrando");
+  reqAlert = false;
+
+  if(status == 409){
     reqAlert = true;
     titulo = "Error al crear carpeta";
     mensaje = "El nombre que intenta utilizar ya existe en este directorio.";
+  }
+
+  if(status == 1001){
+    reqAlert = true;
+    titulo = "Accion exitosa";
+    mensaje = "Se ha creado la nueva carpeta.";
   }
 
   Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
@@ -50,6 +56,14 @@ router.get('/:loc', function (req, res, next) {
         });
 
     });
+}
+
+/* GET home page. */
+router.get('/:loc', function (req, res, next) {
+
+  
+  return redirecting(req, res, next);
+  
 
 });
 
@@ -91,16 +105,16 @@ router.post('/:loc', function (req, res, next) {
         Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.loc) }, { $push: { contenido: idCarpeta } }, function (err, place) {
           if (err) {
             console.log(err);
+          }else{
+            return redirecting(req, res, next, 1001);
           }
         });
-        return res.status(200).redirect('/Gestor/' + req.params.loc);
       }).catch(error => {
-        console.log(error);
         return res.status(400).redirect('/Gestor/' + req.params.loc);
       });
     }else{
       
-      return res.status(409).redirect('/Gestor/' + req.params.loc);
+      return redirecting(req, res, next, 409);
 
     }
 
