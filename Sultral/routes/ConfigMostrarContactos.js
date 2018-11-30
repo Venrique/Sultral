@@ -6,18 +6,26 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 router.get('/',function(req,res,next){
-    const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
 
     var regex = new RegExp(req.body.Contacto);
-  
-    Usuario.find({ user: regex, user: {$ne: decode.usuario} })
-    .exec().then( (result) => {
-  
+    console.log(decode.usuario);
+    Usuario.findOne({user: decode.usuario}, function(err, result) {
+      if (err) throw err;
       console.log(result);
-      res.render('ConfigMostrar', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(result)});
+      console.log(result['contactos']);
+      Usuario.find({_id: {$in: result['contactos']}}, function(err, resultado){
+        if(resultado.length != 0){
+        console.log(resultado);
+        res.render('ConfigMostrar', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+        }else{
+          res.render('ConfigMostrar',{ title: 'Mostrar Contactos', err: 'No posee usuarios esta cuenta'});
+
+        }
+      });
+      
         
     });
-
 });
 
 router.get('/:valor', function(req, res) {
