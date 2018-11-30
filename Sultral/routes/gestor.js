@@ -255,7 +255,7 @@ router.post('/:loc/upload', function (req, res, next) {
       .exec().then((usu) => {
         
         if(archivo.data.length/1024 < usu[0]['maxstorage']-usu[0]['storage']){
-          archivo.mv('User_files/' + fileId + '.sultral', function (err) {
+          archivo.mv('./User_files/' + fileId + '.sultral', function (err) {
             if (err) {
               console.log(err);
             } else {
