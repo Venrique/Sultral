@@ -68,17 +68,17 @@ html
                       i.fa.fa-folder-open
                     .options
                       if papelera
-                        a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
                         button.option2(name=archivo['_id']+'@')
                             i.fas.fa-ellipsis-h
                       else if compartidos
                         button.option2(name=archivo['_id']+'-')
                             i.fas.fa-ellipsis-h
                       else
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pdf"
@@ -88,6 +88,12 @@ html
                       i.fas.fa-file-pdf
                     .options
                       if papelera
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -95,12 +101,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pptx"
@@ -110,6 +110,12 @@ html
                       i.fas.fa-file-powerpoint
                     .options
                       if papelera
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -117,12 +123,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "docx"
@@ -131,7 +131,13 @@ html
                     a.nav-button.blue
                       i.fas.fa-file-word
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -139,12 +145,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "xlsx"
@@ -153,7 +153,13 @@ html
                     a.nav-button.green
                       i.fas.fa-file-excel
                     .options
-                      if papelera
+                      if papelera                      
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -161,12 +167,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "txt"
@@ -175,7 +175,13 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-alt
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -183,12 +189,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
@@ -197,7 +197,13 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-image
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -205,12 +211,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
@@ -219,7 +219,13 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-video
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -227,12 +233,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
@@ -241,7 +241,13 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-audio
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -249,12 +255,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
                 else
@@ -263,7 +263,13 @@ html
                     a.nav-button.white
                       i.fas.fa-file
                     .options
-                      if papelera
+                      if papelera                       
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
+                      else if compartidos
+                        button.option2(name=archivo['_id']+'-')
+                            i.fas.fa-ellipsis-h
+                      else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
@@ -271,12 +277,6 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
-                      else
                         button.option2(name=archivo['_id']+'+')
                             i.fas.fa-ellipsis-h
             if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
