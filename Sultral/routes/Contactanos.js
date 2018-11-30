@@ -44,11 +44,11 @@ router.post('/', function (req, res) {
 
             }
             else {
-
+                res.render('Contactanos', { title: 'Contactanos', acept: "El correo electronico se ha enviado correctamente, espere su respuesta muy pronto " });
             }
         });
     }else{
-        res.render('Contactanos', { title: 'Contactanos', acept: "El correo electronico ingresado en el campo de correo  no posee formato de correo " });
+        res.render('Contactanos', { title: 'Contactanos', err: "El correo electronico ingresado en el campo de correo  no posee formato de correo " });
     }
     });
 
