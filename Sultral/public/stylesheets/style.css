@@ -3,9 +3,12 @@
 	font-size: calc(0.05em + 1vw);
 }
 
-body{
+*, ::before, ::after{
 	box-sizing: inherit;
-	font-family: 'Poppins';
+	font-family: 'Poppins'
+}
+
+body{
 	margin: 0;
 	background-color: #EFEFEF;
 }
