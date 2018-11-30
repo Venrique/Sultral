@@ -25,7 +25,7 @@ function redirecting(req, res, next, status){
 
   if(status == 1001){
     reqAlert = true;
-    titulo = "Accion exitosa";
+    titulo = "Acción exitosa";
     mensaje = "Se ha creado la nueva carpeta.";
   }
 
@@ -37,7 +37,7 @@ function redirecting(req, res, next, status){
 
   if(status == 1003){
     reqAlert = true;
-    titulo = "Accion exitosa";
+    titulo = "Acción exitosa";
     mensaje = "Se ha subido el archivo.";
   }
 
@@ -71,10 +71,34 @@ function redirecting(req, res, next, status){
     mensaje = "El elemento se ha trasladado a la papelera.";
   }
 
+  if(status == 1009){
+    reqAlert = true;
+    titulo = "Elementos sin cambios";
+    mensaje = "No se realizó ningún cambio en los elementos especificados.";
+  }
+
   if(status == 1010){
     reqAlert = true;
     titulo = "Elementos eliminados";
     mensaje = "Se han eliminado los elementos especificados.";
+  }
+
+  if(status == 1011){
+    reqAlert = true;
+    titulo = "Elementos movidos";
+    mensaje = "Se ha cambiado la ubicación de los elementos especificados.";
+  }
+
+  if(status == 1012){
+    reqAlert = true;
+    titulo = "Acción no permitida";
+    mensaje = "No es posible mover un elemento a sí mismo.";
+  }
+
+  if(status == 1013){
+    reqAlert = true;
+    titulo = "Acción no permitida";
+    mensaje = "No es posible mover un elemento a un fichero.";
   }
 
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
@@ -99,7 +123,6 @@ function redirecting(req, res, next, status){
             .sort({ nombre: 1 })
             .exec().then((result) => {
               container = result;
-
               Usuario.find({"_id": mongoose.Types.ObjectId(decode.Id)})
               .exec().then((user) => {
 
@@ -385,6 +408,33 @@ router.post('/:loc/upload', function (req, res, next) {
     }
   });
   
+});
+
+router.post('/:loc/:file/mover', function (req, res, next) {
+   if(req.body.newLoc == req.params.loc || req.body.newLoc == undefined){
+    return redirecting(req, res, next, 1009);
+   }else if(req.body.newLoc == req.params.file){
+    return redirecting(req, res, next, 1012);
+   }else{
+    Element.findOne({_id: mongoose.Types.ObjectId(req.body.newLoc)})
+    .exec().then((result) => {
+      if(result['ext'] == null){
+        Element.updateOne({ _id: mongoose.Types.ObjectId(req.params.file) }, { contenedor: req.body.newLoc }, function (err, place) {
+          if (err) {
+            console.log(err);
+          }else{
+            
+            return redirecting(req, res, next, 1011);
+    
+          }
+        });
+      }else{
+
+        return redirecting(req, res, next, 1013);
+
+      }
+    });
+   }
 });
 
 router.get('/:loc/:id/del', function (req, res, next) {

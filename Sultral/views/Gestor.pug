@@ -306,10 +306,29 @@ html
     .mascaraM(role='dialog')
     .modalM(role='alert')
       button.cerrarM(role='button') X
-      form(class='centrado mov', method='PUT')
-        
-        button.submit-file
-          i.fas.fa-people-carry
+      form(class='centrado mov', method='POST')
+        if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
+          - let elementos =  JSON.parse(contenido.replace(/&quot;/g,'"'));
+          - let current = JSON.parse(actual.replace(/&quot;/g,'"'));
+          if varLoc != origen[3]['_id'] 
+            - let carpeta = JSON.parse(contenedor.replace(/&quot;/g,'"'));
+            - let texto = carpeta[0]['nombre'];
+            .prev
+              label #{texto}
+                  input(type='radio', name='newLoc', value=carpeta[0]['_id'])
+          - let nom = current[0]['nombre'];
+          .cur
+              label #{nom}
+                  input(type='radio', name='newLoc', value=varLoc, checked)
+          .join
+            for c in elementos
+              - let texto = c['nombre'];
+              div
+                label  #{texto}
+                    input(type='radio', name='newLoc', value=c['_id'])
+          button.move-file
+            i.fas.fa-people-carry
+            | Mover
     .alert(role='alert')
       button.cerrar-alert(role='button') X
       .contenido-alert
