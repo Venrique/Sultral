@@ -50,7 +50,7 @@ html
           .document-viewer#viewer
             
             if contenido != undefined || favContent != undefined
-              - var archivos = ( varLoc == origen[3]['_id'] || varLoc == origen[2]['_id'] ? JSON.parse(contenido.replace(/&quot;/g,'"')) : JSON.parse(favContent.replace(/&quot;/g,'"')));
+              - var archivos = ( varLoc != origen[1]['_id'] ? JSON.parse(contenido.replace(/&quot;/g,'"')) : JSON.parse(favContent.replace(/&quot;/g,'"')));
               for archivo in archivos
                 - let fav = false;
                 for id in favoritos
