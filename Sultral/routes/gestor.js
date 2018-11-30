@@ -200,7 +200,8 @@ router.post('/:loc', function (req, res, next) {
     contenedor: mongoose.Types.ObjectId(req.params.loc),
     contenido: [],
     creador: mongoose.Types.ObjectId(decode.Id),
-    compartido: []
+    compartido: [],
+    contprevio: null
   });
 
   Element.find({ "nombre": req.body.fname, "contenedor": mongoose.Types.ObjectId(req.params.loc) })
@@ -256,7 +257,8 @@ router.post('/:loc/upload', function (req, res, next) {
                 contenedor: req.params.loc,
                 contenido: null,
                 creador: mongoose.Types.ObjectId(decode.Id),
-                compartido: []
+                compartido: [],
+                contprevio: null
               });
         
               archivoup.save().then(result => {
@@ -305,13 +307,26 @@ router.get('/:loc/:id/del', function (req, res, next) {
       if (err) {
         console.log(err);
       }else{
-        Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.id) }, { contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
-          if (err) {
-            console.log(err);
-          }else{
-            return redirecting(req, res, next, 1008);
-          }
-        });
+        Element.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
+        .exec().then((result) => {
+
+          Element.updateOne({ _id: result['_id'] }, { contprevio: result['contenedor'], contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
+            if (err) {
+              console.log(err);
+            }else{
+              
+              Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: result['_id'] } }, function (err, place) {
+                if (err) {
+                  console.log(err);
+                }else{
+                  return redirecting(req, res, next, 1008);
+                }
+              });
+
+            }
+          });
+
+        }); 
       }
     });
       

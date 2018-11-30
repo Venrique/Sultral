@@ -8,7 +8,8 @@ const elementSchema = new Schema({
     contenedor: {type: mongoose.Schema.Types.ObjectId},
     contenido: {type: [mongoose.Schema.Types.ObjectId]},
     creador: {type: mongoose.Schema.Types.ObjectId, required: true},
-    compartido: {type: [mongoose.Schema.Types.ObjectId]}
+    compartido: {type: [mongoose.Schema.Types.ObjectId]},
+    contprevio: {type: mongoose.Schema.Types.ObjectId}
 });
 
 module.exports = mongoose.model('Elemento',elementSchema);
