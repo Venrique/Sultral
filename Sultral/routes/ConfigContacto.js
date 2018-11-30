@@ -1,44 +1,47 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-    res.render('ConfigContacto', { title: 'Configuracion de Contactos' });
+const mongoose = require('mongoose');
+const Usuario = require('../models/user');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-    
+router.get('/', function (req, res, next) {
+  res.render('ConfigContacto', { title: 'Configuracion de Contactos' });
+
+
+
 });
-function genera_tabla() {
-    // Obtener la referencia del elemento body
-    var body = document.getElementsByTagName("body")[0];
-   
-    // Crea un elemento <table> y un elemento <tbody>
-    var tabla   = document.createElement("table");
-    var tblBody = document.createElement("tbody");
-   
-    // Crea las celdas
-    for (var i = 0; i < 2; i++) {
-      // Crea las hileras de la tabla
-      var hilera = document.createElement("tr");
-   
-      for (var j = 0; j < 2; j++) {
-        // Crea un elemento <td> y un nodo de texto, haz que el nodo de
-        // texto sea el contenido de <td>, ubica el elemento <td> al final
-        // de la hilera de la tabla
-        var celda = document.createElement("td");
-        var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
-        celda.appendChild(textoCelda);
-        hilera.appendChild(celda);
-      }
-   
-      // agrega la hilera al final de la tabla (al final del elemento tblbody)
-      tblBody.appendChild(hilera);
-    }
-   
-    // posiciona el <tbody> debajo del elemento <table>
-    tabla.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tabla);
-    // modifica el atributo "border" de la tabla y lo fija a "2";
-    tabla.setAttribute("border", "2");
-  }
+
+router.post('/', function (req, res, next) {
+  var TodosUsuarios = [];
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  var cantidad=0;
+  Usuario.find({}, function (err, usuarios) {
+    usuarios.forEach(function (usuario) {
+      
+      TodosUsuarios.push(usuario._id);
+      console.log(usuario._id);
+      
+      
+    });
+    console.log(TodosUsuarios);
+     cantidad = TodosUsuarios.length;
+     console.log(cantidad);
+     
+     res.render('ConfigContacto', { title: 'Configuracion Usuario', FilasBD: JSON.stringify(TodosUsuarios)});
+    
+    
+    
+  });
+ 
+  /*
+  Usuario.findOneAndUpdate({user: decode.usuario}, {$push: {contactos: mongoose.Types.ObjectId(user._id)}}, function(err, place){
+    return res.render('ConfigContacto', { title: 'Configuracion Usuario', acept: "Se ha agregado el usuario correctamente" });
+  });
+}else{
+  return res.render('ConfigContacto', { title: 'Configuracion Usuario', err: "El usuario  que se busca no existe" });
+}*/
+  });
 
 module.exports = router;
