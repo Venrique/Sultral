@@ -18,11 +18,10 @@ block content
                             // Crea un elemento <table> y un elemento <tbody>
                             var tabla   = document.createElement("table");
                             var tblBody = document.createElement("tbody");
-                            var rows =  <%-JSON.parse(#{FilasBD}.replace(/&quot;/g,'"'));)%>
-                            columnas = #{FilasBD};
+                            var rows =  JSON.parse('#{FilasBD}'.replace(/&quot;/g,'"'));
                             
                             // Crea las celdas
-                            for (var i = 0; i < columnas.length;  i++) {
+                            for (var i = 0; i < rows.length;  i++) {
                             // Crea las hileras de la tabla
                                 var hilera = document.createElement("tr");
                         
