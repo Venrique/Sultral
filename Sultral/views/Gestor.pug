@@ -31,6 +31,7 @@ html
           nav.app-menu
             .upload-container
               - let origen = JSON.parse(carpetasOrigen.replace(/&quot;/g,'"'));
+              - var papelera = ((varLoc == origen[2]['_id']) ? true : false);
               if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
                 button.upload-btn Subir
             ul
@@ -55,7 +56,7 @@ html
                 for id in favoritos
                   if id == archivo['_id']
                     - fav = true;
-                - let link = "/Gestor/"+(archivo['ext'] ? varLoc +"/" : "")+archivo['_id'];
+                - let link = (!papelera ? "/Gestor/"+(archivo['ext'] ? varLoc +"/" : "")+archivo['_id'] : "/Gestor/"+varLoc);
                 - let linkFav = "/Gestor/"+varLoc +"/"+archivo['_id']+"/fav";
                 - let name = archivo['nombre'];
                 - let splitname = ((name.length > 17 && archivo['ext'] == null) ? name.substring(0,17)+"..." : ((name.length > 14 && archivo['ext'] != null) ? name.substring(0,14)+"..."+archivo['ext'] : (archivo['ext'] ? name+"."+archivo['ext'] : name)));
@@ -73,14 +74,15 @@ html
                     a.nav-button.red
                       i.fas.fa-file-pdf
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pptx"
                   .element
@@ -88,14 +90,15 @@ html
                     a.nav-button.orange
                       i.fas.fa-file-powerpoint
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "docx"
                   .element
@@ -103,14 +106,15 @@ html
                     a.nav-button.blue
                       i.fas.fa-file-word
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "xlsx"
                   .element
@@ -118,14 +122,15 @@ html
                     a.nav-button.green
                       i.fas.fa-file-excel
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "txt"
                   .element
@@ -133,14 +138,15 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-alt
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
                   .element
@@ -148,14 +154,15 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-image
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
                   .element
@@ -163,14 +170,15 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-video
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
                   .element
@@ -178,14 +186,15 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-audio
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else
                   .element
@@ -193,14 +202,15 @@ html
                     a.nav-button.white
                       i.fas.fa-file
                     .options
-                      a.option(href=link)
-                          i.fas.fa-download
-                      a.option.gold(href=linkFav)
-                        if fav
-                          i.fas.fa-star
-                        else
-                          i.far.fa-star
-                      button.option2
+                      if !papelera
+                        a.option(href=link)
+                            i.fas.fa-download
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
+                      button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
             if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
               .new-folder.mostrar
