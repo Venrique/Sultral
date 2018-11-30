@@ -9,23 +9,51 @@ block content
         canvas#myChart= grafico
         script.
           let mychart = document.getElementById('myChart').getContext('2d');
-          let massPopChart = new Chart(myChart,{
-          type: 'doughnut',
-          data:{ 
-            labels:['Bytes utilizados','Bytes disponibles'],
-             datasets:[
-               {
-                 label:'Population',
-                  data:[
-                    #{utilizado},
-                    #{max} - #{utilizado},
-                    ],
-                   backgroundColor:[
-                     'rgba(59, 171, 223, 1)',
-                     'rgba(22, 148, 26, 1)'
-                     ]
-                   }
-                   ]},
-          options:{}
-          });
-
+          let massPopChart = new Chart(myChart, {
+                      type:'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                      data:{
+                        labels:['Utilizado','Disponible'],
+                        datasets:[{
+                          label:'Espacio',
+                          data:[
+                            #{utilizado},
+                            #{max}-#{utilizado},
+                          ],
+                          //backgroundColor:'green',
+                          backgroundColor:[
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)'
+                          ],
+                          borderWidth:0.3,
+                          borderColor:'#777',
+                          hoverBorderWidth:0.6,
+                          hoverBorderColor:'#000'
+                        }]
+                      },
+                      options:{
+                        title:{
+                          display:false,
+                          text:'Almacenamiento',
+                          fontSize:25
+                        },
+                        legend:{
+                          display:true,
+                          position:'left',
+                          labels:{
+                            fontColor:'#000'
+                          }
+                        },
+                        layout:{
+                
+                          padding:{
+                            left:0,
+                            right:100,
+                            bottom:200,
+                            top:0,
+                          }
+                        },
+                        tooltips:{
+                          enabled:true
+                        }
+                      }
+                    });
