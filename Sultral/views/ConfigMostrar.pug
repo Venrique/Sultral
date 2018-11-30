@@ -3,16 +3,13 @@ block content
     section.config-section
         #config-privacidad
             h3  Contactos
-            form#formulario-Contacto(method='POST')
-                label(for='Contacto')  Buscar contacto:
-                input#Nombre(type='text', name='Contacto', placeholder='Usuario123')
-                input(type='submit', value='Buscar')
+            form#formulario-MostrarContacto(method='POST')
                 .error=err
                 .aceptado=acept
-                #contenido
+                #contenido2
                 script.
                     function genera_tabla() {
-                        var body = document.getElementById("contenido");
+                        var body = document.getElementById("contenido2");
                         
                             // Crea un elemento <table> y un elemento <tbody>
                            
@@ -27,7 +24,7 @@ block content
                             // Crea las hileras de la tabla
                                 var fila = document.createElement("tr");
                                 var textoCelda = document.createTextNode(rows[i].user);
-                                var formulario = document.getElementById("formulario-Contacto");
+                                var formulario = document.getElementById("formulario-MostrarContacto");
                                 for (var j = 0; j < 2; j++) {
                                 // Crea un elemento <td> y un nodo de texto, haz que el nodo de
                                 // texto sea el contenido de <td>, ubica el elemento <td> al final
@@ -37,9 +34,9 @@ block content
                                         var boton="boton";
                                         contador = j
                                         var a = document.createElement("a");
-                                        a.href = 'ConfigContacto/'+rows[i].user;
+                                        a.href = 'MostrarContactos/'+rows[i].user;
 
-                                        var x = document.createTextNode("agregar");
+                                        var x = document.createTextNode("Eliminar");
 
 
                                         /*var x = document.createElement("INPUT");

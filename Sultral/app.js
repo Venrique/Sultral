@@ -13,6 +13,7 @@ var ConfigDetalleRouter = require('./routes/configDetalle');
 var ConfigPrivacidadRouter = require('./routes/ConfigPrivacidad');
 var ConfigInfoUsuario = require('./routes/ConfigInfoUsuario');
 var ConfigContactoRouter = require('./routes/ConfigContacto');
+var ConfigMostrarContactoRouter = require('./routes/ConfigMostrarContactos');
 var gestorRouter = require('./routes/gestor');
 var AcercaDeRouter = require('./routes/AcercaDe');
 var ContactanosRouter = require('./routes/Contactanos');
@@ -48,6 +49,7 @@ app.use('/ConfigPrivacidad',checkToken, ConfigPrivacidadRouter);
 app.use('/ConfigContacto',checkToken, ConfigContactoRouter );
 app.use('/AcercaDe',AcercaDeRouter);
 app.use('/Contactanos',ContactanosRouter);
+app.use('/MostrarContactos',checkToken, ConfigMostrarContactoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
