@@ -70,6 +70,12 @@ function redirecting(req, res, next, status){
     mensaje = "El elemento especificado no puede agregarse a favoritos.";
   }
 
+  if(status == 1009){
+    reqAlert = true;
+    titulo = "Elemento trasladado";
+    mensaje = "El elemento se ha trasladado a la papelera.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -292,5 +298,31 @@ router.post('/:loc/upload', function (req, res, next) {
   
 });
 
+router.get('/:id/del/user', function (req, res, next) {
+
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+  Element.findOne({ nombre: 'papelera', contenedor: null, creador: mongoose.Types.ObjectId(decode.Id) }).exec()
+        .then(papelera => {
+
+          Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(papelera._id) }, { $push: { contenido: mongoose.Types.ObjectId(req.params.id) } }, function (err, place) {
+            if (err) {
+              console.log(err);
+            }else{
+              Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.id) }, { contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
+                if (err) {
+                  console.log(err);
+                }else{
+                  return redirecting(req, res, next, 1009);
+                }
+              });
+            }
+          });
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+});
 
 module.exports = router;
