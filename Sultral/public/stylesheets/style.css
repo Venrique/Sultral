@@ -466,6 +466,10 @@ textarea{
 	height: 7em;
 }
 
+#mensaje {
+	font-family:'Poppins';
+}
+
 .aceptado{
 	margin-top:1em; 
 	font-size: 0.7em;
