@@ -72,8 +72,11 @@ html
                             i.fas.fa-star
                           else
                             i.far.fa-star
-                      button.option2(name=archivo['_id'])
-                          i.fas.fa-ellipsis-h
+                        button.option2(name=archivo['_id']+'+')
+                            i.fas.fa-ellipsis-h
+                      else
+                        button.option2(name=archivo['_id']+'@')
+                            i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pdf"
                   .element
                     p.name(title=name) #{splitname}

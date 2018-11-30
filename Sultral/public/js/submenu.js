@@ -3,30 +3,58 @@ var posx,posy;
 
 for (let i = 0; i < botones.length; i++) {
     botones[i].addEventListener("click", function(){
-
+        
         var menu = document.createElement('div');
         menu.id = 'main-menu';
         menu.classList.add('menu-panel');
-        var link = document.createElement('a');
-        link.href = '/Gestor/'+loc+'/'+this.name+'/del';
-        link.classList.add('row');
-       
-        var texto = document.createElement('div');
-        var tex = document.createTextNode('Eliminar');
 
-        texto.appendChild(tex);
-        link.appendChild(texto);
-        menu.appendChild(link);
+        let lastc = this.name;
+        lastc = lastc.slice(lastc.length-1, lastc.length);
 
-        var link = document.createElement('a');
-        link.classList.add('row');
-       
-        var texto = document.createElement('div');
-        var tex = document.createTextNode('Renombrar');
+        if(lastc == '+'){
+            var link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+this.name+'/del';
+            link.classList.add('row');
+        
+            var texto = document.createElement('div');
+            var tex = document.createTextNode('Eliminar');
 
-        texto.appendChild(tex);
-        link.appendChild(texto);
-        menu.appendChild(link);
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+
+            var link = document.createElement('a');
+            link.classList.add('row');
+        
+            var texto = document.createElement('div');
+            var tex = document.createTextNode('Renombrar');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+        }else{
+            var link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+this.name+'/restore';
+            link.classList.add('row');
+        
+            var texto = document.createElement('div');
+            var tex = document.createTextNode('Restaurar');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+
+            var link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+this.name+'/exterminate';
+            link.classList.add('row');
+        
+            var texto = document.createElement('div');
+            var tex = document.createTextNode('Destruir');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+        }
 
         var opciones = document.getElementById('temp');
 
