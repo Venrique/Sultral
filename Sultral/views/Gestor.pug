@@ -51,8 +51,12 @@ html
           .document-viewer#viewer
             
             if contenido != undefined || favContent != undefined
-              - var archivos = ( varLoc != origen[1]['_id'] ? JSON.parse(contenido.replace(/&quot;/g,'"')) : JSON.parse(favContent.replace(/&quot;/g,'"')));
+              - var archivos = ( varLoc != origen[1]['_id'] && varLoc != origen[0]['_id'] ? JSON.parse(contenido.replace(/&quot;/g,'"')) : ( varLoc == origen[0]['_id'] ? JSON.parse(sharedContent.replace(/&quot;/g,'"')) : JSON.parse(favContent.replace(/&quot;/g,'"'))));
+              - console.log(archivos);
               for archivo in archivos
+                - let propio = false;
+                if archivo['creador'] == us
+                  - propio = true;
                 - let fav = false;
                 for id in favoritos
                   if id == archivo['_id']
@@ -63,7 +67,10 @@ html
                 - let splitname = ((name.length > 17 && archivo['ext'] == null) ? name.substring(0,17)+"..." : ((name.length > 14 && archivo['ext'] != null) ? name.substring(0,14)+"..."+archivo['ext'] : (archivo['ext'] ? name+"."+archivo['ext'] : name)));
                 if archivo['ext'] == null
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.yellow(href=link)
                       i.fa.fa-folder-open
                     .options
@@ -83,7 +90,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pdf"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.red
                       i.fas.fa-file-pdf
                     .options
@@ -105,7 +115,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pptx"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.orange
                       i.fas.fa-file-powerpoint
                     .options
@@ -127,7 +140,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "docx"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.blue
                       i.fas.fa-file-word
                     .options
@@ -149,7 +165,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "xlsx"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.green
                       i.fas.fa-file-excel
                     .options
@@ -171,7 +190,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "txt"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.grey
                       i.fas.fa-file-alt
                     .options
@@ -193,7 +215,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.grey
                       i.fas.fa-file-image
                     .options
@@ -215,7 +240,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.grey
                       i.fas.fa-file-video
                     .options
@@ -237,7 +265,10 @@ html
                             i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.grey
                       i.fas.fa-file-audio
                     .options
@@ -259,7 +290,10 @@ html
                             i.fas.fa-ellipsis-h
                 else
                   .element
-                    p.name(title=name) #{splitname}
+                    if propio
+                      p.name(title=name) #{splitname}
+                    else
+                      p.name.verde(title=name) #{splitname}
                     a.nav-button.white
                       i.fas.fa-file
                     .options

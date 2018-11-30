@@ -113,7 +113,7 @@ function redirecting(req, res, next, status){
     mensaje = "No se realizaron cambios en la configuración de privacidad del elemento.";
   }
 
-  Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.loc)}, { $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
   .exec().then((result) => {
     if(result.length != 0){
       Element.find({ "creador": mongoose.Types.ObjectId(decode.Id), "contenedor": null })
@@ -141,7 +141,12 @@ function redirecting(req, res, next, status){
                 Element.find({"_id": { $in : user[0]['favorites'] } })
                 .exec().then((favs) => {
 
-                  return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), favoritos: user[0]['favorites'], favContent: JSON.stringify(favs) , alert: reqAlert, alertT: titulo, alertM: mensaje });
+                  Element.find({ $or: [ { $and: [{ "creador": mongoose.Types.ObjectId(decode.Id) }, { "compartido": { $not: { $size: 0 } } }] }, { "compartido": mongoose.Types.ObjectId(decode.Id) }] })
+                  .exec().then((shared) => {
+
+                    return res.render('Gestor', { title: 'Sultral', us: decode.Id ,varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), favoritos: user[0]['favorites'], favContent: JSON.stringify(favs), sharedContent: JSON.stringify(shared) , alert: reqAlert, alertT: titulo, alertM: mensaje });
+
+                  })
   
                 }); 
 
