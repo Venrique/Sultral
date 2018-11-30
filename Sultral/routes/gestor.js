@@ -142,7 +142,7 @@ router.get('/:loc/:file', function (req, res, next) {
   .exec().then((result) => {
     if(result.length != 0){
 
-      let archivo = 'Sultral/../User_files/' + req.params.file + '.sultral';
+      let archivo = 'User_files/' + req.params.file + '.sultral';
       res.download(archivo, result[0]['nombre']+"."+result[0]['ext']);
     }else{
       return redirecting(req, res, next, 1002);
@@ -255,7 +255,7 @@ router.post('/:loc/upload', function (req, res, next) {
       .exec().then((usu) => {
         
         if(archivo.data.length/1024 < usu[0]['maxstorage']-usu[0]['storage']){
-          archivo.mv('Sultral/../User_files/' + fileId + '.sultral', function (err) {
+          archivo.mv('User_files/' + fileId + '.sultral', function (err) {
             if (err) {
               console.log(err);
             } else {
