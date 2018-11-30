@@ -11,9 +11,14 @@ for (let i = 0; i < botones.length; i++) {
         let lastc = this.name;
         lastc = lastc.slice(lastc.length-1, lastc.length);
 
+        let fileid = this.name;
+        fileid = fileid.substring(0, fileid.length - 1);
+
+        console.log(fileid);
+
         if(lastc == '+'){
             var link = document.createElement('a');
-            link.href = '/Gestor/'+loc+'/'+this.name+'/del';
+            link.href = '/Gestor/'+loc+'/'+fileid+'/del';
             link.classList.add('row');
         
             var texto = document.createElement('div');
@@ -34,7 +39,7 @@ for (let i = 0; i < botones.length; i++) {
             menu.appendChild(link);
         }else{
             var link = document.createElement('a');
-            link.href = '/Gestor/'+loc+'/'+this.name+'/restore';
+            link.href = '/Gestor/'+loc+'/'+fileid+'/restore';
             link.classList.add('row');
         
             var texto = document.createElement('div');
@@ -45,7 +50,7 @@ for (let i = 0; i < botones.length; i++) {
             menu.appendChild(link);
 
             var link = document.createElement('a');
-            link.href = '/Gestor/'+loc+'/'+this.name+'/exterminate';
+            link.href = '/Gestor/'+loc+'/'+fileid+'/exterminate';
             link.classList.add('row');
         
             var texto = document.createElement('div');
