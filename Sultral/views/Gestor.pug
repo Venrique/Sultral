@@ -337,6 +337,15 @@ html
         button.submit-file
           i.fas.fa-upload
         p subir
+    .mascaraN(role='dialog')
+    .modalN(role='alert')
+      button.cerrarN(role='button') X
+      form(class='centrado', method='POST', action='/Gestor/'+varLoc+'/cnombre')
+        input(type='file', id='finame', name='finame', placeholder='Nueva Carpeta', class='inputfile')
+        label.lblupload(for='finame') 
+          span Nuevo Nombre 
+        button.submit-file
+          i.fas.fa-upload
     .mascaraM(role='dialog')
     .modalM(role='alert')
       button.cerrarM(role='button') X

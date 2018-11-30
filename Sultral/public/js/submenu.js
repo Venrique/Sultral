@@ -28,6 +28,28 @@ for (let i = 0; i < botones.length; i++) {
 
             link = document.createElement('a');
             link.classList.add('row');
+
+            /* Modal Renombrar */
+            let mascaraN = document.getElementsByClassName("mascaraN")[0];
+            let btnCerrarN = document.getElementsByClassName("cerrarN")[0];
+
+            function cerrarModalN(){
+                mascaraN.className = mascaraN.className.replace(/\bactivoN\b/g, "");
+                
+            }
+
+            mascaraN.addEventListener("click", function(){
+                cerrarModalN();
+            });
+
+            btnCerrarN.addEventListener("click", function(){
+                cerrarModalN();
+            });
+            link.addEventListener("click", function(){
+                if (!hasClass(mascaraN, "activoN")) {
+                    mascaraN.className += " activoN";
+                }
+            });
         
             texto = document.createElement('div');
             tex = document.createTextNode('Renombrar');
