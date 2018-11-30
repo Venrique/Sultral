@@ -7,11 +7,41 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 router.get('/',function(req, res, next){
-  res.render('ConfigContacto', {title: 'Configuracion de contactos'});
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+    var regex = new RegExp(req.body.Contacto);
+    console.log(decode.usuario);
+    Usuario.findOne({user: decode.usuario}, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      console.log(result['contactos']);
+      Usuario.find({user: {$ne:decode.usuario} ,_id: {$nin: result['contactos']}}, function(err, resultado){
+        console.log(resultado);
+        res.render('ConfigContacto', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+      });
+      
 
 })
+});
 
 router.post('/', function (req, res, next) {
+
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+    var regex = new RegExp(req.body.Contacto);
+    console.log(decode.usuario);
+    Usuario.findOne({user: decode.usuario}, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      console.log(result['contactos']);
+      Usuario.find({user: regex,_id: {$nin: result['contactos']}}, function(err, resultado){
+        console.log(resultado);
+        res.render('ConfigContacto', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+      });
+      
+        
+    });
+  /*
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
   var regex = new RegExp(req.body.Contacto);
   Usuario.find({ user: regex })
@@ -23,7 +53,7 @@ router.post('/', function (req, res, next) {
       
   });
 
-
+*/
 
 });
 
