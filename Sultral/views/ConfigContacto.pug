@@ -2,52 +2,51 @@ extends ConfigLayout
 block content
     section.config-section
         #config-privacidad
-        form#MostrarUsuarios(method = 'post')
             h3  Contactos
-            label(for='Contacto')  Buscar contacto:
-            input#Nombre(type='text', name='Contacto', placeholder='Usuario123')
-            input(type='submit', value='Buscar')
-            
-            .error=err
-            .aceptado=acept
-            #contenido
-              script.
-                function genera_tabla() {
-                    var body = document.getElementById("contenido");
-                    
-                        // Crea un elemento <table> y un elemento <tbody>
-                        var tabla   = document.createElement("table");
-                        var tblBody = document.createElement("tbody");
-                        var rows =  <%-JSON.parse(#{FilasBD}.replace(/&quot;/g,'"'));)%>
-                        columnas = #{FilasBD};
+            form#formulario-Contacto(method='POST')
+                label(for='Contacto')  Buscar contacto:
+                input#Nombre(type='text', name='Contacto', placeholder='Usuario123')
+                input(type='submit', value='Buscar')
+                
+                .error=err
+                .aceptado=acept
+                #contenido
+                script.
+                    function genera_tabla() {
+                        var body = document.getElementById("contenido");
                         
-                        // Crea las celdas
-                        for (var i = 0; i < columnas.length;  i++) {
-                        // Crea las hileras de la tabla
-                            var hilera = document.createElement("tr");
-                    
-                            for (var j = 0; j < 3; j++) {
-                            // Crea un elemento <td> y un nodo de texto, haz que el nodo de
-                            // texto sea el contenido de <td>, ubica el elemento <td> al final
-                            // de la hilera de la tabla
-                                var celda = document.createElement("td");
-                                var textoCelda = document.createTextNode("asd");
-                                celda.appendChild(textoCelda);
-                                hilera.appendChild(celda);
+                            // Crea un elemento <table> y un elemento <tbody>
+                            var tabla   = document.createElement("table");
+                            var tblBody = document.createElement("tbody");
+                            var rows =  JSON.parse('#{FilasBD}'.replace(/&quot;/g,'"'));
+                            
+                            // Crea las celdas
+                            for (var i = 0; i < rows.length;  i++) {
+                            // Crea las hileras de la tabla
+                                var hilera = document.createElement("tr");
+                        
+                                for (var j = 0; j < 3; j++) {
+                                // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+                                // texto sea el contenido de <td>, ubica el elemento <td> al final
+                                // de la hilera de la tabla
+                                    var celda = document.createElement("td");
+                                    var textoCelda = document.createTextNode("asd");
+                                    celda.appendChild(textoCelda);
+                                    hilera.appendChild(celda);
+                                }
+                        
+                            // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                                tblBody.appendChild(hilera);
                             }
-                    
-                        // agrega la hilera al final de la tabla (al final del elemento tblbody)
-                            tblBody.appendChild(hilera);
+                        
+                            // posiciona el <tbody> debajo del elemento <table>
+                            tabla.appendChild(tblBody);
+                            // appends <table> into <body>
+                            body.appendChild(tabla);
+                            // modifica el atributo "border" de la tabla y lo fija a "2";
+                            tabla.setAttribute("border", "2");
                         }
-                    
-                        // posiciona el <tbody> debajo del elemento <table>
-                        tabla.appendChild(tblBody);
-                        // appends <table> into <body>
-                        body.appendChild(tabla);
-                        // modifica el atributo "border" de la tabla y lo fija a "2";
-                        tabla.setAttribute("border", "2");
-                    }
 
-                    genera_tabla();
-                   
+                        genera_tabla();
                     
+                        

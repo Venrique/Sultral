@@ -14,34 +14,18 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  var TodosUsuarios = [];
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
-  var cantidad=0;
-  Usuario.find({}, function (err, usuarios) {
-    usuarios.forEach(function (usuario) {
+
+  var regex = new RegExp(req.body.Contacto);
+
+  Usuario.find({ user: regex })
+  .exec().then( (result) => {
+
+    console.log(result);
+    res.render('ConfigContacto', { title: 'Configuracion Usuario', FilasBD: JSON.stringify(result)});
       
-      TodosUsuarios.push(usuario._id);
-      console.log(usuario._id);
-      
-      
-    });
-    console.log(TodosUsuarios);
-     cantidad = TodosUsuarios.length;
-     console.log(cantidad);
-     
-     res.render('ConfigContacto', { title: 'Configuracion Usuario', FilasBD: JSON.stringify(TodosUsuarios)});
-    
-    
-    
   });
  
-  /*
-  Usuario.findOneAndUpdate({user: decode.usuario}, {$push: {contactos: mongoose.Types.ObjectId(user._id)}}, function(err, place){
-    return res.render('ConfigContacto', { title: 'Configuracion Usuario', acept: "Se ha agregado el usuario correctamente" });
-  });
-}else{
-  return res.render('ConfigContacto', { title: 'Configuracion Usuario', err: "El usuario  que se busca no existe" });
-}*/
-  });
+});
 
 module.exports = router;

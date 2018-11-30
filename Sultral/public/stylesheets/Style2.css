@@ -415,7 +415,7 @@ body{
 	margin-top: 0.5em;
 	padding-top: 2em;
 	border-right: 1px solid #EEEEEE;
-	height: 200%;
+	height: auto;
 	
 }
 .config-aside nav ul{
@@ -450,7 +450,7 @@ body{
 	
 }
 .config-section div h3{
-	padding-top:0.3em;
+	padding-top:1em;
 	
 }
 .config-section div label{
@@ -505,6 +505,11 @@ body{
 	display:flex;
 	flex-direction: column;
 	
+}
+#formulario-Contacto{
+	display:flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .menu-header{
