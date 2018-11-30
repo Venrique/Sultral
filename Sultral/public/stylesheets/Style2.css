@@ -809,12 +809,6 @@ body{
 	align-items: center;
 }
 
-.menu-panel .row:after {
-	content: '';
-	display: table;
-	clear: both;
-}
-
 .menu-panel a {
 	color: #888888;
 	font-size: 13px;
