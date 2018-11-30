@@ -551,15 +551,19 @@ router.get('/:loc/:file/compartir', function(req,res,next){
 
 router.post('/:loc/:file/renombrar', function(req,res,next){
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
-
-  Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.file), creador: mongoose.Types.ObjectId(decode.Id)}, {nombre: req.body.finame}, function(err,place){
-    if(err){
-      console.log(err);
-      return redirecting(req,res,next,1016);
-    }else{
-      return redirecting(req,res,next,1017);
-    }
-  })
+  if(req.body.finame != null){
+    Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.file), creador: mongoose.Types.ObjectId(decode.Id)}, {nombre: req.body.finame}, function(err,place){
+      if(err){
+        console.log(err);
+        return redirecting(req,res,next,1016);
+      }else{
+        return redirecting(req,res,next,1017);
+      }
+    })
+  }else{
+    return res.redirect('/Gestor');
+  }
+  
 });
 
 module.exports = router;
