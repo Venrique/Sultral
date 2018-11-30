@@ -113,6 +113,18 @@ function redirecting(req, res, next, status){
     mensaje = "No se realizaron cambios en la configuración de privacidad del elemento.";
   }
 
+  if(status == 1016){
+    reqAlert = true;
+    titulo = "No se pudo cambiar";
+    mensaje = "El nombre del archivo no pudo ser modificado.";
+  }
+
+  if(status == 1017){
+    reqAlert = true;
+    titulo = "Modificación exitosa";
+    mensaje = "El nombre de la carpeta se modificó correctamente.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc)}, { $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
   .exec().then((result) => {
     if(result.length != 0){
@@ -535,6 +547,19 @@ router.get('/:loc/:file/compartir', function(req,res,next){
     console.log(err);
   })
 
+});
+
+router.post('/:loc/:file/renombrar', function(req,res,next){
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+
+  Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.file), creador: mongoose.Types.ObjectId(decode.Id)}, {nombre: req.body.finame}, function(err,place){
+    if(err){
+      console.log(err);
+      return redirecting(req,res,next,1016);
+    }else{
+      return redirecting(req,res,next,1017);
+    }
+  })
 });
 
 module.exports = router;

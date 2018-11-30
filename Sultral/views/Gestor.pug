@@ -340,12 +340,11 @@ html
     .mascaraN(role='dialog')
     .modalN(role='alert')
       button.cerrarN(role='button') X
-      form(class='centrado', method='POST', action='/Gestor/'+varLoc+'/cnombre')
-        input(type='file', id='finame', name='finame', placeholder='Nueva Carpeta', class='inputfile')
-        label.lblupload(for='finame') 
-          span Nuevo Nombre 
+      form(class='centrado ren', method='POST')
+        label(for='finame') Nuevo nombre: 
+        input(type='text', id='finame', name='finame', placeholder='Nuevo nombre', class='txtForm', required)
         button.submit-file
-          i.fas.fa-upload
+          i.fas.fa-plus
     .mascaraM(role='dialog')
     .modalM(role='alert')
       button.cerrarM(role='button') X

@@ -50,6 +50,8 @@ for (let i = 0; i < botones.length; i++) {
                     mascaraN.className += " activoN";
                 }
             });
+            var form = document.getElementsByClassName('ren');
+            form[0].action = '/Gestor/'+loc+'/'+fileid+'/renombrar';
         
             texto = document.createElement('div');
             tex = document.createTextNode('Renombrar');
