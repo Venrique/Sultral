@@ -3,11 +3,9 @@
 	font-size: calc(0.05em + 1vw);
 }
 
-*, ::before, ::after{
-	box-sizing: inherit;
-	font-family: 'Poppins'
-}
 body{
+	box-sizing: inherit;
+	font-family: 'Poppins';
 	margin: 0;
 	background-color: #EFEFEF;
 }
@@ -472,4 +470,26 @@ textarea{
 	margin-top:1em; 
 	font-size: 0.7em;
 	color: #0a0;
+}
+
+footer {
+    background: #222222;    
+    padding: 0.7em;
+    display: block;
+    text-align: center; 
+    font-weight: bold;   
+    font-size: 0.8em;    
+}
+
+footer ul {
+	padding: 0;
+}
+
+footer a {    
+	color:#8d3592;	
+}
+
+footer li{        
+    display: inline;
+    padding: 1em;           
 }
