@@ -101,7 +101,13 @@ function redirecting(req, res, next, status){
 
               Usuario.find({"_id": mongoose.Types.ObjectId(decode.Id)})
               .exec().then((user) => {
-                return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), favoritos: user[0]['favorites'], alert: reqAlert, alertT: titulo, alertM: mensaje });
+
+                Element.find({"_id": { $in : user[0]['favorites'] } })
+                .exec().then((favs) => {
+
+                  return res.render('Gestor', { title: 'Sultral', varLoc: req.params.loc, carpetasOrigen: JSON.stringify(contFolders), contenido: JSON.stringify(files), actual: JSON.stringify(actual), contenedor: JSON.stringify(container), favoritos: user[0]['favorites'], favContent: JSON.stringify(favs) , alert: reqAlert, alertT: titulo, alertM: mensaje });
+  
+                }); 
 
               }); 
 
