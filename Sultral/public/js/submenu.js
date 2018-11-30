@@ -14,8 +14,6 @@ for (let i = 0; i < botones.length; i++) {
         let fileid = this.name;
         fileid = fileid.substring(0, fileid.length - 1);
 
-        console.log(fileid);
-
         if(lastc == '+'){
             var link = document.createElement('a');
             link.href = '/Gestor/'+loc+'/'+fileid+'/del';
@@ -48,7 +46,6 @@ for (let i = 0; i < botones.length; i++) {
             texto.appendChild(tex);
             link.appendChild(texto);
             menu.appendChild(link);
-
             var link = document.createElement('a');
             link.href = '/Gestor/'+loc+'/'+fileid+'/exterminate';
             link.classList.add('row');

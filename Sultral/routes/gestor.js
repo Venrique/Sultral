@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 const mongoose = require('mongoose');
 const Element = require('../models/element');
@@ -70,6 +71,12 @@ function redirecting(req, res, next, status){
     mensaje = "El elemento se ha trasladado a la papelera.";
   }
 
+  if(status == 1010){
+    reqAlert = true;
+    titulo = "Elementos eliminados";
+    mensaje = "Se han eliminado los elementos especificados.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -117,6 +124,67 @@ function redirecting(req, res, next, status){
     }
   });
   
+}
+
+function eliminar(elemento, req, res, next){
+  Element.findOne({"_id": elemento})
+  .exec().then((result) => {
+    if(result.length != 0){
+      console.log(elemento);
+      if(result['ext'] != null){
+        let path = './User_files/' + result['_id'] + '.sultral';
+        console.log(path);
+        fs.unlink(path, (err) => {
+          if(err){
+            console.log(err);
+          }else{
+            Element.findOneAndDelete({"_id": mongoose.Types.ObjectId(result['_id'])}, function(err, rem){
+              if(err){
+                console.log(err);
+              }else{
+                if(req){
+                  if(elemento == req.params.file){
+                    return redirecting(req, res, next, 1010);
+                  }
+                }
+              }
+            }).catch((err) => {
+              if(err){
+                console.log(err);
+              }
+            });
+          }
+        });
+      }else{
+
+        let contenido = result['contenido'];
+        for(let e in contenido){
+          eliminar(e, req, res, next);
+        }
+        Element.findOneAndDelete({"_id": result['_id']}, function(err, rem){
+          if(err){
+            console.log(err);
+          }else{
+            if(req){
+              if(elemento == req.params.file){
+                return redirecting(req, res, next, 1010);
+              }
+            }
+          }
+        }).catch((err) => {
+          if(err){
+            console.log(err);
+          }
+        });
+
+      }
+      
+    }
+  }).catch((err) => {
+    if(err){
+      console.log(err);
+    }
+  }); 
 }
 
 /* GET home page. */
@@ -334,6 +402,10 @@ router.get('/:loc/:id/del', function (req, res, next) {
   .catch(error => {
       console.log(error);
   });
+});
+
+router.get('/:loc/:file/exterminate', function(req, res, next) {
+  return eliminar(req.params.file, req, res, next);
 });
 
 module.exports = router;
