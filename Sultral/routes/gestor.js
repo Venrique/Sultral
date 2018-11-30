@@ -143,36 +143,28 @@ function eliminar(elemento, req, res, next, decode){
           if(err){
             console.log(err);
           }else{
-            Element.find({"_id": result['_id']})
-            .exec().then((todel) => {
-              let size = (-1)*todel[0]['peso'];
-              Usuario.findOneAndUpdate({"_id": mongoose.Types.ObjectId(decode.Id)}, { $inc: { storage: size} }, function (err, place) {
-                if(err){
-                  console.log(err);
-                }else{
-                  Element.findOneAndDelete({"_id": todel[0]['_id']}, function(err, rem){
-                    if(err){
-                      console.log(err);
-                    }else{
-                      if(req){
-                        if(elemento == req.params.file){
-                          return redirecting(req, res, next, 1010);
-                        }
-                      }
-                    }
-                  }).catch((err) => {
-                    if(err){
-                      console.log(err);
-                    }
-                  });
-                }
-              })
-            }).catch((err) => {
+            let size = (-1)*result['peso'];
+            Usuario.findOneAndUpdate({"_id": mongoose.Types.ObjectId(decode.Id)}, { $inc: { storage: size} }, function (err, place) {
               if(err){
                 console.log(err);
+              }else{
+                Element.findOneAndDelete({"_id": result['_id']}, function(err, rem){
+                  if(err){
+                    console.log(err);
+                  }else{
+                    if(req){
+                      if(elemento == req.params.file){
+                        return redirecting(req, res, next, 1010);
+                      }
+                    }
+                  }
+                }).catch((err) => {
+                  if(err){
+                    console.log(err);
+                  }
+                });
               }
-            });
-            
+            })          
           }
         });
       }else{
@@ -182,7 +174,7 @@ function eliminar(elemento, req, res, next, decode){
         if(contenido.length > 0){
           const start = async () => {
             await recorrido(contenido, async (e) => {
-              await eliminar(e, req, res, next);
+              await eliminar(e, req, res, next, decode);
               console.log(e);
             });
             console.log('Hecho');
