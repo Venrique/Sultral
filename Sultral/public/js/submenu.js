@@ -45,6 +45,17 @@ for (let i = 0; i < botones.length; i++) {
             texto.appendChild(tex);
             link.appendChild(texto);
             menu.appendChild(link);
+
+            var link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+fileid+'/mover';
+            link.classList.add('row');
+        
+            var texto = document.createElement('div');
+            var tex = document.createTextNode('Mover');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
         }else if(lastc == '@'){
             var link = document.createElement('a');
             link.href = '/Gestor/'+loc+'/'+fileid+'/restore';
