@@ -322,10 +322,11 @@ html
                   input(type='radio', name='newLoc', value=varLoc, checked)
           .join
             for c in elementos
-              - let texto = c['nombre'];
-              div
-                label  #{texto}
-                    input(type='radio', name='newLoc', value=c['_id'])
+              if c['ext'] == null
+                - let texto = c['nombre'];
+                div
+                  label  #{texto}
+                      input(type='radio', name='newLoc', value=c['_id'])
           button.move-file
             i.fas.fa-people-carry
             | Mover
