@@ -126,40 +126,68 @@ function redirecting(req, res, next, status){
   
 }
 
-function eliminar(elemento, req, res, next){
+async function recorrido(contenido, callback) {
+  for (let index = 0; index < contenido.length; index++) {
+    await callback(contenido[index]);
+  }
+}
+
+function eliminar(elemento, req, res, next, decode){
   Element.findOne({"_id": elemento})
   .exec().then((result) => {
     if(result.length != 0){
       console.log(elemento);
       if(result['ext'] != null){
         let path = './User_files/' + result['_id'] + '.sultral';
-        console.log(path);
         fs.unlink(path, (err) => {
           if(err){
             console.log(err);
           }else{
-            Element.findOneAndDelete({"_id": mongoose.Types.ObjectId(result['_id'])}, function(err, rem){
-              if(err){
-                console.log(err);
-              }else{
-                if(req){
-                  if(elemento == req.params.file){
-                    return redirecting(req, res, next, 1010);
-                  }
+            Element.find({"_id": result['_id']})
+            .exec().then((todel) => {
+              let size = (-1)*todel[0]['peso'];
+              Usuario.findOneAndUpdate({"_id": mongoose.Types.ObjectId(decode.Id)}, { $inc: { storage: size} }, function (err, place) {
+                if(err){
+                  console.log(err);
+                }else{
+                  Element.findOneAndDelete({"_id": todel[0]['_id']}, function(err, rem){
+                    if(err){
+                      console.log(err);
+                    }else{
+                      if(req){
+                        if(elemento == req.params.file){
+                          return redirecting(req, res, next, 1010);
+                        }
+                      }
+                    }
+                  }).catch((err) => {
+                    if(err){
+                      console.log(err);
+                    }
+                  });
                 }
-              }
+              })
             }).catch((err) => {
               if(err){
                 console.log(err);
               }
             });
+            
           }
         });
       }else{
-
+        console.log(result['nombre']);
         let contenido = result['contenido'];
-        for(let e in contenido){
-          eliminar(e, req, res, next);
+        console.log(contenido);
+        if(contenido.length > 0){
+          const start = async () => {
+            await recorrido(contenido, async (e) => {
+              await eliminar(e, req, res, next);
+              console.log(e);
+            });
+            console.log('Hecho');
+          }
+          start();
         }
         Element.findOneAndDelete({"_id": result['_id']}, function(err, rem){
           if(err){
@@ -176,6 +204,7 @@ function eliminar(elemento, req, res, next){
             console.log(err);
           }
         });
+        
 
       }
       
@@ -265,6 +294,7 @@ router.post('/:loc', function (req, res, next) {
     _id: idCarpeta,
     nombre: req.body.fname.trim(),
     ext: null,
+    peso: null,
     contenedor: mongoose.Types.ObjectId(req.params.loc),
     contenido: [],
     creador: mongoose.Types.ObjectId(decode.Id),
@@ -322,6 +352,7 @@ router.post('/:loc/upload', function (req, res, next) {
                 _id: fileId,
                 nombre: nombref[0],
                 ext: nombref[1],
+                peso: archivo.data.length/1024,
                 contenedor: req.params.loc,
                 contenido: null,
                 creador: mongoose.Types.ObjectId(decode.Id),
@@ -405,7 +436,8 @@ router.get('/:loc/:id/del', function (req, res, next) {
 });
 
 router.get('/:loc/:file/exterminate', function(req, res, next) {
-  return eliminar(req.params.file, req, res, next);
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  return eliminar(req.params.file, req, res, next, decode);
 });
 
 module.exports = router;
