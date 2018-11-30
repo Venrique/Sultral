@@ -13,14 +13,13 @@ router.get('/',function(req, res, next){
 
 router.post('/', function (req, res, next) {
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
-
   var regex = new RegExp(req.body.Contacto);
-
-  Usuario.find({ user: regex})
-  .exec().then( (result) => {
-
+  Usuario.find({ user: regex })
+  .exec().then((result) => {
+    if(result){
     console.log(result);
     res.render('ConfigContacto', { title: 'Configuracion Usuario', FilasBD: JSON.stringify(result)});
+    }
       
   });
 
