@@ -8,7 +8,7 @@ for (let i = 0; i < botones.length; i++) {
         menu.id = 'main-menu';
         menu.classList.add('menu-panel');
         var link = document.createElement('a');
-        link.href = '/Gestor/'+this.name+'/del/user';
+        link.href = '/Gestor/'+loc+'/'+this.name+'/del';
         link.classList.add('row');
        
         var texto = document.createElement('div');

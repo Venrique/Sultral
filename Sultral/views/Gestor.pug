@@ -66,6 +66,12 @@ html
                     a.nav-button.yellow(href=link)
                       i.fa.fa-folder-open
                     .options
+                      if !papelera
+                        a.option.gold(href=linkFav)
+                          if fav
+                            i.fas.fa-star
+                          else
+                            i.far.fa-star
                       button.option2(name=archivo['_id'])
                           i.fas.fa-ellipsis-h
                 else if archivo['ext'] == "pdf"

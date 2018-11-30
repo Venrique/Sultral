@@ -55,22 +55,16 @@ function redirecting(req, res, next, status){
   if(status == 1006){
     reqAlert = true;
     titulo = "Favoritos actualizado";
-    mensaje = "Se ha añadido el archivo a tu carpeta Favoritos.";
+    mensaje = "Se ha añadido el elemento a tu carpeta Favoritos.";
   }
 
   if(status == 1007){
     reqAlert = true;
     titulo = "Favoritos actualizado";
-    mensaje = "Se ha eliminado el archivo de tu carpeta Favoritos.";
+    mensaje = "Se ha removido el elemento de tu carpeta Favoritos.";
   }
 
   if(status == 1008){
-    reqAlert = true;
-    titulo = "Error";
-    mensaje = "El elemento especificado no puede agregarse a favoritos.";
-  }
-
-  if(status == 1009){
     reqAlert = true;
     titulo = "Elemento trasladado";
     mensaje = "El elemento se ha trasladado a la papelera.";
@@ -155,32 +149,28 @@ router.get('/:loc/:file/fav', function(req, res, next){
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
   Element.find({ _id: mongoose.Types.ObjectId(req.params.file)})
   .exec().then((elem) => {
-    if(elem[0]['ext'] != null){
-      Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id), favorites: mongoose.Types.ObjectId(req.params.file) })
-      .exec().then((result) => {
+    Usuario.find({ _id: mongoose.Types.ObjectId(decode.Id), favorites: mongoose.Types.ObjectId(req.params.file) })
+    .exec().then((result) => {
 
-        if(result.length == 0){
-          Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $push: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
-            if (err) {
-              console.log(err);
-            }else{
-              return redirecting(req, res, next, 1006);
-            }
-          });
-        }else{
-          Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
-            if (err) {
-              console.log(err);
-            }else{
-              return redirecting(req, res, next, 1007);
-            }
-          });
-        }
+      if(result.length == 0){
+        Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $push: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+          if (err) {
+            console.log(err);
+          }else{
+            return redirecting(req, res, next, 1006);
+          }
+        });
+      }else{
+        Usuario.findOneAndUpdate({ _id: mongoose.Types.ObjectId(decode.Id) }, { $pull: { favorites: mongoose.Types.ObjectId(req.params.file) } }, function (err, place) {
+          if (err) {
+            console.log(err);
+          }else{
+            return redirecting(req, res, next, 1007);
+          }
+        });
+      }
 
-      });
-    }else{
-      return redirecting(req, res, next, 1008);
-    }
+    });
   });
   
 });
@@ -304,31 +294,31 @@ router.post('/:loc/upload', function (req, res, next) {
   
 });
 
-router.get('/:id/del/user', function (req, res, next) {
+router.get('/:loc/:id/del', function (req, res, next) {
 
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
 
   Element.findOne({ nombre: 'papelera', contenedor: null, creador: mongoose.Types.ObjectId(decode.Id) }).exec()
-        .then(papelera => {
+  .then((papelera) => {
 
-          Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(papelera._id) }, { $push: { contenido: mongoose.Types.ObjectId(req.params.id) } }, function (err, place) {
-            if (err) {
-              console.log(err);
-            }else{
-              Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.id) }, { contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
-                if (err) {
-                  console.log(err);
-                }else{
-                  return redirecting(req, res, next, 1009);
-                }
-              });
-            }
-          });
-            
-        })
-        .catch(error => {
-            console.log(error);
+    Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(papelera._id) }, { $push: { contenido: mongoose.Types.ObjectId(req.params.id) } }, function (err, place) {
+      if (err) {
+        console.log(err);
+      }else{
+        Element.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.id) }, { contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
+          if (err) {
+            console.log(err);
+          }else{
+            return redirecting(req, res, next, 1008);
+          }
         });
+      }
+    });
+      
+  })
+  .catch(error => {
+      console.log(error);
+  });
 });
 
 module.exports = router;

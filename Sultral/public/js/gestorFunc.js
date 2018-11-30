@@ -45,84 +45,85 @@ if (loc == carpetas[3]['_id']) {
 } else if (loc == carpetas[2]['_id']) {
     select(bin);
 }
+if(loc != "-"){
+    /* Modal */
+    let btnMostrar = document.getElementsByClassName("mostrar")[0];
+    let mascara = document.getElementsByClassName("mascara")[0];
+    let btnCerrar = document.getElementsByClassName("cerrar")[0];
 
-/* Modal */
-let btnMostrar = document.getElementsByClassName("mostrar")[0];
-let mascara = document.getElementsByClassName("mascara")[0];
-let btnCerrar = document.getElementsByClassName("cerrar")[0];
-
-btnMostrar.addEventListener("click", function(){
-    if (!hasClass(mascara, "activo")) {
-        mascara.className += " activo";
+    btnMostrar.addEventListener("click", function(){
+        if (!hasClass(mascara, "activo")) {
+            mascara.className += " activo";
+        }
+    });
+    
+    function cerrarModal(){
+        mascara.className = mascara.className.replace(/\bactivo\b/g, "");
+        let nombreCarpeta = document.getElementById('fname');
+        nombreCarpeta.value = "";
     }
-});
-  
-function cerrarModal(){
-    mascara.className = mascara.className.replace(/\bactivo\b/g, "");
-    let nombreCarpeta = document.getElementById('fname');
-    nombreCarpeta.value = "";
-}
 
-mascara.addEventListener("click", function(){
-    cerrarModal();
-});
-
-btnCerrar.addEventListener("click", function(){
-    cerrarModal();
-});
-
-document.onkeyup = function(evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 27) {
+    mascara.addEventListener("click", function(){
         cerrarModal();
+    });
+
+    btnCerrar.addEventListener("click", function(){
+        cerrarModal();
+    });
+
+    document.onkeyup = function(evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 27) {
+            cerrarModal();
+            cerrarModalA();
+        }
+    };
+
+    /* Modal Archivos */
+    let btnMostrarA = document.getElementsByClassName("upload-btn")[0];
+    let mascaraA = document.getElementsByClassName("mascaraA")[0];
+    let btnCerrarA = document.getElementsByClassName("cerrarA")[0];
+
+    btnMostrarA.addEventListener("click", function(){
+        if (!hasClass(mascaraA, "activoA")) {
+            mascaraA.className += " activoA";
+        }
+    });
+    
+    function cerrarModalA(){
+        mascaraA.className = mascaraA.className.replace(/\bactivoA\b/g, "");
+        let nombreCarpeta = document.getElementById('finame');
+        nombreCarpeta.value = "";
+    }
+
+    mascaraA.addEventListener("click", function(){
         cerrarModalA();
+    });
+
+    btnCerrarA.addEventListener("click", function(){
+        cerrarModalA();
+    });
+
+
+    /* Alert */
+    let alert = document.getElementsByClassName("alert")[0];
+    let cerrarAlert = document.getElementsByClassName("cerrar-alert")[0];
+
+    function ocultarAlert(){
+        alert.className = alert.className.replace(/\b alert-activado\b/g, "");
     }
-};
 
-/* Modal Archivos */
-let btnMostrarA = document.getElementsByClassName("upload-btn")[0];
-let mascaraA = document.getElementsByClassName("mascaraA")[0];
-let btnCerrarA = document.getElementsByClassName("cerrarA")[0];
-
-btnMostrarA.addEventListener("click", function(){
-    if (!hasClass(mascaraA, "activoA")) {
-        mascaraA.className += " activoA";
+    function mostrarAlert(){
+        if (!hasClass(alert, "alert-activado")) {
+            alert.className += " alert-activado";
+        }
     }
-});
-  
-function cerrarModalA(){
-    mascaraA.className = mascaraA.className.replace(/\bactivoA\b/g, "");
-    let nombreCarpeta = document.getElementById('finame');
-    nombreCarpeta.value = "";
-}
 
-mascaraA.addEventListener("click", function(){
-    cerrarModalA();
-});
+    cerrarAlert.addEventListener("click", () => {
+        ocultarAlert();
+    });
 
-btnCerrarA.addEventListener("click", function(){
-    cerrarModalA();
-});
-
-
-/* Alert */
-let alert = document.getElementsByClassName("alert")[0];
-let cerrarAlert = document.getElementsByClassName("cerrar-alert")[0];
-
-function ocultarAlert(){
-    alert.className = alert.className.replace(/\b alert-activado\b/g, "");
-}
-
-function mostrarAlert(){
-    if (!hasClass(alert, "alert-activado")) {
-        alert.className += " alert-activado";
+    if(reqAlert){
+        mostrarAlert();
     }
-}
-
-cerrarAlert.addEventListener("click", () => {
-    ocultarAlert();
-});
-
-if(reqAlert){
-    mostrarAlert();
 }
