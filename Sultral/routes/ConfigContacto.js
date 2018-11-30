@@ -16,8 +16,12 @@ router.get('/',function(req, res, next){
       console.log(result);
       console.log(result['contactos']);
       Usuario.find({user: {$ne:decode.usuario} ,_id: {$nin: result['contactos']}}, function(err, resultado){
+        if(resultado.length != 0){
         console.log(resultado);
-        res.render('ConfigContacto', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+        res.render('ConfigContacto', { title: 'Agregar Contactos', FilasBD: JSON.stringify(resultado)});
+        }else{
+          res.render('ConfigContacto',{ title: 'Agregar Contactos', err: 'No hay usuarios para agregar'});
+        }
       });
       
 

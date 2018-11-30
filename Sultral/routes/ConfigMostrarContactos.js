@@ -15,8 +15,13 @@ router.get('/',function(req,res,next){
       console.log(result);
       console.log(result['contactos']);
       Usuario.find({_id: {$in: result['contactos']}}, function(err, resultado){
+        if(resultado.length != 0){
         console.log(resultado);
         res.render('ConfigMostrar', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+        }else{
+          res.render('ConfigMostrar',{ title: 'Mostrar Contactos', err: 'No posee usuarios esta cuenta'});
+
+        }
       });
       
         
