@@ -511,6 +511,11 @@ body{
 	flex-direction: column;
 	width: 100%;
 }
+#formulario-MostrarContacto{
+	display:flex;
+	flex-direction: column;
+
+}
 
 .menu-header{
 	display: flex;

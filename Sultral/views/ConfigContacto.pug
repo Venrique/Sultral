@@ -33,13 +33,26 @@ block content
                                 // texto sea el contenido de <td>, ubica el elemento <td> al final
                                 // de la hilera de la tabla
                                     var celda = document.createElement("td");
+                                    celda.style.padding ="2em";
+                                    celda.style.textAlign = "center";
+                                    celda.style.borderBottom= "1px solid";
                                     if(j == 1){
                                         var boton="boton";
                                         contador = j
                                         var a = document.createElement("a");
+                                        
+                                         a.style.padding = "1rem 2rem";
+                                        a.style.textDecoration = "none";
+                                        a.style.backgroundColor = "#16941a";
+                                        a.style.color ='white';
+                                        a.style.borderRadius = '5px';
+                                        a.style.boxShadow = '#AFAFAF 1px 1px 10px';
+                                        
+
+                                        document.getElementsByTagName('head')[0].appendChild(style);
                                         a.href = 'ConfigContacto/'+rows[i].user;
 
-                                        var x = document.createTextNode("agregar");
+                                        var x = document.createTextNode("Agregar");
 
 
                                         /*var x = document.createElement("INPUT");
@@ -65,14 +78,15 @@ block content
                                 tblBody.appendChild(fila);
                                 
                             }
-                        
+                            tabla.style.borderRadius = '10px';
+                            tabla.style.boxShadow = "#AFAFAF 1px 1px 10px";
                             // posiciona el <tbody> debajo del elemento <table>
                             tabla.appendChild(tblBody);
                             // appends <table> into <body>
                             
                             body.appendChild(tabla);
                             // modifica el atributo "border" de la tabla y lo fija a "2";
-                            tabla.setAttribute("border", "2");
+                            
                             
                             
                         }
