@@ -47,7 +47,31 @@ for (let i = 0; i < botones.length; i++) {
             menu.appendChild(link);
 
             var link = document.createElement('a');
-            link.href = '/Gestor/'+loc+'/'+fileid+'/mover';
+            link.classList.add("btnMover");
+
+            /* Modal Mover */
+            let mascaraM = document.getElementsByClassName("mascaraM")[0];
+            let btnCerrarM = document.getElementsByClassName("cerrarM")[0];
+
+            function cerrarModalM(){
+                mascaraM.className = mascaraM.className.replace(/\bactivoM\b/g, "");
+                
+            }
+
+            mascaraM.addEventListener("click", function(){
+                cerrarModalM();
+            });
+
+            btnCerrarM.addEventListener("click", function(){
+                cerrarModalM();
+            });
+            link.addEventListener("click", function(){
+                if (!hasClass(mascaraM, "activoM")) {
+                    mascaraM.className += " activoM";
+                }
+            });
+            var form = document.getElementsByClassName('mov');
+            form[0].action = '/Gestor/'+loc+'/'+fileid+'/mover';
             link.classList.add('row');
         
             var texto = document.createElement('div');
