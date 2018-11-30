@@ -101,6 +101,18 @@ function redirecting(req, res, next, status){
     mensaje = "No es posible mover un elemento a un fichero.";
   }
 
+  if(status == 1014){
+    reqAlert = true;
+    titulo = "Archivo compartido";
+    mensaje = "El archivo se ha compartido con todos tus contactos.";
+  }
+
+  if(status == 1015){
+    reqAlert = true;
+    titulo = "Sin cambios";
+    mensaje = "No se realizaron cambios en la configuración de privacidad del elemento.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
   .exec().then((result) => {
     if(result.length != 0){
@@ -480,6 +492,44 @@ router.get('/:loc/:id/del', function (req, res, next) {
 router.get('/:loc/:file/exterminate', function(req, res, next) {
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
   return eliminar(req.params.file, req, res, next, decode);
+});
+
+router.get('/:loc/:file/compartir', function(req,res,next){
+  const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
+  let bandera = false;
+  Usuario.findOne({ _id: mongoose.Types.ObjectId(decode.Id)}).exec().then(usuario => {
+    console.log(usuario['contactos']);
+
+      const start = async () => {
+        await recorrido(usuario['contactos'], async (e) => {
+          console.log(e);
+          await Element.findOne({_id: mongoose.Types.ObjectId(req.params.file), compartido: {$ne : e}}).exec().then(elemento =>{
+            if(elemento != null){
+              Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(elemento['_id'])}, {$push: {compartido: e}}, function(err,place){
+                if(err){
+                  console.log(err);
+                }else{
+                  console.log('Si hizo update');
+                  bandera = true;
+                }
+              });
+            }
+          console.log(e);
+          });
+        })
+        console.log('Hecho');
+        if(bandera){
+          return redirecting(req,res,next,1014);
+        }else{
+          return redirecting(req,res,next,1015);
+        }
+      }
+      start();
+    
+  }).catch(err =>{
+    console.log(err);
+  })
+
 });
 
 module.exports = router;
