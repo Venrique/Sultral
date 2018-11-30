@@ -38,9 +38,13 @@ router.post('/', function (req, res, next) {
       if (err) throw err;
       console.log(result);
       console.log(result['contactos']);
-      Usuario.find({user: regex,_id: {$nin: result['contactos']}}, function(err, resultado){
+      Usuario.find({$and: [ { user: { $ne: decode.usuario} }, { user:  regex } ],_id: {$nin: result['contactos']}}, function(err, resultado){
+        if(resultado.length !=0){ 
         console.log(resultado);
-        res.render('ConfigContacto', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
+        res.render('ConfigContacto', { title: 'Agregar Contactos', FilasBD: JSON.stringify(resultado)});
+        }else{
+          res.render('ConfigContacto',{title: 'Agregar Contactos', err: "Ya tiene a todos los usuarios agregados"})
+        }
       });
       
         
