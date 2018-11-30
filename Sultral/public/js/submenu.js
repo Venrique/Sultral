@@ -26,16 +26,26 @@ for (let i = 0; i < botones.length; i++) {
             link.appendChild(texto);
             menu.appendChild(link);
 
-            var link = document.createElement('a');
+            link = document.createElement('a');
             link.classList.add('row');
         
-            var texto = document.createElement('div');
-            var tex = document.createTextNode('Renombrar');
+            texto = document.createElement('div');
+            tex = document.createTextNode('Renombrar');
 
             texto.appendChild(tex);
             link.appendChild(texto);
             menu.appendChild(link);
-        }else{
+
+            link = document.createElement('a');
+            link.classList.add('row');
+        
+            texto = document.createElement('div');
+            tex = document.createTextNode('Compartir');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+        }else if(lastc == '@'){
             var link = document.createElement('a');
             link.href = '/Gestor/'+loc+'/'+fileid+'/restore';
             link.classList.add('row');
@@ -46,12 +56,44 @@ for (let i = 0; i < botones.length; i++) {
             texto.appendChild(tex);
             link.appendChild(texto);
             menu.appendChild(link);
-            var link = document.createElement('a');
+
+            link = document.createElement('a');
             link.href = '/Gestor/'+loc+'/'+fileid+'/exterminate';
             link.classList.add('row');
         
+            texto = document.createElement('div');
+            tex = document.createTextNode('Destruir');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+        }else if(lastc == '-'){
+            var link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+fileid+'/del';
+            link.classList.add('row');
+        
             var texto = document.createElement('div');
-            var tex = document.createTextNode('Destruir');
+            var tex = document.createTextNode('Eliminar');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+
+            link = document.createElement('a');
+            link.classList.add('row');
+        
+            texto = document.createElement('div');
+            tex = document.createTextNode('Renombrar');
+
+            texto.appendChild(tex);
+            link.appendChild(texto);
+            menu.appendChild(link);
+
+            link = document.createElement('a');
+            link.classList.add('row');
+        
+            texto = document.createElement('div');
+            tex = document.createTextNode('Dejar de compartir');
 
             texto.appendChild(tex);
             link.appendChild(texto);
