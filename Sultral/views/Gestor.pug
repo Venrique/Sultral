@@ -322,7 +322,8 @@ html
     .mascara(role='dialog')
     .modal(role='alert')
       button.cerrar(role='button') X
-      form(class='centrado', method='POST')
+      -let formnewlink = '/Gestor/'+varLoc;
+      form(class='centrado', method='POST', action=formnewlink)
         label(for='fname') Nombre de la carpeta: 
         input(type='text', id='fname', name='fname', placeholder='Nueva Carpeta', class='txtForm', required)
         button.submit-file
