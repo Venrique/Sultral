@@ -303,10 +303,10 @@ router.get('/:loc/:file', function (req, res, next) {
 
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
 
-  Element.find({"_id": mongoose.Types.ObjectId(req.params.file), "contenedor": mongoose.Types.ObjectId(req.params.loc), "creador": mongoose.Types.ObjectId(decode.Id)})
+  Element.find({"_id": mongoose.Types.ObjectId(req.params.file), $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
   .exec().then((result) => {
     if(result.length != 0){
-
+      console.log(result);
       let archivo = 'User_files/' + req.params.file + '.sultral';
       res.download(archivo, result[0]['nombre']+"."+result[0]['ext']);
     }else{
