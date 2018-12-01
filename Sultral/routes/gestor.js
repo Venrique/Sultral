@@ -137,6 +137,18 @@ function redirecting(req, res, next, status){
     mensaje = "El nombre del archivo ya está en uso en el directorio de destino.";
   }
 
+  if(status == 1020){
+    reqAlert = true;
+    titulo = "No se pudo restaurar el archivo";
+    mensaje = "Error al restaurar el archivo.";
+  }
+
+  if(status == 1021){
+    reqAlert = true;
+    titulo = "Archivo restaurado";
+    mensaje = "El archivo se restauró a su carpeta anterior correctamente.";
+  }
+
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc)}, { $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
   .exec().then((result) => {
     if(result.length != 0){
@@ -600,6 +612,28 @@ router.post('/:loc/:file/renombrar', function(req,res,next){
     return res.redirect('/Gestor');
   }
   
+});
+
+router.get('/:loc/:file/restore', function(req,res,next){
+
+  Element.findOne({_id: mongoose.Types.ObjectId(req.params.file)}).exec().then(elemento => {
+    Element.find({ contenedor: mongoose.Types.ObjectId(elemento['contprevio']), nombre: elemento['nombre'] })
+    .exec().then((resultado) => {
+      if(resultado.length > 0){
+        redirecting(req, res, next, 1018);
+      }else{
+        Element.updateOne({_id: elemento['_id']},{contenedor: mongoose.Types.ObjectId(elemento['contprevio']), contprevio: null }, function(err,place){
+            if(err){
+              return redirecting(req,res,next,1020);
+            }else{
+              return redirecting(req,res,next,1021);
+            }
+        });
+      }
+    });
+  }).catch(err =>{
+    return redirecting(req,res,next,1020);
+  });
 });
 
 module.exports = router;
