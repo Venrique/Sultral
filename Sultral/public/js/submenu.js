@@ -150,6 +150,7 @@ for (let i = 0; i < botones.length; i++) {
             menu.appendChild(link);
 
             link = document.createElement('a');
+            link.href = '/Gestor/'+loc+'/'+fileid+'/descompartir';
             link.classList.add('row');
         
             texto = document.createElement('div');

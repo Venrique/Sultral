@@ -103,8 +103,8 @@ function redirecting(req, res, next, status){
 
   if(status == 1014){
     reqAlert = true;
-    titulo = "Archivo compartido";
-    mensaje = "El archivo se ha compartido con todos tus contactos.";
+    titulo = "Petición procesada";
+    mensaje = "Revise sus cambios.";
   }
 
   if(status == 1015){
@@ -147,6 +147,12 @@ function redirecting(req, res, next, status){
     reqAlert = true;
     titulo = "Archivo restaurado";
     mensaje = "El archivo se restauró a su carpeta anterior correctamente.";
+  }
+
+  if(status == 1022){
+    reqAlert = true;
+    titulo = "Archivo modificado";
+    mensaje = "Se ha dejado de compartir el archivo.";
   }
 
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc)}, { $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
@@ -575,11 +581,8 @@ router.get('/:loc/:file/compartir', function(req,res,next){
           });
         })
         console.log('Hecho');
-        if(bandera){
-          return redirecting(req,res,next,1014);
-        }else{
-          return redirecting(req,res,next,1015);
-        }
+        return redirecting(req,res,next,1014);
+
       }
       start();
     
@@ -612,6 +615,16 @@ router.post('/:loc/:file/renombrar', function(req,res,next){
     return res.redirect('/Gestor');
   }
   
+});
+
+router.get('/:loc/:file/descompartir', function(req, res, next){
+  Element.findOneAndUpdate({"_id": mongoose.Types.ObjectId(req.params.file)}, {compartido: []}, function(err, result) {
+    if(err){
+      console.log(err);
+    }else{
+      return redirecting(req,res,next,1022);
+    }
+  });
 });
 
 router.get('/:loc/:file/restore', function(req,res,next){
