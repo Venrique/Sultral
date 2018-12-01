@@ -32,7 +32,7 @@ function redirecting(req, res, next, status){
   if(status == 1002){
     reqAlert = true;
     titulo = "Fallo al realizar la descarga";
-    mensaje = "El archivo solicitado pudo descargarse.";
+    mensaje = "El archivo solicitado no pudo descargarse.";
   }
 
   if(status == 1003){
@@ -123,6 +123,18 @@ function redirecting(req, res, next, status){
     reqAlert = true;
     titulo = "Modificación exitosa";
     mensaje = "El nombre de la carpeta se modificó correctamente.";
+  }
+
+  if(status == 1018){
+    reqAlert = true;
+    titulo = "Nombre existente";
+    mensaje = "El nombre que intenta utilizar ya existe en este directorio.";
+  }
+
+  if(status == 1019){
+    reqAlert = true;
+    titulo = "Fallo al mover el archivo";
+    mensaje = "El nombre del archivo ya está en uso en el directorio de destino.";
   }
 
   Element.find({"_id": mongoose.Types.ObjectId(req.params.loc)}, { $or: [{"creador": mongoose.Types.ObjectId(decode.Id)} , {"compartido": mongoose.Types.ObjectId(decode.Id)}]})
@@ -448,14 +460,30 @@ router.post('/:loc/:file/mover', function (req, res, next) {
     Element.findOne({_id: mongoose.Types.ObjectId(req.body.newLoc)})
     .exec().then((result) => {
       if(result['ext'] == null){
-        Element.updateOne({ _id: mongoose.Types.ObjectId(req.params.file) }, { contenedor: req.body.newLoc }, function (err, place) {
-          if (err) {
-            console.log(err);
-          }else{
-            
-            return redirecting(req, res, next, 1011);
-    
-          }
+
+        Element.findOne({ _id: mongoose.Types.ObjectId(req.params.file) })
+        .exec().then((movido) => {
+
+          Element.find({ contenedor: result['_id'], nombre: movido['nombre'] })
+          .exec().then((resultado) => {
+            if(resultado.length > 0){
+              redirecting(req, res, next, 1019);
+            }else{
+
+              Element.updateOne({ _id: mongoose.Types.ObjectId(req.params.file) }, { contenedor: req.body.newLoc }, function (err, place) {
+                if (err) {
+                  console.log(err);
+                }else{
+                  
+                  return redirecting(req, res, next, 1011);
+          
+                }
+              });
+              
+            }
+          });
+          
+        
         });
       }else{
 
@@ -480,7 +508,7 @@ router.get('/:loc/:id/del', function (req, res, next) {
         Element.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
         .exec().then((result) => {
 
-          Element.updateOne({ _id: result['_id'] }, { contprevio: result['contenedor'], contenedor: mongoose.Types.ObjectId(papelera._id) }, function (err, place) {
+          Element.updateOne({ _id: result['_id'] }, { contprevio: result['contenedor'], contenedor: mongoose.Types.ObjectId(papelera._id), compartido: [] }, function (err, place) {
             if (err) {
               console.log(err);
             }else{
@@ -552,14 +580,22 @@ router.get('/:loc/:file/compartir', function(req,res,next){
 router.post('/:loc/:file/renombrar', function(req,res,next){
   const decode = jwt.decode(req.cookies.token, process.env.JWT_KEY);
   if(req.body.finame != null){
-    Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.file), creador: mongoose.Types.ObjectId(decode.Id)}, {nombre: req.body.finame}, function(err,place){
-      if(err){
-        console.log(err);
-        return redirecting(req,res,next,1016);
+    Element.find({ contenedor: mongoose.Types.ObjectId(req.params.loc), nombre: req.body.finame })
+    .exec().then((resultado) => {
+      if(resultado.length > 0){
+        redirecting(req, res, next, 1018);
       }else{
-        return redirecting(req,res,next,1017);
+        Element.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.file), creador: mongoose.Types.ObjectId(decode.Id)}, {nombre: req.body.finame}, function(err,place){
+          if(err){
+            console.log(err);
+            return redirecting(req,res,next,1016);
+          }else{
+            return redirecting(req,res,next,1017);
+          }
+        })
       }
-    })
+    });
+    
   }else{
     return res.redirect('/Gestor');
   }
