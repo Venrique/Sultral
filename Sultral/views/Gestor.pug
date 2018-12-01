@@ -74,20 +74,27 @@ html
                     a.nav-button.yellow(href=link)
                       i.fa.fa-folder-open
                     .options
-                      if papelera
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "pdf"
                   .element
                     if propio
@@ -97,22 +104,29 @@ html
                     a.nav-button.red
                       i.fas.fa-file-pdf
                     .options
-                      if papelera
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "pptx"
                   .element
                     if propio
@@ -122,22 +136,29 @@ html
                     a.nav-button.orange
                       i.fas.fa-file-powerpoint
                     .options
-                      if papelera
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "docx"
                   .element
                     if propio
@@ -147,22 +168,29 @@ html
                     a.nav-button.blue
                       i.fas.fa-file-word
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "xlsx"
                   .element
                     if propio
@@ -172,22 +200,29 @@ html
                     a.nav-button.green
                       i.fas.fa-file-excel
                     .options
-                      if papelera                      
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "txt"
                   .element
                     if propio
@@ -197,22 +232,29 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-alt
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "jpg" || archivo['ext'] == "png" || archivo['ext'] == "jpeg" || archivo['ext'] == "gif"
                   .element
                     if propio
@@ -222,22 +264,29 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-image
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "mp4" || archivo['ext'] == "avi" || archivo['ext'] == "wmv" || archivo['ext'] == "flv" || archivo['ext'] == "mkv"
                   .element
                     if propio
@@ -247,22 +296,29 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-video
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else if archivo['ext'] == "mp3" || archivo['ext'] == "wav" || archivo['ext'] == "ogg" || archivo['ext'] == "wma"
                   .element
                     if propio
@@ -272,22 +328,29 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-audio
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
                 else
                   .element
                     if propio
@@ -297,22 +360,29 @@ html
                     a.nav-button.white
                       i.fas.fa-file
                     .options
-                      if papelera                       
-                        button.option2(name=archivo['_id']+'@')
-                            i.fas.fa-ellipsis-h
-                      else if compartidos
-                        button.option2(name=archivo['_id']+'-')
-                            i.fas.fa-ellipsis-h
+                      if archivo['creador'] == us
+                        if papelera
+                          button.option2(name=archivo['_id']+'@')
+                              i.fas.fa-ellipsis-h
+                        else if compartidos
+                          button.option2(name=archivo['_id']+'-')
+                              i.fas.fa-ellipsis-h
+                        else
+                          a.option.gold(href=linkFav)
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
+                          button.option2(name=archivo['_id']+'+')
+                              i.fas.fa-ellipsis-h
                       else
                         a.option(href=link)
                             i.fas.fa-download
                         a.option.gold(href=linkFav)
-                          if fav
-                            i.fas.fa-star
-                          else
-                            i.far.fa-star
-                        button.option2(name=archivo['_id']+'+')
-                            i.fas.fa-ellipsis-h
+                            if fav
+                              i.fas.fa-star
+                            else
+                              i.far.fa-star
             if varLoc != origen[0]['_id'] && varLoc != origen[1]['_id'] && varLoc != origen[2]['_id'] && varLoc != "-"
               .new-folder.mostrar
                 .icon-folder
@@ -322,7 +392,8 @@ html
     .mascara(role='dialog')
     .modal(role='alert')
       button.cerrar(role='button') X
-      form(class='centrado', method='POST')
+      -let formnewlink = '/Gestor/'+varLoc;
+      form(class='centrado', method='POST', action=formnewlink)
         label(for='fname') Nombre de la carpeta: 
         input(type='text', id='fname', name='fname', placeholder='Nueva Carpeta', class='txtForm', required)
         button.submit-file
