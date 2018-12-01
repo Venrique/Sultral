@@ -400,14 +400,26 @@ body{
 	width: 100%;
 
 }
+.config-header nav ul li{
+	list-style: none;
+	text-decoration: none;
+}
 .config-header a{
 	
+	display: block;
 	text-decoration: none;
-	color:#000000;
+	color:black;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+	list-style: none;
 	
 }
 .config-header a:hover{
-	color:blue;
+	background-color: #4a4a4a;
+	transition: all 0.4s linear;
+	color:white;
+	list-style: none;
+	text-decoration: none;
 }
 .config-container{
 	display: grid;
