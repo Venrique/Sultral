@@ -19,7 +19,7 @@ router.get('/',function(req,res,next){
         console.log(resultado);
         res.render('ConfigMostrar', { title: 'Mostrar Contactos', FilasBD: JSON.stringify(resultado)});
         }else{
-          res.render('ConfigMostrar',{ title: 'Mostrar Contactos', err: 'No posee usuarios esta cuenta'});
+          res.render('ConfigMostrar',{ title: 'Mostrar Contactos', err: 'Esta cuenta no posee contactos'});
 
         }
       });
