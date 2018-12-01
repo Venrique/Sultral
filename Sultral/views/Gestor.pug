@@ -73,7 +73,7 @@ html
                       p.name.verde(title=name) #{splitname}
                     a.nav-button.yellow(href=link)
                       i.fa.fa-folder-open
-                    .options
+                    .options                     
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -104,6 +104,8 @@ html
                     a.nav-button.red
                       i.fas.fa-file-pdf
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -119,9 +121,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                       
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -136,6 +136,8 @@ html
                     a.nav-button.orange
                       i.fas.fa-file-powerpoint
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -151,9 +153,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                        
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -168,6 +168,8 @@ html
                     a.nav-button.blue
                       i.fas.fa-file-word
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -183,9 +185,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                   
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -200,6 +200,8 @@ html
                     a.nav-button.green
                       i.fas.fa-file-excel
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -215,9 +217,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                      
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -232,6 +232,8 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-alt
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -247,9 +249,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                       
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -264,6 +264,8 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-image
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -279,9 +281,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                       
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -296,6 +296,8 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-video
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -311,9 +313,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                       
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -328,6 +328,8 @@ html
                     a.nav-button.grey
                       i.fas.fa-file-audio
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -343,9 +345,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                        
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
@@ -360,6 +360,8 @@ html
                     a.nav-button.white
                       i.fas.fa-file
                     .options
+                      a.option(href=link)
+                            i.fas.fa-download
                       if archivo['creador'] == us
                         if papelera
                           button.option2(name=archivo['_id']+'@')
@@ -375,9 +377,7 @@ html
                               i.far.fa-star
                           button.option2(name=archivo['_id']+'+')
                               i.fas.fa-ellipsis-h
-                      else
-                        a.option(href=link)
-                            i.fas.fa-download
+                      else                  
                         a.option.gold(href=linkFav)
                             if fav
                               i.fas.fa-star
